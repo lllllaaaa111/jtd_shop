@@ -1,0 +1,1109 @@
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\App_backend\urls.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\App_backend\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /smart/welcome/list/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 77, in welcome_image_list
+    'created_at': img.created_at.strftime("%Y-%m-%d")
+                  ^^^^^^^^^^^^^^
+AttributeError: 'Welcome' object has no attribute 'created_at'
+Internal Server Error: /smart/mine/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 200, in get_user_mine
+    ).order_by('order').first()
+                        ^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 1104, in first
+    for obj in queryset[:1]:
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 384, in __iter__
+    self._fetch_all()
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 123, in __iter__
+    for row in compiler.results_iter(results):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\compiler.py", line 1541, in apply_converters
+    value = converter(value, expression, connection)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\operations.py", line 360, in convert_uuidfield_value
+    value = uuid.UUID(value)
+            ^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\uuid.py", line 178, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+Internal Server Error: /smart/welcome/list/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 77, in welcome_image_list
+    'created_at': img.created_at.strftime("%Y-%m-%d")
+                  ^^^^^^^^^^^^^^
+AttributeError: 'Welcome' object has no attribute 'created_at'
+Internal Server Error: /smart/mine/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 200, in get_user_mine
+    ).order_by('order').first()
+                        ^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 1104, in first
+    for obj in queryset[:1]:
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 384, in __iter__
+    self._fetch_all()
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 123, in __iter__
+    for row in compiler.results_iter(results):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\compiler.py", line 1541, in apply_converters
+    value = converter(value, expression, connection)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\operations.py", line 360, in convert_uuidfield_value
+    value = uuid.UUID(value)
+            ^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\uuid.py", line 178, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+Internal Server Error: /admin/app01/mine/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 2163, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+                                                           ^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 366, in __len__
+    self._fetch_all()
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 123, in __iter__
+    for row in compiler.results_iter(results):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\compiler.py", line 1541, in apply_converters
+    value = converter(value, expression, connection)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\operations.py", line 360, in convert_uuidfield_value
+    value = uuid.UUID(value)
+            ^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\uuid.py", line 178, in __init__
+    raise ValueError('badly formed hexadecimal UUID string')
+ValueError: badly formed hexadecimal UUID string
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Internal Server Error: /admin/app01/mine/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: app01_mine
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 2024, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 867, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\views\main.py", line 146, in __init__
+    self.get_results(request)
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\views\main.py", line 313, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\paginator.py", line 110, in count
+    return c()
+           ^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 604, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\query.py", line 644, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\query.py", line 626, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: app01_mine
+Internal Server Error: /admin/app01/welcome/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: app01_welcome
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 2024, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 867, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\views\main.py", line 146, in __init__
+    self.get_results(request)
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\views\main.py", line 313, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\paginator.py", line 110, in count
+    return c()
+           ^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 604, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\query.py", line 644, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\query.py", line 626, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: app01_welcome
+Internal Server Error: /admin/app01/mine/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: app01_mine
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 2024, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 867, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\views\main.py", line 146, in __init__
+    self.get_results(request)
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\views\main.py", line 313, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\paginator.py", line 110, in count
+    return c()
+           ^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 604, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\query.py", line 644, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\query.py", line 626, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: app01_mine
+Internal Server Error: /admin/app01/welcome/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: app01_welcome
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 2024, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\options.py", line 867, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\views\main.py", line 146, in __init__
+    self.get_results(request)
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\contrib\admin\views\main.py", line 313, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\paginator.py", line 110, in count
+    return c()
+           ^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\query.py", line 604, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\query.py", line 644, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\query.py", line 626, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: app01_welcome
+Watching for file changes with StatReloader
+上传图片时发生错误
+Traceback (most recent call last):
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 140, in upload_mine_image
+    mine_image.save()
+  File "D:\python_project\DjangoProject\App_backend\app01\models.py", line 53, in save
+    self.name = f"头像 {self.created_at.strftime('%Y-%m-%d')}" if not self.id else self.name
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strftime'
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\urls.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /smart/mine/set/
+Not Found: /smart/mine/set/
+Not Found: /smart/mine/delete/
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /smart/welcome/list/
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+收到请求: POST /smart/mine/set/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'X-Requested-With': 'XMLHttpRequest', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":1}'
+从JSON获取image_id: 1
+找到图片: 头像 2025-07-13
+返回成功响应: {'code': 100, 'msg': '头像设置成功', 'result': {'id': 1, 'image_url': 'http://127.0.0.1:8000/media/mine/6d2dcbe8677f4d22ab4d95589f201f55.jpg', 'name': '头像 2025-07-13'}}
+收到请求: POST /smart/mine/set/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'X-Requested-With': 'XMLHttpRequest', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":2}'
+从JSON获取image_id: 2
+找到图片: 头像 2025-07-13
+返回成功响应: {'code': 100, 'msg': '头像设置成功', 'result': {'id': 2, 'image_url': 'http://127.0.0.1:8000/media/mine/9750e4a3ee5d4232b3c0cafc06afb60d.jpg', 'name': '头像 2025-07-13'}}
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":2}'
+从JSON获取image_id: 2
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":3}'
+从JSON获取image_id: 3
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":3}'
+从JSON获取image_id: 3
+未找到图片ID: 3
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":4}'
+从JSON获取image_id: 4
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":1}'
+从JSON获取image_id: 1
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":5}'
+从JSON获取image_id: 5
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":6}'
+从JSON获取image_id: 6
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":7}'
+从JSON获取image_id: 7
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":8}'
+从JSON获取image_id: 8
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":9}'
+从JSON获取image_id: 9
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '15', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":10}'
+从JSON获取image_id: 10
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '15', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":11}'
+从JSON获取image_id: 11
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '15', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":12}'
+从JSON获取image_id: 12
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+Watching for file changes with StatReloader
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '15', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":13}'
+从JSON获取image_id: 13
+找到图片: 头像 2025-07-13
+返回成功响应: <JsonResponse status_code=200, "application/json">
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '15', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":14}'
+从JSON获取image_id: 14
+找到图片: 头像 2025-07-13
+已删除物理文件: mine/02f5084c5cad496ab13cc0445ccbb97e.jpg
+已删除数据库记录: 14
+返回成功响应: {'code': 100, 'msg': '图片删除成功', 'deleted_id': 14}
+收到请求: POST /smart/mine/set/
+处理POST请求
+请求头: {'Content-Length': '15', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'X-Requested-With': 'XMLHttpRequest', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":15}'
+从JSON获取image_id: 15
+找到图片: 头像 2025-07-13
+返回成功响应: {'code': 100, 'msg': '头像设置成功', 'result': {'id': 15, 'image_url': 'http://127.0.0.1:8000/media/mine/a47a92194a4f404883eab7851a6cc1f6.jpg', 'name': '头像 2025-07-13'}}
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\App_backend\settings.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\App_backend\settings.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\App_backend\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/8', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":1}'
+从JSON获取image_id: 1
+找到图片: 头像 2025-07-15
+已删除物理文件: mine/3c6572b32b4245eab3370f4277bfa516.jpg
+已删除数据库记录: 1
+返回成功响应: {'code': 100, 'msg': '图片删除成功', 'deleted_id': 1}
+Internal Server Error: /smart/welcome/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 43, in welcome
+    img ="http://127.0.0.1:8000/media/"+str(res.img)
+                                            ^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'img'
+Internal Server Error: /smart/welcome/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 43, in welcome
+    img ="http://127.0.0.1:8000/media/"+str(res.img)
+                                            ^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'img'
+Internal Server Error: /smart/welcome/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 43, in welcome
+    img ="http://127.0.0.1:8000/media/"+str(res.img)
+                                            ^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'img'
+Internal Server Error: /smart/welcome/
+Traceback (most recent call last):
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Python_anaconda\envs\app_backend\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 43, in welcome
+    img ="http://127.0.0.1:8000/media/"+str(res.img)
+                                            ^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'img'
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+未找到 Welcome 图片
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+收到请求: POST /smart/mine/delete/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/12', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":2}'
+从JSON获取image_id: 2
+找到图片: 头像 2025-07-15
+已删除物理文件: mine/6ccfddbb0bd24981a73f43b7e4796632.jpg
+已删除数据库记录: 2
+返回成功响应: {'code': 100, 'msg': '图片删除成功', 'deleted_id': 2}
+未找到 Welcome 图片
+Not Found: /favicon.ico
+Importing AvifImagePlugin
+Importing BlpImagePlugin
+Importing BmpImagePlugin
+Importing BufrStubImagePlugin
+Importing CurImagePlugin
+Importing DcxImagePlugin
+Importing DdsImagePlugin
+Importing EpsImagePlugin
+Importing FitsImagePlugin
+Importing FliImagePlugin
+Importing FpxImagePlugin
+Image: failed to import FpxImagePlugin: No module named 'olefile'
+Importing FtexImagePlugin
+Importing GbrImagePlugin
+Importing GifImagePlugin
+Importing GribStubImagePlugin
+Importing Hdf5StubImagePlugin
+Importing IcnsImagePlugin
+Importing IcoImagePlugin
+Importing ImImagePlugin
+Importing ImtImagePlugin
+Importing IptcImagePlugin
+Importing JpegImagePlugin
+Importing Jpeg2KImagePlugin
+Importing McIdasImagePlugin
+Importing MicImagePlugin
+Image: failed to import MicImagePlugin: No module named 'olefile'
+Importing MpegImagePlugin
+Importing MpoImagePlugin
+Importing MspImagePlugin
+Importing PalmImagePlugin
+Importing PcdImagePlugin
+Importing PcxImagePlugin
+Importing PdfImagePlugin
+Importing PixarImagePlugin
+Importing PngImagePlugin
+Importing PpmImagePlugin
+Importing PsdImagePlugin
+Importing QoiImagePlugin
+Importing SgiImagePlugin
+Importing SpiderImagePlugin
+Importing SunImagePlugin
+Importing TgaImagePlugin
+Importing TiffImagePlugin
+Importing WebPImagePlugin
+Importing WmfImagePlugin
+Importing XbmImagePlugin
+Importing XpmImagePlugin
+Importing XVThumbImagePlugin
+*** TiffImageFile._open ***
+- __first: 19484258
+- ifh: b'II*\x00bN)\x01'
+Seeking to frame 0, on frame -1, __next 19484258, location: 8
+Loading tags, location: 19484258
+tag: NewSubfileType (254) - type: long (4) - value: b'\x00\x00\x00\x00'
+tag: ImageWidth (256) - type: long (4) - value: b':\x0c\x00\x00'
+tag: ImageLength (257) - type: long (4) - value: b'\x1b\x08\x00\x00'
+tag: BitsPerSample (258) - type: short (3) Tag Location: 19484308 - Data Location: 19484432 - value: b'\x08\x00\x08\x00\x08\x00'
+tag: Compression (259) - type: short (3) - value: b'\x01\x00'
+tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+tag: StripOffsets (273) - type: long (4) Tag Location: 19484344 - Data Location: 19484438 - value: <table: 8300 bytes>
+tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+tag: RowsPerStrip (278) - type: long (4) - value: b'\x01\x00\x00\x00'
+tag: StripByteCounts (279) - type: long (4) Tag Location: 19484380 - Data Location: 19492738 - value: <table: 8300 bytes>
+tag: XResolution (282) - type: rational (5) Tag Location: 19484392 - Data Location: 19501038 - value: b'\x00w\x01\x00\xe8\x03\x00\x00'
+tag: YResolution (283) - type: rational (5) Tag Location: 19484404 - Data Location: 19501046 - value: b'\x00w\x01\x00\xe8\x03\x00\x00'
+tag: PlanarConfiguration (284) - type: short (3) - value: b'\x01\x00'
+tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+tag: NewSubfileType (254) - type: long (4) - value: b'\x00\x00\x00\x00'
+tag: ImageWidth (256) - type: long (4) - value: b':\x0c\x00\x00'
+tag: ImageLength (257) - type: long (4) - value: b'\x1b\x08\x00\x00'
+tag: BitsPerSample (258) - type: short (3) Tag Location: 19484308 - Data Location: 19484432 - value: b'\x08\x00\x08\x00\x08\x00'
+tag: Compression (259) - type: short (3) - value: b'\x01\x00'
+tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+tag: StripOffsets (273) - type: long (4) Tag Location: 19484344 - Data Location: 19484438 - value: <table: 8300 bytes>
+tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+tag: RowsPerStrip (278) - type: long (4) - value: b'\x01\x00\x00\x00'
+tag: StripByteCounts (279) - type: long (4) Tag Location: 19484380 - Data Location: 19492738 - value: <table: 8300 bytes>
+tag: XResolution (282) - type: rational (5) Tag Location: 19484392 - Data Location: 19501038 - value: b'\x00w\x01\x00\xe8\x03\x00\x00'
+tag: YResolution (283) - type: rational (5) Tag Location: 19484404 - Data Location: 19501046 - value: b'\x00w\x01\x00\xe8\x03\x00\x00'
+tag: PlanarConfiguration (284) - type: short (3) - value: b'\x01\x00'
+tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+*** Summary ***
+- compression: raw
+- photometric_interpretation: 2
+- planar_configuration: 1
+- fill_order: 1
+- YCbCr subsampling: None
+- size: (3130, 2075)
+format key: (b'II', 2, (1,), 1, (8, 8, 8), ())
+- raw mode: RGB
+- pil mode: RGB
+处理 /smart/welcome/ 请求时发生错误
+Traceback (most recent call last):
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 65, in welcome
+    'created_at': welcome_image.created_at.strftime("%Y-%m-%d")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Welcome' object has no attribute 'created_at'
+Watching for file changes with StatReloader
+处理 /smart/welcome/ 请求时发生错误
+Traceback (most recent call last):
+  File "D:\python_project\DjangoProject\App_backend\app01\views.py", line 65, in welcome
+    'created_at': welcome_image.created_at.strftime("%Y-%m-%d")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Welcome' object has no attribute 'created_at'
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Importing AvifImagePlugin
+Importing BlpImagePlugin
+Importing BmpImagePlugin
+Importing BufrStubImagePlugin
+Importing CurImagePlugin
+Importing DcxImagePlugin
+Importing DdsImagePlugin
+Importing EpsImagePlugin
+Importing FitsImagePlugin
+Importing FliImagePlugin
+Importing FpxImagePlugin
+Image: failed to import FpxImagePlugin: No module named 'olefile'
+Importing FtexImagePlugin
+Importing GbrImagePlugin
+Importing GifImagePlugin
+Importing GribStubImagePlugin
+Importing Hdf5StubImagePlugin
+Importing IcnsImagePlugin
+Importing IcoImagePlugin
+Importing ImImagePlugin
+Importing ImtImagePlugin
+Importing IptcImagePlugin
+Importing JpegImagePlugin
+Importing Jpeg2KImagePlugin
+Importing McIdasImagePlugin
+Importing MicImagePlugin
+Image: failed to import MicImagePlugin: No module named 'olefile'
+Importing MpegImagePlugin
+Importing MpoImagePlugin
+Importing MspImagePlugin
+Importing PalmImagePlugin
+Importing PcdImagePlugin
+Importing PcxImagePlugin
+Importing PdfImagePlugin
+Importing PixarImagePlugin
+Importing PngImagePlugin
+Importing PpmImagePlugin
+Importing PsdImagePlugin
+Importing QoiImagePlugin
+Importing SgiImagePlugin
+Importing SpiderImagePlugin
+Importing SunImagePlugin
+Importing TgaImagePlugin
+Importing TiffImagePlugin
+Importing WebPImagePlugin
+Importing WmfImagePlugin
+Importing XbmImagePlugin
+Importing XpmImagePlugin
+Importing XVThumbImagePlugin
+D:\python_project\DjangoProject\App_backend\App_backend\settings.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\App_backend\settings.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\App_backend\urls.py changed, reloading.
+D:\python_project\DjangoProject\App_backend\App_backend\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\App_backend\urls.py changed, reloading.
+D:\python_project\DjangoProject\App_backend\App_backend\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /media/welcome/welcome1_RFDTc74.jpg
+Not Found: /media/welcome/welcome1_RFDTc74.jpg
+Importing AvifImagePlugin
+Importing BlpImagePlugin
+Importing BmpImagePlugin
+Importing BufrStubImagePlugin
+Importing CurImagePlugin
+Importing DcxImagePlugin
+Importing DdsImagePlugin
+Importing EpsImagePlugin
+Importing FitsImagePlugin
+Importing FliImagePlugin
+Importing FpxImagePlugin
+Image: failed to import FpxImagePlugin: No module named 'olefile'
+Importing FtexImagePlugin
+Importing GbrImagePlugin
+Importing GifImagePlugin
+Importing GribStubImagePlugin
+Importing Hdf5StubImagePlugin
+Importing IcnsImagePlugin
+Importing IcoImagePlugin
+Importing ImImagePlugin
+Importing ImtImagePlugin
+Importing IptcImagePlugin
+Importing JpegImagePlugin
+Importing Jpeg2KImagePlugin
+Importing McIdasImagePlugin
+Importing MicImagePlugin
+Image: failed to import MicImagePlugin: No module named 'olefile'
+Importing MpegImagePlugin
+Importing MpoImagePlugin
+Importing MspImagePlugin
+Importing PalmImagePlugin
+Importing PcdImagePlugin
+Importing PcxImagePlugin
+Importing PdfImagePlugin
+Importing PixarImagePlugin
+Importing PngImagePlugin
+Importing PpmImagePlugin
+Importing PsdImagePlugin
+Importing QoiImagePlugin
+Importing SgiImagePlugin
+Importing SpiderImagePlugin
+Importing SunImagePlugin
+Importing TgaImagePlugin
+Importing TiffImagePlugin
+Importing WebPImagePlugin
+Importing WmfImagePlugin
+Importing XbmImagePlugin
+Importing XpmImagePlugin
+Importing XVThumbImagePlugin
+Not Found: /media/welcome/welcome1_TeTkKiC.jpg
+Not Found: /media/welcome/welcome1_TeTkKiC.jpg
+Not Found: /media/welcome/welcome1_TeTkKiC.jpg
+Not Found: /favicon.ico
+Not Found: /media/welcome
+Not Found: /media/welcome/welcome1_TeTkKiC.jpg
+Not Found: /media/welcome/welcome1_TeTkKiC.jpg
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+D:\python_project\DjangoProject\App_backend\App_backend\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Importing AvifImagePlugin
+Importing BlpImagePlugin
+Importing BmpImagePlugin
+Importing BufrStubImagePlugin
+Importing CurImagePlugin
+Importing DcxImagePlugin
+Importing DdsImagePlugin
+Importing EpsImagePlugin
+Importing FitsImagePlugin
+Importing FliImagePlugin
+Importing FpxImagePlugin
+Image: failed to import FpxImagePlugin: No module named 'olefile'
+Importing FtexImagePlugin
+Importing GbrImagePlugin
+Importing GifImagePlugin
+Importing GribStubImagePlugin
+Importing Hdf5StubImagePlugin
+Importing IcnsImagePlugin
+Importing IcoImagePlugin
+Importing ImImagePlugin
+Importing ImtImagePlugin
+Importing IptcImagePlugin
+Importing JpegImagePlugin
+Importing Jpeg2KImagePlugin
+Importing McIdasImagePlugin
+Importing MicImagePlugin
+Image: failed to import MicImagePlugin: No module named 'olefile'
+Importing MpegImagePlugin
+Importing MpoImagePlugin
+Importing MspImagePlugin
+Importing PalmImagePlugin
+Importing PcdImagePlugin
+Importing PcxImagePlugin
+Importing PdfImagePlugin
+Importing PixarImagePlugin
+Importing PngImagePlugin
+Importing PpmImagePlugin
+Importing PsdImagePlugin
+Importing QoiImagePlugin
+Importing SgiImagePlugin
+Importing SpiderImagePlugin
+Importing SunImagePlugin
+Importing TgaImagePlugin
+Importing TiffImagePlugin
+Importing WebPImagePlugin
+Importing WmfImagePlugin
+Importing XbmImagePlugin
+Importing XpmImagePlugin
+Importing XVThumbImagePlugin
+tag: ImageWidth (256) - type: short (3) - value: b'X\x15'
+tag: ImageLength (257) - type: short (3) - value: b'\x00 '
+tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 206 - value: b'\x10\x00\x10\x00\x10\x00'
+tag: Compression (259) - type: short (3) - value: b'\x01\x00'
+tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+tag: Make (271) - type: string (2) Tag Location: 82 - Data Location: 212 - value: b'Canon\x00'
+tag: Model (272) - type: string (2) Tag Location: 94 - Data Location: 218 - value: b'Canon EOS R5m2\x00'
+tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+tag: XResolution (282) - type: rational (5) Tag Location: 130 - Data Location: 233 - value: b"\xc0\xc6-\x00\x10'\x00\x00"
+tag: YResolution (283) - type: rational (5) Tag Location: 142 - Data Location: 241 - value: b"\xc0\xc6-\x00\x10'\x00\x00"
+tag: PlanarConfiguration (284) - type: short (3) - value: b'\x01\x00'
+tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+tag: Software (305) - type: string (2) Tag Location: 178 - Data Location: 249 - value: b'Adobe Photoshop 25.12 (Windows)\x00'
+tag: DateTime (306) - type: string (2) Tag Location: 190 - Data Location: 281 - value: b'2025:03:03 14:37:22\x00'
+tag: ExifIFD (34665) - type: long (4) - value: b'0\x01\x00\x00'
+收到请求: POST /smart/mine/set/
+处理POST请求
+请求头: {'Content-Length': '14', 'Content-Type': 'application/json', 'Host': '127.0.0.1:8000', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1 wechatdevtools/1.06.2504010 MicroMessenger/8.0.5 Language/zh_CN webview/ sessionid/14', 'X-Requested-With': 'XMLHttpRequest', 'Accept': '*/*', 'Sec-Fetch-Site': 'same-site', 'Sec-Fetch-Mode': 'cors', 'Sec-Fetch-Dest': 'empty', 'Referer': 'https://servicewechat.com/wx05b6fdcc03632baa/devtools/page-frame.html', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'zh-CN,zh;q=0.9'}
+请求体: b'{"image_id":1}'
+从JSON获取image_id: 1
+找到图片: 头像 2025-07-25
+返回成功响应: {'code': 100, 'msg': '头像设置成功', 'result': {'id': 1, 'image_url': 'http://127.0.0.1:8000/media/mine/_57A5660_%E6%8B%B7%E8%B4%9D_-_%E5%89%AF%E6%9C%AC.jpg', 'name': '头像 2025-07-25'}}
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+D:\python_project\DjangoProject\App_backend\app01\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
