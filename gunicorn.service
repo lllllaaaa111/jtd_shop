@@ -1,0 +1,20 @@
+[Unit]
+Description=Gunicorn instance to serve jtd_shop
+After=network.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+WorkingDirectory=/data/jtd_backend/jtd_shop
+Environment="PATH=/data/jtd_backend/jtd_shop/.venv/bin"
+ExecStart=/data/jtd_backend/jtd_shop/.venv/bin/gunicorn --config gunicorn.conf.py App_backend.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target 

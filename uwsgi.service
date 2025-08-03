@@ -1,0 +1,16 @@
+[Unit]
+Description=uWSGI Emperor service
+After=syslog.target
+
+[Service]
+ExecStart=/data/jtd_backend/jtd_shop/.venv/bin/uwsgi --ini /data/jtd_backend/jtd_shop/uwsgi.ini
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target 

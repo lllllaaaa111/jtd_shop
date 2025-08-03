@@ -1,0 +1,5 @@
+*.sh
+*.swp
+/data/jtd_backend/gunicorn.service
+/data/jtd_backend/nginx.conf
+/data/jtd_backend/uwsgi.service
