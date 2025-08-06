@@ -38,10 +38,36 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',  # 添加DRF
+    'corsheaders',     # 添加CORS支持
     'app01.apps.App01Config',
+    'user_management.apps.UserManagementConfig',
+    'product_management.apps.ProductManagementConfig',
+    'order_management.apps.OrderManagementConfig',
+    'content_management.apps.ContentManagementConfig',
+    'system_management.apps.SystemManagementConfig',
 ]
+# REST Framework配置
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+}
+# CORS配置
+CORS_ALLOW_ALL_ORIGINS = True  # 开发环境，生产环境需要指定具体域名
+CORS_ALLOW_CREDENTIALS = True
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # CORS中间件，必须在CommonMiddleware之前
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -162,7 +188,8 @@ LOGGING = {
     },
 }
 
-AUTH_USER_MODEL = 'app01.User'
+# 设置自定义用户模型
+AUTH_USER_MODEL = 'user_management.User'
 
 # CSRF配置
 CSRF_COOKIE_SECURE = False  # 如果使用HTTP

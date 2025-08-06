@@ -1,0 +1,23 @@
+"""
+URL configuration for user_management - 用户管理模块
+"""
+from django.urls import path
+from . import views
+
+app_name = 'user_management'
+
+urlpatterns = [
+    # 用户管理相关
+    path('list/', views.user_list, name='user_list'),                               #用户列表
+    path('detail/<int:user_id>/', views.user_detail, name='user_detail'),            #用户详情
+    path('create/', views.user_create, name='user_create'),                          #创建用户
+    path('update/<int:user_id>/', views.user_update, name='user_update'),             #更新用户
+    path('delete/<int:user_id>/', views.user_delete, name='user_delete'),             #删除用户
+    
+    # 头像管理相关
+    path('avatar/', views.get_user_mine, name='get_user_avatar'),                    #获取用户头像
+    path('avatar/list/', views.mine_image_list, name='avatar_list'),                  #获取用户头像列表
+    path('avatar/upload/', views.upload_mine_image, name='upload_avatar'),            #上传用户头像
+    path('avatar/delete/', views.delete_mine_image, name='delete_avatar'),            #删除用户头像
+    path('avatar/set/', views.set_mine_avatar, name='set_avatar'),                    #设置用户头像
+]

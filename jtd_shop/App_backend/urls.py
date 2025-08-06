@@ -15,23 +15,39 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.views.static import serve
 from django.conf.urls.static import static
 from django.conf import settings
-from app01.views import *
 
 urlpatterns = [
+    # Django管理后台
        path('admin/', admin.site.urls),
+    
+    # 核心功能模块
        path('smart/', include('app01.urls')),
-       path("index/",index),
-       path("films/",films),
-       path("random_t/",random_t_views),
-       path("media/<path:path>",serve,{"document_root":settings.MEDIA_ROOT})
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    # 用户管理模块
+    path('users/', include('user_management.urls')),
+    
+    # 商品管理模块
+    path('products/', include('product_management.urls')),
+    
+    # 订单管理模块
+    path('orders/', include('order_management.urls')),
+    
+    # 内容管理模块
+    path('content/', include('content_management.urls')),
+    
+    # 系统管理模块
+    path('system/', include('system_management.urls')),
+    
+    # 媒体文件服务
+    path("media/<path:path>", serve, {"document_root": settings.MEDIA_ROOT}),
+]
 
+# 开发环境静态文件服务
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
