@@ -2464,3 +2464,342 @@ Not Found: /favicon.ico
 Not Found: /
 Not Found: /geoserver/web/
 Not Found: /
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+/usr/lib/python3/dist-packages/apport_python_hook.py changed, reloading.
+Watching for file changes with StatReloader
+Forbidden (CSRF token from POST incorrect.): /admin/login/
+Watching for file changes with StatReloader
+Forbidden: /users/list/
+Forbidden: /users/detail/1/
+Forbidden: /users/create/
+Forbidden: /products/category/list/
+Forbidden: /products/list/
+Forbidden: /products/detail/1/
+Forbidden: /orders/list/
+Forbidden: /orders/detail/1/
+Forbidden: /orders/cart/list/
+未找到欢迎图片
+数据库中没有欢迎图片记录
+Forbidden: /content/banner/list/
+Forbidden: /content/article/list/
+Forbidden: /content/article/detail/1/
+Forbidden: /content/notice/list/
+Forbidden: /system/config/list/
+Forbidden: /system/log/list/
+Forbidden: /system/file/list/
+Forbidden: /system/backup/list/
+/home/wjj/data/jtd_shop/jtd_shop/user_management/views.py changed, reloading.
+Watching for file changes with StatReloader
+/home/wjj/data/jtd_shop/jtd_shop/user_management/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/home/wjj/data/jtd_shop/jtd_shop/App_backend/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/home/wjj/data/jtd_shop/jtd_shop/App_backend/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Forbidden: /users/list/
+Forbidden: /users/detail/1/
+Bad Request: /users/create/
+Forbidden: /products/category/list/
+Forbidden: /products/list/
+Forbidden: /products/detail/1/
+Forbidden: /orders/list/
+Forbidden: /orders/detail/1/
+Forbidden: /orders/cart/list/
+未找到欢迎图片
+数据库中没有欢迎图片记录
+Forbidden: /content/banner/list/
+Forbidden: /content/article/list/
+Forbidden: /content/article/detail/1/
+Forbidden: /content/notice/list/
+Forbidden: /system/config/list/
+Forbidden: /system/log/list/
+Forbidden: /system/file/list/
+Forbidden: /system/backup/list/
+Not Found: /accounts/profile/
+Forbidden: /users/create/
+获取商品详情时发生错误
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+product_management.models.Product.DoesNotExist: Product matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py", line 81, in product_detail
+    product = get_object_or_404(Product, id=product_id, is_active=True)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Product matches the given query.
+Internal Server Error: /products/detail/1/
+获取订单详情时发生错误
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/wjj/data/jtd_shop/jtd_shop/order_management/views.py", line 49, in order_detail
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/detail/1/
+未找到欢迎图片
+数据库中没有欢迎图片记录
+Internal Server Error: /content/article/list/
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/rest_framework/views.py", line 517, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/rest_framework/views.py", line 429, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `StreamingHttpResponse` to be returned from the view, but received a `<class 'NoneType'>`
+Not Found: /content/article/detail/1/
+Internal Server Error: /system/file/list/
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/rest_framework/views.py", line 517, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/rest_framework/views.py", line 429, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+AssertionError: Expected a `Response`, `HttpResponse` or `StreamingHttpResponse` to be returned from the view, but received a `<class 'NoneType'>`
+Importing AvifImagePlugin
+Importing BlpImagePlugin
+Importing BmpImagePlugin
+Importing BufrStubImagePlugin
+Importing CurImagePlugin
+Importing DcxImagePlugin
+Importing DdsImagePlugin
+Importing EpsImagePlugin
+Importing FitsImagePlugin
+Importing FliImagePlugin
+Importing FpxImagePlugin
+Image: failed to import FpxImagePlugin: No module named 'olefile'
+Importing FtexImagePlugin
+Importing GbrImagePlugin
+Importing GifImagePlugin
+Importing GribStubImagePlugin
+Importing Hdf5StubImagePlugin
+Importing IcnsImagePlugin
+Importing IcoImagePlugin
+Importing ImImagePlugin
+Importing ImtImagePlugin
+Importing IptcImagePlugin
+Importing JpegImagePlugin
+Importing Jpeg2KImagePlugin
+Importing McIdasImagePlugin
+Importing MicImagePlugin
+Image: failed to import MicImagePlugin: No module named 'olefile'
+Importing MpegImagePlugin
+Importing MpoImagePlugin
+Importing MspImagePlugin
+Importing PalmImagePlugin
+Importing PcdImagePlugin
+Importing PcxImagePlugin
+Importing PdfImagePlugin
+Importing PixarImagePlugin
+Importing PngImagePlugin
+Importing PpmImagePlugin
+Importing PsdImagePlugin
+Importing QoiImagePlugin
+Importing SgiImagePlugin
+Importing SpiderImagePlugin
+Importing SunImagePlugin
+Importing TgaImagePlugin
+Importing TiffImagePlugin
+Importing WebPImagePlugin
+Importing WmfImagePlugin
+Importing XbmImagePlugin
+Importing XpmImagePlugin
+Importing XVThumbImagePlugin
+tag: ImageWidth (256) - type: short (3) - value: b'X\x15'
+tag: ImageLength (257) - type: short (3) - value: b'\x00 '
+tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 206 - value: b'\x10\x00\x10\x00\x10\x00'
+tag: Compression (259) - type: short (3) - value: b'\x01\x00'
+tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+tag: Make (271) - type: string (2) Tag Location: 82 - Data Location: 212 - value: b'Canon\x00'
+tag: Model (272) - type: string (2) Tag Location: 94 - Data Location: 218 - value: b'Canon EOS R5m2\x00'
+tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+tag: XResolution (282) - type: rational (5) Tag Location: 130 - Data Location: 233 - value: b"\xc0\xc6-\x00\x10'\x00\x00"
+tag: YResolution (283) - type: rational (5) Tag Location: 142 - Data Location: 241 - value: b"\xc0\xc6-\x00\x10'\x00\x00"
+tag: PlanarConfiguration (284) - type: short (3) - value: b'\x01\x00'
+tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+tag: Software (305) - type: string (2) Tag Location: 178 - Data Location: 249 - value: b'Adobe Photoshop 25.12 (Windows)\x00'
+tag: DateTime (306) - type: string (2) Tag Location: 190 - Data Location: 281 - value: b'2025:03:03 14:37:22\x00'
+tag: ExifIFD (34665) - type: long (4) - value: b'0\x01\x00\x00'
+tag: ImageWidth (256) - type: short (3) - value: b'X\x15'
+tag: ImageLength (257) - type: short (3) - value: b'\x00 '
+tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 206 - value: b'\x10\x00\x10\x00\x10\x00'
+tag: Compression (259) - type: short (3) - value: b'\x01\x00'
+tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+tag: Make (271) - type: string (2) Tag Location: 82 - Data Location: 212 - value: b'Canon\x00'
+tag: Model (272) - type: string (2) Tag Location: 94 - Data Location: 218 - value: b'Canon EOS R5m2\x00'
+tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+tag: XResolution (282) - type: rational (5) Tag Location: 130 - Data Location: 233 - value: b"\xc0\xc6-\x00\x10'\x00\x00"
+tag: YResolution (283) - type: rational (5) Tag Location: 142 - Data Location: 241 - value: b"\xc0\xc6-\x00\x10'\x00\x00"
+tag: PlanarConfiguration (284) - type: short (3) - value: b'\x01\x00'
+tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+tag: Software (305) - type: string (2) Tag Location: 178 - Data Location: 249 - value: b'Adobe Photoshop 25.12 (Windows)\x00'
+tag: DateTime (306) - type: string (2) Tag Location: 190 - Data Location: 281 - value: b'2025:03:03 14:37:22\x00'
+tag: ExifIFD (34665) - type: long (4) - value: b'0\x01\x00\x00'
+/home/wjj/data/jtd_shop/jtd_shop/App_backend/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Forbidden: /products/list/
+Forbidden: /orders/list/
+Forbidden: /content/article/list/
+Forbidden: /users/list/
+Forbidden: /users/detail/1/
+Forbidden: /products/category/list/
+Forbidden: /products/list/
+Not Found: /products/detail/{product_id}/
+Forbidden: /orders/list/
+Not Found: /orders/detail/{order_id}/
+Forbidden: /orders/cart/list/
+Forbidden: /content/banner/list/
+Forbidden: /content/article/list/
+Not Found: /content/article/detail/{article_id}/
+Forbidden: /content/notice/list/
+Forbidden: /system/config/list/
+Forbidden: /system/log/list/
+Forbidden: /system/file/list/
+Forbidden: /system/backup/list/
+Watching for file changes with StatReloader
+Not Found: /accounts/profile/
+Forbidden: /users/create/
+Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /accounts/profile/
+Forbidden: /users/create/
+Forbidden: /users/create/
+获取订单详情时发生错误
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/wjj/data/jtd_shop/jtd_shop/order_management/views.py", line 49, in order_detail
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/detail/1/
+Forbidden: /users/create/
+获取订单详情时发生错误
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/wjj/data/jtd_shop/jtd_shop/order_management/views.py", line 49, in order_detail
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/detail/1/
+Forbidden: /users/create/
+获取订单详情时发生错误
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/wjj/data/jtd_shop/jtd_shop/order_management/views.py", line 49, in order_detail
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/detail/1/
+Forbidden: /users/register/
+获取订单详情时发生错误
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/wjj/data/jtd_shop/jtd_shop/order_management/views.py", line 49, in order_detail
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/detail/1/
+Forbidden: /users/register/
+Watching for file changes with StatReloader
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wxc5b4fd8b8b846c62&secret=72744b818b84117bc15faf174f086662&js_code=test_code_123456&grant_type=authorization_code HTTP/1.1" 200 79
+微信登录失败: {'errcode': 40125, 'errmsg': 'invalid appsecret, rid: 6895dcc0-30605911-61f260bd'}
+Unauthorized: /wechat/login/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wxc5b4fd8b8b846c62&secret=72744b818b84117bc15faf174f086662&js_code=test_code_123456&grant_type=authorization_code HTTP/1.1" 200 79
+微信登录失败: {'errcode': 40125, 'errmsg': 'invalid appsecret, rid: 6895dcc0-2fcb036e-6f006a36'}
+Unauthorized: /wechat/code-login/
+Forbidden: /wechat/user-info/
+Forbidden: /wechat/update-user-info/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /cgi-bin/token?grant_type=client_credential&appid=wxc5b4fd8b8b846c62&secret=72744b818b84117bc15faf174f086662 HTTP/1.1" 200 78
+获取access_token失败: {'errcode': 40125, 'errmsg': 'invalid appsecret rid: 6895dcc0-588b7565-596a2274'}
+Internal Server Error: /wechat/access-token/
+Watching for file changes with StatReloader
+Not Found: /favicon.ico

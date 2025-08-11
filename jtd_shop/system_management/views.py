@@ -88,11 +88,11 @@ def file_upload_list(request):
                 'user': file.user.username if file.user else 'Anonymous'
             })
         
-            return Response({
-                'code': 200,
+        return Response({
+            'code': 200,
             'msg': 'success',
             'result': data
-            })
+        })
     except Exception as e:
         logger.exception("获取文件上传记录列表时发生错误")
         return Response({

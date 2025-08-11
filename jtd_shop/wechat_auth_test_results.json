@@ -1,0 +1,63 @@
+[
+  {
+    "name": "微信登录（包含用户信息）",
+    "method": "POST",
+    "url": "/wechat/login/",
+    "status": 401,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "code": 401,
+      "msg": "invalid appsecret, rid: 6895dcc0-30605911-61f260bd",
+      "result": null
+    }
+  },
+  {
+    "name": "仅code登录",
+    "method": "POST",
+    "url": "/wechat/code-login/",
+    "status": 401,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "code": 401,
+      "msg": "invalid appsecret, rid: 6895dcc0-2fcb036e-6f006a36",
+      "result": null
+    }
+  },
+  {
+    "name": "获取微信用户信息",
+    "method": "GET",
+    "url": "/wechat/user-info/",
+    "status": 403,
+    "expected": 401,
+    "success": false,
+    "response": {
+      "detail": "Authentication credentials were not provided."
+    }
+  },
+  {
+    "name": "更新微信用户信息",
+    "method": "POST",
+    "url": "/wechat/update-user-info/",
+    "status": 403,
+    "expected": 401,
+    "success": false,
+    "response": {
+      "detail": "Authentication credentials were not provided."
+    }
+  },
+  {
+    "name": "获取access_token",
+    "method": "GET",
+    "url": "/wechat/access-token/",
+    "status": 500,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "code": 500,
+      "msg": "invalid appsecret rid: 6895dcc0-588b7565-596a2274",
+      "result": null
+    }
+  }
+]

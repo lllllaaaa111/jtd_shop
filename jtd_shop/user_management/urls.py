@@ -7,6 +7,12 @@ from . import views
 app_name = 'user_management'
 
 urlpatterns = [
+    # 认证相关
+    path('login/', views.user_login, name='user_login'),                    #用户登录
+    path('register/', views.user_register, name='user_register'),           #用户注册
+    path('logout/', views.user_logout, name='user_logout'),                 #用户登出
+    path('info/', views.user_info, name='user_info'),                       #获取当前用户信息
+    
     # 用户管理相关
     path('list/', views.user_list, name='user_list'),                               #用户列表
     path('detail/<int:user_id>/', views.user_detail, name='user_detail'),            #用户详情

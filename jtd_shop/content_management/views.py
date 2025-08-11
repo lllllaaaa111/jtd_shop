@@ -149,7 +149,7 @@ def article_list(request):
                 'published_at': article.published_at.strftime("%Y-%m-%d %H:%M:%S") if article.published_at else None
             })
         
-            return Response({
+        return Response({
             'code': 200,
             'msg': 'success',
             'result': data
@@ -181,8 +181,8 @@ def article_detail(request, article_id):
         
         return Response({
             'code': 200,
-        'msg': 'success',
-        'result': data
+            'msg': 'success',
+            'result': data
         })
     except Article.DoesNotExist:
         return Response({

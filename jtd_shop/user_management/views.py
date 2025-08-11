@@ -1,6 +1,6 @@
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse, HttpResponse
@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import default_storage
 from django.conf import settings
 from django.utils import timezone
+from django.contrib.auth import authenticate, login, logout
 from .models import User, UserProfile, Address, Mine
 from .serializers import UserSerializer, UserCreateSerializer, UserProfileSerializer
 import logging
@@ -18,8 +19,128 @@ from django.db import models
 
 logger = logging.getLogger(__name__)
 
+# 认证相关接口
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def user_login(request):
+    """用户登录"""
+    try:
+        username = request.data.get('username')
+        password = request.data.get('password')
+        
+        if not username or not password:
+            return Response({
+                'code': 400,
+                'msg': '用户名和密码不能为空',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return Response({
+                'code': 200,
+                'msg': '登录成功',
+                'result': {
+                    'user_id': user.id,
+                    'username': user.username,
+                    'email': user.email,
+                    'is_staff': user.is_staff
+                }
+            })
+        else:
+            return Response({
+                'code': 401,
+                'msg': '用户名或密码错误',
+                'result': None
+            }, status=status.HTTP_401_UNAUTHORIZED)
+    except Exception as e:
+        logger.exception("用户登录失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def user_register(request):
+    """用户注册"""
+    try:
+        serializer = UserCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            # 自动登录
+            login(request, user)
+            return Response({
+                'code': 201,
+                'msg': '注册成功',
+                'result': {
+                    'user_id': user.id,
+                    'username': user.username,
+                    'email': user.email
+                }
+            }, status=status.HTTP_201_CREATED)
+        else:
+            return Response({
+                'code': 400,
+                'msg': '注册参数错误',
+                'result': serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        logger.exception("用户注册失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
+def user_logout(request):
+    """用户登出"""
+    try:
+        logout(request)
+        return Response({
+            'code': 200,
+            'msg': '登出成功',
+            'result': None
+        })
+    except Exception as e:
+        logger.exception("用户登出失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['GET'])
+def user_info(request):
+    """获取当前用户信息"""
+    try:
+        if request.user.is_authenticated:
+            serializer = UserSerializer(request.user)
+            return Response({
+                'code': 200,
+                'msg': 'success',
+                'result': serializer.data
+            })
+        else:
+            return Response({
+                'code': 401,
+                'msg': '用户未登录',
+                'result': None
+            }, status=status.HTTP_401_UNAUTHORIZED)
+    except Exception as e:
+        logger.exception("获取用户信息失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 # 用户管理相关views
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def user_list(request):
     """获取用户列表"""
     try:
@@ -39,6 +160,7 @@ def user_list(request):
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def user_detail(request, user_id):
     """获取用户详情"""
     try:
@@ -58,6 +180,7 @@ def user_detail(request, user_id):
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def user_create(request):
     """创建新用户"""
     try:

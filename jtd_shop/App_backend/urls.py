@@ -43,6 +43,9 @@ urlpatterns = [
     # 系统管理模块
     path('system/', include('system_management.urls')),
     
+    # 微信认证模块
+    path('wechat/', include('wechat_auth.urls')),
+    
     # 媒体文件服务
     path("media/<path:path>", serve, {"document_root": settings.MEDIA_ROOT}),
 ]

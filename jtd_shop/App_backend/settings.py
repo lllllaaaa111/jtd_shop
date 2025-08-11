@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'order_management.apps.OrderManagementConfig',
     'content_management.apps.ContentManagementConfig',
     'system_management.apps.SystemManagementConfig',
+    'wechat_auth.apps.WechatAuthConfig',  # 添加微信认证模块
 ]
 # REST Framework配置
 REST_FRAMEWORK = {
@@ -109,7 +110,7 @@ DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'jtd_shop',
-            'USER': 'postgres',
+            'USER': 'myuser',
             'PASSWORD': '123',
             'HOST': '127.0.0.1',
             'PORT': '5432',
@@ -210,3 +211,7 @@ CSRF_TRUSTED_ORIGINS = [
 # 会话配置
 SESSION_COOKIE_SECURE = False  # 如果使用HTTP
 SESSION_COOKIE_HTTPONLY = True
+
+# 微信小程序配置
+WECHAT_APPID = 'wxc5b4fd8b8b846c62'  # 替换为你的微信小程序AppID
+WECHAT_SECRET = '72744b818b84117bc15faf174f086662'  # 替换为你的微信小程序AppSecret
