@@ -9,7 +9,7 @@ import json
 from urllib.parse import urljoin
 
 BASE_URL = "http://localhost:8000"
-USERNAME = "admin"
+USERNAME = "root"
 PASSWORD = "Gg666666"
 
 class RootAPITester:
@@ -170,28 +170,6 @@ class RootAPITester:
         print("🔐 正在尝试Session登录...")
         self.login_session()
         
-        # smart
-        self.call('GET', '/smart/index/', '首页接口')
-        self.call('GET', '/smart/films/', '电影列表')
-        self.call('GET', '/smart/random/', '随机数据')
-        
-        # users
-        self.call('GET', '/users/list/', '用户列表')
-        self.call('GET', '/users/detail/1/', '用户详情')
-        self.call('POST', '/users/register/', '创建用户', expected_status=201)
-        self.call('GET', '/users/avatar/', '获取用户头像')
-        self.call('GET', '/users/avatar/list/', '头像列表')
-        
-        # products
-        self.call('GET', '/products/category/list/', '分类列表')
-        self.call('GET', '/products/list/', '商品列表')
-        self.call('GET', '/products/detail/1/', '商品详情')
-        
-        # orders
-        self.call('GET', '/orders/list/', '订单列表')
-        self.call('GET', '/orders/detail/1/', '订单详情')
-        self.call('GET', '/orders/cart/list/', '购物车列表')
-        
         # 新建订单接口测试
         order_data = {
             "delivery_address": "北京市朝阳区某某街道123号",
@@ -202,6 +180,10 @@ class RootAPITester:
             "payment_method": "alipay"
         }
         self.call('POST', '/orders/create/', '新建订单-完整数据', expected_status=200, json_data=order_data)
+
+        self.call('GET', '/orders/list/', '订单列表')
+        self.call('GET', '/orders/detail/1/', '订单详情')
+        self.call('GET', '/orders/cart/list/', '购物车列表')
         
         # 测试缺少必填字段的情况
         incomplete_order_data = {
@@ -218,26 +200,9 @@ class RootAPITester:
         }
         self.call('POST', '/orders/create/', '新建订单-空购物车', expected_status=400, json_data=empty_cart_order_data)
         
-        # content
-        self.call('GET', '/content/welcome/', '欢迎页面')
-        self.call('GET', '/content/welcome/list/', '欢迎图片列表')
-        self.call('GET', '/content/banner/list/', '轮播图列表')
-        self.call('GET', '/content/article/list/', '文章列表')
-        self.call('GET', '/content/article/detail/1/', '文章详情')
-        self.call('GET', '/content/notice/list/', '系统公告列表')
-        
-        # system
-        self.call('GET', '/system/config/list/', '系统配置列表')
-        self.call('GET', '/system/log/list/', '操作日志列表')
-        self.call('GET', '/system/file/list/', '文件上传记录')
-        self.call('GET', '/system/backup/list/', '数据备份列表')
-        
-        # admin
-        self.call('GET', '/admin/', 'Django管理后台', expected_status=200)
-        
-        with open('api_test_results_root.json','w',encoding='utf-8') as f:
+        with open('api_test_results_solo.json','w',encoding='utf-8') as f:
             json.dump(self.results, f, ensure_ascii=False, indent=2)
-        print('📄 结果已保存: api_test_results_root.json')
+        print('📄 结果已保存: api_test_results_solo.json')
 
 if __name__ == '__main__':
     RootAPITester().run() 

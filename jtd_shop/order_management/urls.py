@@ -10,6 +10,7 @@ urlpatterns = [
     # 订单相关
     path('list/', views.order_list, name='order_list'),
     path('detail/<int:order_id>/', views.order_detail, name='order_detail'),
+    path('create/', views.create_order, name='create_order'),
     
     # 购物车相关
     path('cart/list/', views.cart_list, name='cart_list'),

@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 from .models import Order, OrderItem, Cart, OrderStatusLog
 from user_management.models import User
 import logging
@@ -124,6 +125,99 @@ def cart_list(request):
         })
     except Exception as e:
         logger.exception("获取购物车时发生错误")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_order(request):
+    """从购物车创建订单"""
+    try:
+        # 获取用户购物车中的商品
+        cart_items = Cart.objects.filter(user=request.user)
+        
+        if not cart_items.exists():
+            return Response({
+                'code': 400,
+                'msg': '购物车为空，无法创建订单',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 验证请求数据
+        required_fields = ['delivery_address', 'recipient_name', 'recipient_phone']
+        for field in required_fields:
+            if not request.data.get(field):
+                return Response({
+                    'code': 400,
+                    'msg': f'缺少必填字段: {field}',
+                    'result': None
+                }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 计算总金额
+        total_amount = sum(item.total_price for item in cart_items)
+        
+        # 创建订单
+        order = Order.objects.create(
+            user=request.user,
+            total_amount=total_amount,
+            delivery_address=request.data.get('delivery_address'),
+            recipient_name=request.data.get('recipient_name'),
+            recipient_phone=request.data.get('recipient_phone'),
+            shipping_address=request.data.get('shipping_address', ''),
+            notes=request.data.get('notes', ''),
+            payment_method=request.data.get('payment_method', '')
+        )
+        
+        # 创建订单商品项
+        order_items = []
+        for cart_item in cart_items:
+            order_item = OrderItem.objects.create(
+                order=order,
+                product=cart_item.product,
+                quantity=cart_item.quantity,
+                price=cart_item.product.price,
+                total_price=cart_item.total_price
+            )
+            order_items.append(order_item)
+        
+        # 清空购物车
+        cart_items.delete()
+        
+        # 记录订单状态日志
+        OrderStatusLog.objects.create(
+            order=order,
+            from_status='',
+            to_status='pending',
+            operator=request.user,
+            notes='订单创建'
+        )
+        
+        # 返回订单信息
+        data = {
+            'id': order.id,
+            'order_number': order.order_number,
+            'total_amount': str(order.total_amount),
+            'status': order.status,
+            'status_display': order.get_status_display(),
+            'delivery_address': order.delivery_address,
+            'recipient_name': order.recipient_name,
+            'recipient_phone': order.recipient_phone,
+            'created_at': order.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+            'items_count': len(order_items)
+        }
+        
+        return Response({
+            'code': 200,
+            'msg': '订单创建成功',
+            'result': data
+        })
+        
+    except Exception as e:
+        logger.exception("创建订单时发生错误")
         return Response({
             'code': 500,
             'msg': f'服务器错误: {str(e)}',
