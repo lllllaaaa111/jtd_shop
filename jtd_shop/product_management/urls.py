@@ -13,4 +13,8 @@ urlpatterns = [
     # 商品相关
     path('list/', views.product_list, name='product_list'),
     path('detail/<int:product_id>/', views.product_detail, name='product_detail'),
+    
+    # 根据分类获取商品
+    path('by-category/', views.products_by_category, name='products_by_category'),           # 模糊匹配分类名称
+    path('by-category/<str:category_name>/', views.products_by_category_exact, name='products_by_category_exact'),  # 精确匹配分类名称
 ]

@@ -467,3 +467,228 @@ Bad Request: /users/csrf/validate/
 Bad Request: /orders/create/
 Bad Request: /orders/create/
 [15/Aug/2025 12:12:27] "POST /orders/create/ HTTP/1.1" 400 71
+/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py changed, reloading.
+/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 15, 2025 - 12:10:50
+Django version 5.2.4, using settings 'App_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/wjj/data/jtd_shop/jtd_shop/product_management/urls.py changed, reloading.
+/home/wjj/data/jtd_shop/jtd_shop/product_management/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 15, 2025 - 12:33:41
+Django version 5.2.4, using settings 'App_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+[15/Aug/2025 12:38:10] "GET /products/category/list/ HTTP/1.1" 403 58
+Forbidden: /products/by-category/
+Forbidden: /products/by-category/
+[15/Aug/2025 12:38:10] "GET /products/by-category/?category_name=%E5%95%86%E5%93%81 HTTP/1.1" 403 58
+Forbidden: /products/by-category/
+Forbidden: /products/by-category/
+[15/Aug/2025 12:38:10] "GET /products/by-category/?category_name= HTTP/1.1" 403 58
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+[15/Aug/2025 12:38:10] "GET /products/category/list/ HTTP/1.1" 403 58
+Forbidden: /products/by-category/\u4e0d\u5b58\u5728\u7684\u5206\u7c7b123/
+Forbidden: /products/by-category/\u4e0d\u5b58\u5728\u7684\u5206\u7c7b123/
+[15/Aug/2025 12:38:10] "GET /products/by-category/%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%88%86%E7%B1%BB123/ HTTP/1.1" 403 58
+Forbidden: /products/list/
+Forbidden: /products/list/
+[15/Aug/2025 12:38:10] "GET /products/list/ HTTP/1.1" 403 58
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+[15/Aug/2025 12:38:10] "GET /products/category/list/ HTTP/1.1" 403 58
+[15/Aug/2025 12:44:45] "GET /admin/ HTTP/1.1" 302 0
+[15/Aug/2025 12:44:45] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4368
+[15/Aug/2025 12:44:45] "POST /users/login/ HTTP/1.1" 200 117
+[15/Aug/2025 12:44:45] "GET /admin/ HTTP/1.1" 200 26333
+[15/Aug/2025 12:44:46] "GET /users/csrf/info/ HTTP/1.1" 200 478
+[15/Aug/2025 12:44:46] "GET /users/csrf/token/ HTTP/1.1" 200 239
+Forbidden (CSRF cookie not set.): /
+Forbidden (CSRF cookie not set.): /
+[15/Aug/2025 12:44:46] "POST /users/csrf/validate/ HTTP/1.1" 200 85
+[15/Aug/2025 12:44:46] "GET /products/category/list/ HTTP/1.1" 200 733
+[15/Aug/2025 12:44:46] "GET /products/list/ HTTP/1.1" 200 1351
+[15/Aug/2025 12:44:46] "GET /products/detail/1/ HTTP/1.1" 200 710
+[15/Aug/2025 12:44:46] "GET /products/by-category/?category_name=%E7%94%B5%E5%AD%90 HTTP/1.1" 200 183
+[15/Aug/2025 12:44:46] "GET /products/by-category/?category_name=%E6%9C%8D%E8%A3%85 HTTP/1.1" 200 186
+[15/Aug/2025 12:44:46] "GET /products/by-category/?category_name=%E9%9B%B6 HTTP/1.1" 200 1485
+[15/Aug/2025 12:44:46] "GET /products/by-category/%E7%94%B5%E5%AD%90%E4%BA%A7%E5%93%81/ HTTP/1.1" 200 146
+[15/Aug/2025 12:44:46] "GET /products/by-category/%E6%9C%8D%E8%A3%85%E9%9E%8B%E5%B8%BD/ HTTP/1.1" 200 149
+Not Found: /products/by-category/\u4e0d\u5b58\u5728\u7684\u5206\u7c7b/
+Not Found: /products/by-category/\u4e0d\u5b58\u5728\u7684\u5206\u7c7b/
+[15/Aug/2025 12:44:46] "GET /products/by-category/%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%88%86%E7%B1%BB/ HTTP/1.1" 404 136
+Bad Request: /products/by-category/
+Bad Request: /products/by-category/
+[15/Aug/2025 12:44:46] "GET /products/by-category/?category_name= HTTP/1.1" 400 59
+Bad Request: /orders/create/
+Bad Request: /orders/create/
+[15/Aug/2025 12:44:46] "POST /orders/create/ HTTP/1.1" 400 71
+[15/Aug/2025 12:44:46] "GET /orders/list/ HTTP/1.1" 200 40
+获取订单详情时发生错误
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/wjj/data/jtd_shop/jtd_shop/order_management/views.py", line 50, in order_detail
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/detail/1/
+Internal Server Error: /orders/detail/1/
+[15/Aug/2025 12:44:46] "GET /orders/detail/1/ HTTP/1.1" 500 85
+[15/Aug/2025 12:44:46] "GET /orders/cart/list/ HTTP/1.1" 200 40
+Bad Request: /orders/create/
+Bad Request: /orders/create/
+[15/Aug/2025 12:44:46] "POST /orders/create/ HTTP/1.1" 400 71
+Bad Request: /orders/create/
+Bad Request: /orders/create/
+[15/Aug/2025 12:44:46] "POST /orders/create/ HTTP/1.1" 400 71
+[15/Aug/2025 12:46:35] "GET /admin/ HTTP/1.1" 302 0
+[15/Aug/2025 12:46:35] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4368
+[15/Aug/2025 12:46:35] "POST /users/login/ HTTP/1.1" 200 117
+[15/Aug/2025 12:46:35] "GET /admin/ HTTP/1.1" 200 26333
+[15/Aug/2025 12:46:35] "GET /users/csrf/info/ HTTP/1.1" 200 478
+[15/Aug/2025 12:46:35] "GET /users/csrf/token/ HTTP/1.1" 200 239
+Forbidden (CSRF cookie not set.): /
+Forbidden (CSRF cookie not set.): /
+[15/Aug/2025 12:46:35] "POST /users/csrf/validate/ HTTP/1.1" 200 85
+[15/Aug/2025 12:46:35] "GET /products/category/list/ HTTP/1.1" 200 733
+[15/Aug/2025 12:46:35] "GET /products/list/ HTTP/1.1" 200 1351
+[15/Aug/2025 12:46:35] "GET /products/detail/1/ HTTP/1.1" 200 710
+[15/Aug/2025 12:46:35] "GET /products/by-category/?category_name=%E7%94%B5%E5%AD%90 HTTP/1.1" 200 183
+[15/Aug/2025 12:46:35] "GET /products/by-category/?category_name=%E6%9C%8D%E8%A3%85 HTTP/1.1" 200 186
+[15/Aug/2025 12:46:35] "GET /products/by-category/?category_name=%E9%9B%B6 HTTP/1.1" 200 1485
+[15/Aug/2025 12:46:35] "GET /products/by-category/%E7%94%B5%E5%AD%90%E4%BA%A7%E5%93%81/ HTTP/1.1" 200 146
+[15/Aug/2025 12:46:35] "GET /products/by-category/%E6%9C%8D%E8%A3%85%E9%9E%8B%E5%B8%BD/ HTTP/1.1" 200 149
+Not Found: /products/by-category/\u4e0d\u5b58\u5728\u7684\u5206\u7c7b/
+Not Found: /products/by-category/\u4e0d\u5b58\u5728\u7684\u5206\u7c7b/
+[15/Aug/2025 12:46:36] "GET /products/by-category/%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%88%86%E7%B1%BB/ HTTP/1.1" 404 136
+Bad Request: /products/by-category/
+Bad Request: /products/by-category/
+[15/Aug/2025 12:46:36] "GET /products/by-category/?category_name= HTTP/1.1" 400 59
+/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py changed, reloading.
+/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 15, 2025 - 12:33:49
+Django version 5.2.4, using settings 'App_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[15/Aug/2025 13:00:33] "GET /admin/ HTTP/1.1" 302 0
+[15/Aug/2025 13:00:33] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4368
+[15/Aug/2025 13:00:33] "POST /users/login/ HTTP/1.1" 200 117
+[15/Aug/2025 13:00:33] "GET /admin/ HTTP/1.1" 200 26333
+[15/Aug/2025 13:00:34] "GET /products/list/ HTTP/1.1" 200 1393
+[15/Aug/2025 13:00:34] "GET /products/list/?limit=1 HTTP/1.1" 200 309
+[15/Aug/2025 13:00:34] "GET /products/list/?limit=5 HTTP/1.1" 200 1390
+[15/Aug/2025 13:00:34] "GET /products/list/?limit=10 HTTP/1.1" 200 1391
+[15/Aug/2025 13:00:34] "GET /products/list/?limit=100 HTTP/1.1" 200 1392
+Bad Request: /products/list/
+Bad Request: /products/list/
+[15/Aug/2025 13:00:34] "GET /products/list/?limit=0 HTTP/1.1" 400 60
+/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py changed, reloading.
+/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 15, 2025 - 12:58:23
+Django version 5.2.4, using settings 'App_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py changed, reloading.
+/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 15, 2025 - 13:07:44
+Django version 5.2.4, using settings 'App_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[15/Aug/2025 13:08:58] "GET /admin/ HTTP/1.1" 302 0
+[15/Aug/2025 13:08:58] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4368
+[15/Aug/2025 13:08:58] "POST /users/login/ HTTP/1.1" 200 117
+[15/Aug/2025 13:08:58] "GET /admin/ HTTP/1.1" 200 26333
+[15/Aug/2025 13:08:58] "GET /users/csrf/info/ HTTP/1.1" 200 478
+[15/Aug/2025 13:08:58] "GET /users/csrf/token/ HTTP/1.1" 200 239
+Forbidden (CSRF cookie not set.): /
+Forbidden (CSRF cookie not set.): /
+[15/Aug/2025 13:08:58] "POST /users/csrf/validate/ HTTP/1.1" 200 85
+[15/Aug/2025 13:08:58] "GET /products/category/list/ HTTP/1.1" 200 733
+[15/Aug/2025 13:08:58] "GET /products/list/ HTTP/1.1" 200 1393
+[15/Aug/2025 13:08:59] "GET /products/list/?limit=5 HTTP/1.1" 200 1390
+[15/Aug/2025 13:08:59] "GET /products/list/?limit=10 HTTP/1.1" 200 1391
+[15/Aug/2025 13:08:59] "GET /products/list/?limit=1 HTTP/1.1" 200 309
+Bad Request: /products/list/
+Bad Request: /products/list/
+[15/Aug/2025 13:08:59] "GET /products/list/?limit=0 HTTP/1.1" 400 60
+Bad Request: /products/list/
+Bad Request: /products/list/
+[15/Aug/2025 13:08:59] "GET /products/list/?limit=abc HTTP/1.1" 400 71
+[15/Aug/2025 13:08:59] "GET /products/detail/1/ HTTP/1.1" 200 710
+[15/Aug/2025 13:08:59] "GET /products/by-category/?category_name=%E7%94%B5%E5%AD%90 HTTP/1.1" 200 196
+[15/Aug/2025 13:08:59] "GET /products/by-category/?category_name=%E7%94%B5%E5%AD%90&limit=3 HTTP/1.1" 200 193
+[15/Aug/2025 13:08:59] "GET /products/by-category/?category_name=%E6%9C%8D%E8%A3%85 HTTP/1.1" 200 199
+[15/Aug/2025 13:08:59] "GET /products/by-category/?category_name=%E6%9C%8D%E8%A3%85&limit=5 HTTP/1.1" 200 196
+[15/Aug/2025 13:08:59] "GET /products/by-category/?category_name=%E9%9B%B6 HTTP/1.1" 200 1498
+[15/Aug/2025 13:08:59] "GET /products/by-category/?category_name=%E9%9B%B6&limit=1 HTTP/1.1" 200 414
+[15/Aug/2025 13:08:59] "GET /products/by-category/%E7%94%B5%E5%AD%90%E4%BA%A7%E5%93%81/ HTTP/1.1" 200 159
+[15/Aug/2025 13:08:59] "GET /products/by-category/%E7%94%B5%E5%AD%90%E4%BA%A7%E5%93%81/?limit=2 HTTP/1.1" 200 156
+[15/Aug/2025 13:08:59] "GET /products/by-category/%E6%9C%8D%E8%A3%85%E9%9E%8B%E5%B8%BD/ HTTP/1.1" 200 162
+[15/Aug/2025 13:08:59] "GET /products/by-category/%E6%9C%8D%E8%A3%85%E9%9E%8B%E5%B8%BD/?limit=10 HTTP/1.1" 200 160
+Not Found: /products/by-category/\u4e0d\u5b58\u5728\u7684\u5206\u7c7b/
+Not Found: /products/by-category/\u4e0d\u5b58\u5728\u7684\u5206\u7c7b/
+[15/Aug/2025 13:08:59] "GET /products/by-category/%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%88%86%E7%B1%BB/ HTTP/1.1" 404 149
+Bad Request: /products/by-category/
+Bad Request: /products/by-category/
+[15/Aug/2025 13:08:59] "GET /products/by-category/?category_name=%E7%94%B5%E5%AD%90&limit=0 HTTP/1.1" 400 60
+Bad Request: /products/by-category/
+Bad Request: /products/by-category/
+[15/Aug/2025 13:09:00] "GET /products/by-category/?category_name=%E7%94%B5%E5%AD%90&limit=abc HTTP/1.1" 400 71
+Bad Request: /products/by-category/\u7535\u5b50\u4ea7\u54c1/
+Bad Request: /products/by-category/\u7535\u5b50\u4ea7\u54c1/
+[15/Aug/2025 13:09:00] "GET /products/by-category/%E7%94%B5%E5%AD%90%E4%BA%A7%E5%93%81/?limit=-1 HTTP/1.1" 400 60
+Bad Request: /products/by-category/
+Bad Request: /products/by-category/
+[15/Aug/2025 13:09:00] "GET /products/by-category/?category_name= HTTP/1.1" 400 59

@@ -179,39 +179,41 @@ class RootAPITester:
         if self.csrf_token:
             self.call('POST', '/users/csrf/validate/', '验证CSRF令牌', expected_status=200, json_data={})
         
-        # 新建订单接口测试
-        order_data = {
-            "delivery_address": "北京市朝阳区某某街道123号",
-            "recipient_name": "张三",
-            "recipient_phone": "13800138000",
-            "shipping_address": "上海市浦东新区某某仓库",
-            "notes": "请尽快发货",
-            "payment_method": "alipay"
-        }
-        self.call('POST', '/orders/create/', '新建订单-完整数据', expected_status=200, json_data=order_data)
-
-        self.call('GET', '/orders/list/', '订单列表')
-        self.call('GET', '/orders/detail/1/', '订单详情')
-        self.call('GET', '/orders/cart/list/', '购物车列表')
+        # 商品分类接口测试
+        print("🛍️ 测试商品分类接口...")
+        self.call('GET', '/products/category/list/', '获取商品分类列表')
+        self.call('GET', '/products/list/', '获取商品列表')
+        self.call('GET', '/products/list/?limit=5', '获取商品列表-限制5个')
+        self.call('GET', '/products/list/?limit=10', '获取商品列表-限制10个')
+        self.call('GET', '/products/list/?limit=1', '获取商品列表-限制1个')
+        self.call('GET', '/products/list/?limit=0', '获取商品列表-限制0个', expected_status=400)
+        self.call('GET', '/products/list/?limit=abc', '获取商品列表-无效参数', expected_status=400)
+        self.call('GET', '/products/detail/1/', '获取商品详情')
         
-        # 测试缺少必填字段的情况
-        incomplete_order_data = {
-            "delivery_address": "北京市朝阳区某某街道123号"
-            # 缺少 recipient_name 和 recipient_phone
-        }
-        self.call('POST', '/orders/create/', '新建订单-缺少必填字段', expected_status=400, json_data=incomplete_order_data)
+        # 测试按分类名称模糊匹配获取商品
+        self.call('GET', '/products/by-category/?category_name=电子', '按分类模糊匹配-电子')
+        self.call('GET', '/products/by-category/?category_name=电子&limit=3', '按分类模糊匹配-电子-限制3个')
+        self.call('GET', '/products/by-category/?category_name=服装', '按分类模糊匹配-服装')
+        self.call('GET', '/products/by-category/?category_name=服装&limit=5', '按分类模糊匹配-服装-限制5个')
+        self.call('GET', '/products/by-category/?category_name=零', '按分类模糊匹配-零')
+        self.call('GET', '/products/by-category/?category_name=零&limit=1', '按分类模糊匹配-零-限制1个')
         
-        # 测试空购物车的情况（如果购物车为空）
-        empty_cart_order_data = {
-            "delivery_address": "北京市朝阳区某某街道123号",
-            "recipient_name": "李四",
-            "recipient_phone": "13900139000"
-        }
-        self.call('POST', '/orders/create/', '新建订单-空购物车', expected_status=400, json_data=empty_cart_order_data)
+        # 测试按分类名称精确匹配获取商品
+        self.call('GET', '/products/by-category/电子产品/', '按分类精确匹配-电子产品')
+        self.call('GET', '/products/by-category/电子产品/?limit=2', '按分类精确匹配-电子产品-限制2个')
+        self.call('GET', '/products/by-category/服装鞋帽/', '按分类精确匹配-服装鞋帽')
+        self.call('GET', '/products/by-category/服装鞋帽/?limit=10', '按分类精确匹配-服装鞋帽-限制10个')
+        self.call('GET', '/products/by-category/不存在的分类/', '按分类精确匹配-不存在分类', expected_status=404)
         
-        with open('api_test_results_solo.json','w',encoding='utf-8') as f:
-            json.dump(self.results, f, ensure_ascii=False, indent=2)
-        print('📄 结果已保存: api_test_results_solo.json')
+        # 测试无效的limit参数
+        self.call('GET', '/products/by-category/?category_name=电子&limit=0', '按分类模糊匹配-无效limit-0', expected_status=400)
+        self.call('GET', '/products/by-category/?category_name=电子&limit=abc', '按分类模糊匹配-无效limit-字符串', expected_status=400)
+        self.call('GET', '/products/by-category/电子产品/?limit=-1', '按分类精确匹配-无效limit-负数', expected_status=400)
+        
+        # 测试空参数
+        self.call('GET', '/products/by-category/?category_name=', '按分类模糊匹配-空参数', expected_status=400)
+        
+       
 
 if __name__ == '__main__':
     RootAPITester().run() 

@@ -207,6 +207,290 @@ X-CSRFToken: {csrf_token}
 
 ---
 
+## 🛍️ 商品管理模块
+
+### 1. 获取商品分类列表
+
+**接口地址**: `GET /products/category/list/`
+
+**功能描述**: 获取所有商品分类信息
+
+**请求参数**: 无
+
+**响应示例**:
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "result": [
+        {
+            "id": 1,
+            "name": "电子产品",
+            "description": "各类电子产品",
+            "parent_id": null,
+            "parent_name": null
+        }
+    ]
+}
+```
+
+**测试结果**: ✅ 成功 (200)
+
+---
+
+### 2. 获取商品列表
+
+**接口地址**: `GET /products/list/`
+
+**功能描述**: 获取所有商品的列表信息
+
+**请求参数**:
+- `limit` (可选): 限制返回的商品数量，必须是大于0的整数
+
+**请求示例**:
+```bash
+# 获取所有商品
+GET /products/list/
+
+# 获取前5个商品
+GET /products/list/?limit=5
+
+# 获取前10个商品
+GET /products/list/?limit=10
+```
+
+**响应示例**:
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "result": {
+        "products": [
+            {
+                "id": 1,
+                "name": "iPhone 15",
+                "description": "最新款iPhone",
+                "price": "5999.00",
+                "original_price": "6999.00",
+                "stock": 100,
+                "sales": 50,
+                "manufacturer": "Apple",
+                "category_id": 1,
+                "category_name": "电子产品",
+                "main_image": "http://localhost:8000/media/products/iphone15.jpg",
+                "created_at": "2024-01-15 10:30:00"
+            }
+        ],
+        "total_count": 1,
+        "limit": 5
+    }
+}
+```
+
+**错误响应**:
+```json
+{
+    "code": 400,
+    "msg": "数量参数必须大于0",
+    "result": null
+}
+```
+
+**测试结果**: ✅ 成功 (200)
+
+---
+
+### 3. 获取商品详情
+
+**接口地址**: `GET /products/detail/{product_id}/`
+
+**功能描述**: 获取指定商品的详细信息
+
+**路径参数**:
+- `product_id`: 商品ID (整数)
+
+**响应示例**:
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "result": {
+        "id": 1,
+        "name": "iPhone 15",
+        "description": "最新款iPhone",
+        "price": "5999.00",
+        "original_price": "6999.00",
+        "stock": 100,
+        "sales": 50,
+        "manufacturer": "Apple",
+        "category_id": 1,
+        "category_name": "电子产品",
+        "images": [
+            {
+                "id": 1,
+                "image_url": "http://localhost:8000/media/products/iphone15_1.jpg",
+                "is_primary": true,
+                "order": 1
+            }
+        ],
+        "description_images": [
+            {
+                "id": 1,
+                "image_url": "http://localhost:8000/media/descriptions/iphone15_desc.jpg",
+                "order": 1
+            }
+        ],
+        "created_at": "2024-01-15 10:30:00",
+        "updated_at": "2024-01-15 10:30:00"
+    }
+}
+```
+
+**测试结果**: ✅ 成功 (200)
+
+---
+
+### 4. 按分类名称模糊匹配获取商品
+
+**接口地址**: `GET /products/by-category/`
+
+**功能描述**: 根据分类名称模糊匹配获取商品列表
+
+**请求参数**:
+- `category_name` (必需): 分类名称，支持模糊匹配
+- `limit` (可选): 限制返回的商品数量，必须是大于0的整数
+
+**请求示例**:
+```bash
+# 获取所有匹配的商品
+GET /products/by-category/?category_name=电子
+
+# 获取前3个匹配的商品
+GET /products/by-category/?category_name=电子&limit=3
+
+# 获取前5个匹配的商品
+GET /products/by-category/?category_name=服装&limit=5
+```
+
+**响应示例**:
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "result": {
+        "category_name": "电子",
+        "matched_categories": [
+            {
+                "id": 1,
+                "name": "电子产品",
+                "description": "各类电子产品"
+            }
+        ],
+        "products": [
+            {
+                "id": 1,
+                "name": "iPhone 15",
+                "description": "最新款iPhone",
+                "price": "5999.00",
+                "original_price": "6999.00",
+                "stock": 100,
+                "sales": 50,
+                "manufacturer": "Apple",
+                "category_id": 1,
+                "category_name": "电子产品",
+                "main_image": "http://localhost:8000/media/products/iphone15.jpg",
+                "created_at": "2024-01-15 10:30:00"
+            }
+        ],
+        "total_count": 1,
+        "limit": 3
+    }
+}
+```
+
+**错误响应**:
+```json
+{
+    "code": 400,
+    "msg": "数量参数必须大于0",
+    "result": null
+}
+```
+
+**测试结果**: ✅ 成功 (200)
+
+---
+
+### 5. 按分类名称精确匹配获取商品
+
+**接口地址**: `GET /products/by-category/{category_name}/`
+
+**功能描述**: 根据分类名称精确匹配获取商品列表
+
+**路径参数**:
+- `category_name`: 分类名称，必须完全匹配
+
+**查询参数**:
+- `limit` (可选): 限制返回的商品数量，必须是大于0的整数
+
+**请求示例**:
+```bash
+# 获取所有匹配的商品
+GET /products/by-category/电子产品/
+
+# 获取前2个匹配的商品
+GET /products/by-category/电子产品/?limit=2
+
+# 获取前10个匹配的商品
+GET /products/by-category/服装鞋帽/?limit=10
+```
+
+**响应示例**:
+```json
+{
+    "code": 200,
+    "msg": "success",
+    "result": {
+        "category": {
+            "id": 1,
+            "name": "电子产品",
+            "description": "各类电子产品"
+        },
+        "products": [
+            {
+                "id": 1,
+                "name": "iPhone 15",
+                "description": "最新款iPhone",
+                "price": "5999.00",
+                "original_price": "6999.00",
+                "stock": 100,
+                "sales": 50,
+                "manufacturer": "Apple",
+                "category_id": 1,
+                "category_name": "电子产品",
+                "main_image": "http://localhost:8000/media/products/iphone15.jpg",
+                "created_at": "2024-01-15 10:30:00"
+            }
+        ],
+        "total_count": 1,
+        "limit": 2
+    }
+}
+```
+
+**错误响应**:
+```json
+{
+    "code": 400,
+    "msg": "数量参数必须大于0",
+    "result": null
+}
+```
+
+**测试结果**: ✅ 成功 (200)
+
+---
+
 ## 🏷️ 数据模型说明
 
 ### 订单状态 (Order Status)
