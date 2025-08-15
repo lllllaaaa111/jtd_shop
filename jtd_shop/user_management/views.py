@@ -9,6 +9,8 @@ from django.core.files.storage import default_storage
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
+from django.middleware.csrf import get_token
+from django.views.decorators.http import require_http_methods
 from .models import User, UserProfile, Address, Mine
 from .serializers import UserSerializer, UserCreateSerializer, UserProfileSerializer
 import logging
@@ -18,6 +20,128 @@ import uuid
 from django.db import models
 
 logger = logging.getLogger(__name__)
+
+# CSRF认证相关接口
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_csrf_token(request):
+    """获取CSRF令牌"""
+    try:
+        # 获取CSRF令牌
+        csrf_token = get_token(request)
+        
+        return Response({
+            'code': 200,
+            'msg': '获取CSRF令牌成功',
+            'result': {
+                'csrf_token': csrf_token,
+                'token_length': len(csrf_token),
+                'expires_in': 'session',  # CSRF令牌在session期间有效
+                'usage': '在POST请求头中使用 X-CSRFToken 或 X-Csrftoken'
+            }
+        })
+    except Exception as e:
+        logger.exception("获取CSRF令牌失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def validate_csrf_token(request):
+    """验证CSRF令牌"""
+    try:
+        # 从请求头获取CSRF令牌
+        csrf_token = request.headers.get('X-CSRFToken') or request.headers.get('X-Csrftoken')
+        
+        if not csrf_token:
+            return Response({
+                'code': 400,
+                'msg': '缺少CSRF令牌',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 验证CSRF令牌
+        from django.middleware.csrf import CsrfViewMiddleware
+        from django.test import RequestFactory
+        
+        # 创建一个临时的请求工厂来验证令牌
+        factory = RequestFactory()
+        temp_request = factory.post('/')
+        temp_request.META['CSRF_COOKIE'] = request.META.get('CSRF_COOKIE')
+        
+        middleware = CsrfViewMiddleware(lambda req: None)
+        
+        try:
+            # 验证令牌
+            middleware.process_view(temp_request, None, (), {})
+            return Response({
+                'code': 200,
+                'msg': 'CSRF令牌验证成功',
+                'result': {
+                    'valid': True,
+                    'token_length': len(csrf_token)
+                }
+            })
+        except Exception:
+            return Response({
+                'code': 400,
+                'msg': 'CSRF令牌无效',
+                'result': {
+                    'valid': False,
+                    'token_length': len(csrf_token)
+                }
+            }, status=status.HTTP_400_BAD_REQUEST)
+            
+    except Exception as e:
+        logger.exception("验证CSRF令牌失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def csrf_info(request):
+    """获取CSRF相关信息"""
+    try:
+        # 获取当前CSRF令牌
+        csrf_token = get_token(request)
+        
+        # 获取CSRF配置信息
+        from django.conf import settings
+        
+        csrf_info = {
+            'csrf_token': csrf_token,
+            'token_length': len(csrf_token),
+            'cookie_name': getattr(settings, 'CSRF_COOKIE_NAME', 'csrftoken'),
+            'header_name': getattr(settings, 'CSRF_HEADER_NAME', 'HTTP_X_CSRFTOKEN'),
+            'cookie_age': getattr(settings, 'CSRF_COOKIE_AGE', 31449600),
+            'cookie_secure': getattr(settings, 'CSRF_COOKIE_SECURE', False),
+            'cookie_httponly': getattr(settings, 'CSRF_COOKIE_HTTPONLY', False),
+            'usage_instructions': {
+                'get_token': 'GET /users/csrf/token/',
+                'validate_token': 'POST /users/csrf/validate/',
+                'request_header': 'X-CSRFToken 或 X-Csrftoken',
+                'example': 'X-CSRFToken: your_csrf_token_here'
+            }
+        }
+        
+        return Response({
+            'code': 200,
+            'msg': '获取CSRF信息成功',
+            'result': csrf_info
+        })
+    except Exception as e:
+        logger.exception("获取CSRF信息失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # 认证相关接口
 @api_view(['POST'])

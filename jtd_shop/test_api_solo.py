@@ -170,6 +170,15 @@ class RootAPITester:
         print("🔐 正在尝试Session登录...")
         self.login_session()
         
+        # CSRF认证接口测试
+        print("🔒 测试CSRF认证接口...")
+        self.call('GET', '/users/csrf/info/', '获取CSRF信息')
+        self.call('GET', '/users/csrf/token/', '获取CSRF令牌')
+        
+        # 测试CSRF令牌验证
+        if self.csrf_token:
+            self.call('POST', '/users/csrf/validate/', '验证CSRF令牌', expected_status=200, json_data={})
+        
         # 新建订单接口测试
         order_data = {
             "delivery_address": "北京市朝阳区某某街道123号",

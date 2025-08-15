@@ -7,6 +7,11 @@ from . import views
 app_name = 'user_management'
 
 urlpatterns = [
+    # CSRF认证相关
+    path('csrf/token/', views.get_csrf_token, name='get_csrf_token'),           # 获取CSRF令牌
+    path('csrf/validate/', views.validate_csrf_token, name='validate_csrf_token'), # 验证CSRF令牌
+    path('csrf/info/', views.csrf_info, name='csrf_info'),                     # 获取CSRF信息
+    
     # 认证相关
     path('login/', views.user_login, name='user_login'),                    #用户登录
     path('register/', views.user_register, name='user_register'),           #用户注册

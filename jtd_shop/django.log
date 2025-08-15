@@ -1,0 +1,469 @@
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[14/Aug/2025 11:48:24] "GET /products/list/ HTTP/1.1" 200 881
+[14/Aug/2025 11:48:34] "GET /admin/product_management/product/add/ HTTP/1.1" 200 22224
+[14/Aug/2025 11:48:35] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+tag: ImageWidth (256) - type: short (3) - value: b'{\x0e'
+tag: ImageLength (257) - type: short (3) - value: b'\xb9\x15'
+tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 182 - value: b'\x08\x00\x08\x00\x08\x00'
+tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+tag: Make (271) - type: string (2) Tag Location: 70 - Data Location: 188 - value: b'Canon\x00'
+tag: Model (272) - type: string (2) Tag Location: 82 - Data Location: 194 - value: b'Canon EOS 5D Mark III\x00'
+tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+tag: XResolution (282) - type: rational (5) Tag Location: 118 - Data Location: 216 - value: b"\xc0\xc6-\x00\x10'\x00\x00"
+tag: YResolution (283) - type: rational (5) Tag Location: 130 - Data Location: 224 - value: b"\xc0\xc6-\x00\x10'\x00\x00"
+tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+tag: Software (305) - type: string (2) Tag Location: 154 - Data Location: 232 - value: b'Adobe Photoshop 22.3 (Windows)\x00'
+tag: DateTime (306) - type: string (2) Tag Location: 166 - Data Location: 263 - value: b'2023:09:20 16:17:49\x00'
+tag: ExifIFD (34665) - type: long (4) - value: b'\x1c\x01\x00\x00'
+Importing AvifImagePlugin
+Importing BlpImagePlugin
+Importing BmpImagePlugin
+Importing BufrStubImagePlugin
+Importing CurImagePlugin
+Importing DcxImagePlugin
+Importing DdsImagePlugin
+Importing EpsImagePlugin
+Importing FitsImagePlugin
+Importing FliImagePlugin
+Importing FpxImagePlugin
+Image: failed to import FpxImagePlugin: No module named 'olefile'
+Importing FtexImagePlugin
+Importing GbrImagePlugin
+Importing GifImagePlugin
+Importing GribStubImagePlugin
+Importing Hdf5StubImagePlugin
+Importing IcnsImagePlugin
+Importing IcoImagePlugin
+Importing ImImagePlugin
+Importing ImtImagePlugin
+Importing IptcImagePlugin
+Importing JpegImagePlugin
+Importing Jpeg2KImagePlugin
+Importing McIdasImagePlugin
+Importing MicImagePlugin
+Image: failed to import MicImagePlugin: No module named 'olefile'
+Importing MpegImagePlugin
+Importing MpoImagePlugin
+Importing MspImagePlugin
+Importing PalmImagePlugin
+Importing PcdImagePlugin
+Importing PcxImagePlugin
+Importing PdfImagePlugin
+Importing PixarImagePlugin
+Importing PngImagePlugin
+Importing PpmImagePlugin
+Importing PsdImagePlugin
+Importing QoiImagePlugin
+Importing SgiImagePlugin
+Importing SpiderImagePlugin
+Importing SunImagePlugin
+Importing TgaImagePlugin
+Importing TiffImagePlugin
+Importing WebPImagePlugin
+Importing WmfImagePlugin
+Importing XbmImagePlugin
+Importing XpmImagePlugin
+Importing XVThumbImagePlugin
+[14/Aug/2025 11:48:46] "POST /admin/product_management/product/add/ HTTP/1.1" 302 0
+[14/Aug/2025 11:48:46] "GET /admin/product_management/product/ HTTP/1.1" 200 41873
+[14/Aug/2025 11:48:47] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:48:54] "GET /admin/product_management/product/9/change/ HTTP/1.1" 200 24546
+[14/Aug/2025 11:48:54] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:49:30] "GET /admin/login HTTP/1.1" 301 0
+[14/Aug/2025 11:49:31] "GET /admin/login/ HTTP/1.1" 302 0
+[14/Aug/2025 11:49:31] "GET /admin/ HTTP/1.1" 200 27559
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 200 240033
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/css/index.css?_=3.2 HTTP/1.1" 200 6994
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/waves/waves.min.css?_=2.1 HTTP/1.1" 200 3861
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 200 101784
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/img/logo.png HTTP/1.1" 200 115997
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 200 93675
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 200 664912
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 200 3516
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/automatic/dicts.js?_=2025.06.24 HTTP/1.1" 200 12677
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/automatic/segment.js?_=2025.06.24 HTTP/1.1" 200 1194
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/locale/en-us.js?_=2025.06.24 HTTP/1.1" 200 811
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/js/cookie.js?_=2025.06.24 HTTP/1.1" 200 524
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/theme/theme.js?_=2025.06.24 HTTP/1.1" 200 4274
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/waves/waves.min.js?_=2025.06.24 HTTP/1.1" 200 6329
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/js/menu.js?_=2025.06.24 HTTP/1.1" 200 1177
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/js/index.js?_=2025.06.24 HTTP/1.1" 200 21589
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 25096
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 200 28200
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-brands-400.woff2 HTTP/1.1" 200 107460
+[14/Aug/2025 11:49:31] "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 150472
+[14/Aug/2025 11:49:33] "GET /admin/product_management/product/ HTTP/1.1" 200 41689
+[14/Aug/2025 11:49:33] "GET /static/admin/css/base.css?_=2.7 HTTP/1.1" 200 22120
+[14/Aug/2025 11:49:33] "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 200 4867
+[14/Aug/2025 11:49:33] "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 200 4270
+[14/Aug/2025 11:49:33] "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 200 811
+[14/Aug/2025 11:49:33] "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 200 189
+[14/Aug/2025 11:49:33] "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 200 811
+[14/Aug/2025 11:49:33] "GET /static/admin/css/changelists.css?_=20180905 HTTP/1.1" 200 6878
+[14/Aug/2025 11:49:33] "GET /static/admin/css/responsive.css?_=20180905 HTTP/1.1" 200 16565
+[14/Aug/2025 11:49:33] "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 200 524
+[14/Aug/2025 11:49:33] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:49:33] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+[14/Aug/2025 11:49:33] "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+[14/Aug/2025 11:49:33] "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+[14/Aug/2025 11:49:33] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[14/Aug/2025 11:49:33] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+[14/Aug/2025 11:49:33] "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+[14/Aug/2025 11:49:33] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[14/Aug/2025 11:49:33] "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 200 1194
+[14/Aug/2025 11:49:33] "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 200 12677
+[14/Aug/2025 11:49:33] "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 200 87533
+[14/Aug/2025 11:49:33] "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 200 14237
+[14/Aug/2025 11:49:33] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+[14/Aug/2025 11:49:33] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[14/Aug/2025 11:49:33] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[14/Aug/2025 11:49:34] "GET /admin/product_management/product/add/ HTTP/1.1" 200 22227
+[14/Aug/2025 11:49:34] "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+[14/Aug/2025 11:49:34] "GET /static/admin/js/inlines.js HTTP/1.1" 200 15628
+[14/Aug/2025 11:49:34] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:49:35] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+[14/Aug/2025 11:49:35] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[14/Aug/2025 11:49:35] "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+[14/Aug/2025 11:49:35] "GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+[14/Aug/2025 11:49:35] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[14/Aug/2025 11:49:35] "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+[14/Aug/2025 11:49:35] "GET /static/admin/img/inline-delete.svg HTTP/1.1" 200 537
+tag: ImageWidth (256) - type: short (3) - value: b'U\x15'
+tag: ImageLength (257) - type: short (3) - value: b'\x00 '
+tag: BitsPerSample (258) - type: short (3) Tag Location: 46 - Data Location: 206 - value: b'\x10\x00\x10\x00\x10\x00'
+tag: Compression (259) - type: short (3) - value: b'\x01\x00'
+tag: PhotometricInterpretation (262) - type: short (3) - value: b'\x02\x00'
+tag: Make (271) - type: string (2) Tag Location: 82 - Data Location: 212 - value: b'Canon\x00'
+tag: Model (272) - type: string (2) Tag Location: 94 - Data Location: 218 - value: b'Canon EOS R5m2\x00'
+tag: Orientation (274) - type: short (3) - value: b'\x01\x00'
+tag: SamplesPerPixel (277) - type: short (3) - value: b'\x03\x00'
+tag: XResolution (282) - type: rational (5) Tag Location: 130 - Data Location: 233 - value: b"\xc0\xc6-\x00\x10'\x00\x00"
+tag: YResolution (283) - type: rational (5) Tag Location: 142 - Data Location: 241 - value: b"\xc0\xc6-\x00\x10'\x00\x00"
+tag: PlanarConfiguration (284) - type: short (3) - value: b'\x01\x00'
+tag: ResolutionUnit (296) - type: short (3) - value: b'\x02\x00'
+tag: Software (305) - type: string (2) Tag Location: 178 - Data Location: 249 - value: b'Adobe Photoshop 26.5 (Windows)\x00'
+tag: DateTime (306) - type: string (2) Tag Location: 190 - Data Location: 280 - value: b'2025:03:31 23:02:29\x00'
+tag: ExifIFD (34665) - type: long (4) - value: b',\x01\x00\x00'
+[14/Aug/2025 11:49:53] "POST /admin/product_management/product/add/ HTTP/1.1" 302 0
+[14/Aug/2025 11:49:53] "GET /admin/product_management/product/ HTTP/1.1" 200 42792
+[14/Aug/2025 11:49:54] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:49:57] "GET /admin/product_management/product/10/change/ HTTP/1.1" 200 24514
+[14/Aug/2025 11:49:57] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:50:35] "GET /admin/product_management/product/ HTTP/1.1" 200 42636
+[14/Aug/2025 11:50:35] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:51:25] "GET /admin/product_management/product/10/change/ HTTP/1.1" 200 24511
+[14/Aug/2025 11:51:25] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:51:28] "GET /media/products/_57A9784_%E6%8B%B7%E8%B4%9D.jpg HTTP/1.1" 200 26015891
+[14/Aug/2025 11:51:36] "GET /admin/product_management/product/ HTTP/1.1" 200 42636
+[14/Aug/2025 11:51:36] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:51:42] "GET /admin/product_management/product/9/change/ HTTP/1.1" 200 24546
+[14/Aug/2025 11:51:42] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:51:47] "GET /media/products/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%9B%AE%E5%BD%95_00690.jpg HTTP/1.1" 200 11367024
+[14/Aug/2025 11:51:56] "GET /admin/product_management/product/ HTTP/1.1" 200 42636
+[14/Aug/2025 11:51:56] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:51:58] "GET /admin/product_management/product/1/change/ HTTP/1.1" 200 26284
+[14/Aug/2025 11:51:58] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:52:12] "GET /admin/product_management/product/ HTTP/1.1" 200 42636
+[14/Aug/2025 11:52:12] "GET /static/admin/simpleui-x/elementui/theme-chalk/index.css HTTP/1.1" 200 240033
+[14/Aug/2025 11:52:12] "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/css/all.min.css HTTP/1.1" 200 101784
+[14/Aug/2025 11:52:12] "GET /static/admin/css/base.css?_=2.7 HTTP/1.1" 200 22120
+[14/Aug/2025 11:52:12] "GET /static/admin/simpleui-x/css/base.css?_=2.7 HTTP/1.1" 200 4867
+[14/Aug/2025 11:52:12] "GET /static/admin/simpleui-x/theme/simpleui.css HTTP/1.1" 200 4270
+[14/Aug/2025 11:52:13] "GET /static/admin/css/changelists.css?_=20180905 HTTP/1.1" 200 6878
+[14/Aug/2025 11:52:13] "GET /static/admin/css/responsive.css?_=20180905 HTTP/1.1" 200 16565
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/js/vue.min.js?_=2025.06.24 HTTP/1.1" 200 93675
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/elementui/index.js?_=2025.06.24 HTTP/1.1" 200 664912
+[14/Aug/2025 11:52:13] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/elementui/umd/locale/en.js?_=2025.06.24 HTTP/1.1" 200 3516
+[14/Aug/2025 11:52:13] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/locale/en-us.js HTTP/1.1" 200 811
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/js/language.js?_=2.1.2 HTTP/1.1" 200 189
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/js/cookie.js HTTP/1.1" 200 524
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/locale/en-us.js?_=2.1.2 HTTP/1.1" 200 811
+[14/Aug/2025 11:52:13] "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+[14/Aug/2025 11:52:13] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[14/Aug/2025 11:52:13] "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+[14/Aug/2025 11:52:13] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+[14/Aug/2025 11:52:13] "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+[14/Aug/2025 11:52:13] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/automatic/segment.js HTTP/1.1" 200 1194
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/automatic/dicts.js HTTP/1.1" 200 12677
+[14/Aug/2025 11:52:13] "GET /static/admin/js/vendor/jquery/jquery.min.js HTTP/1.1" 200 87533
+[14/Aug/2025 11:52:13] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/js/axios.min.js HTTP/1.1" 200 14237
+[14/Aug/2025 11:52:13] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[14/Aug/2025 11:52:13] "GET /static/admin/simpleui-x/elementui/theme-chalk/fonts/element-icons.woff HTTP/1.1" 200 28200
+[14/Aug/2025 11:52:13] "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+[14/Aug/2025 11:52:16] "GET /admin/product_management/product/1/change/ HTTP/1.1" 200 26284
+[14/Aug/2025 11:52:16] "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+[14/Aug/2025 11:52:16] "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+[14/Aug/2025 11:52:16] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+[14/Aug/2025 11:52:16] "GET /static/admin/js/inlines.js HTTP/1.1" 200 15628
+[14/Aug/2025 11:52:16] "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+[14/Aug/2025 11:52:16] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[14/Aug/2025 11:52:16] "GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+[14/Aug/2025 11:52:16] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[14/Aug/2025 11:52:16] "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+[14/Aug/2025 11:52:16] "GET /static/admin/simpleui-x/fontawesome-free-6.2.0-web/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 150472
+[14/Aug/2025 11:52:16] "GET /static/admin/img/inline-delete.svg HTTP/1.1" 200 537
+[14/Aug/2025 11:52:19] "GET /media/products/descriptions/%E4%B8%A4%E4%B8%AA%E5%A5%B3%E5%84%BF_%E5%8E%9F%E5%91%B3%E7%8E%89%E7%B1%B3%E8%8A%9D%E9%BA%BB%E7%89%87.jpg HTTP/1.1" 200 2459770
+[14/Aug/2025 12:10:34] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:10:34] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:10:34] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:34] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:34] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:10:34] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:10:34] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:34] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:10:34] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:35] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:36] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:36] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:36] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:36] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:37] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:37] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:37] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:37] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:37] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:37] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:37] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:37] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:10:38] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:11:30] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:46:03] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:46:03] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:46:03] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:46:03] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:46:03] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:46:03] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:46:03] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:49:46] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:49:46] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:49:46] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:49:46] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:49:46] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:49:46] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:49:46] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:58:20] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:58:20] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:58:20] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 12:58:20] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:58:20] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 12:58:20] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:26:42] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 13:26:42] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 13:26:42] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:26:42] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:26:42] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 13:26:43] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 13:26:43] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:26:43] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:42:53] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 13:42:54] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:42:54] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 13:42:54] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 13:42:54] "POST /users/login/ HTTP/1.1" 200 117
+[14/Aug/2025 13:42:54] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:42:54] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:43:52] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:43:52] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:43:52] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:43:52] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:43:52] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:43:53] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:43:53] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:43:53] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:43:53] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:43:54] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:47] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:48] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[14/Aug/2025 13:45:49] "GET /products/list/ HTTP/1.1" 200 1354
+[15/Aug/2025 11:50:10] "GET /admin/ HTTP/1.1" 302 0
+[15/Aug/2025 11:50:10] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4368
+[15/Aug/2025 11:50:10] "POST /users/login/ HTTP/1.1" 200 117
+[15/Aug/2025 11:50:10] "GET /admin/ HTTP/1.1" 200 26333
+Bad Request: /orders/create/
+Bad Request: /orders/create/
+[15/Aug/2025 11:50:10] "POST /orders/create/ HTTP/1.1" 400 71
+[15/Aug/2025 11:50:10] "GET /orders/list/ HTTP/1.1" 200 40
+获取订单详情时发生错误
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/wjj/data/jtd_shop/jtd_shop/order_management/views.py", line 50, in order_detail
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/detail/1/
+Internal Server Error: /orders/detail/1/
+[15/Aug/2025 11:50:10] "GET /orders/detail/1/ HTTP/1.1" 500 85
+[15/Aug/2025 11:50:10] "GET /orders/cart/list/ HTTP/1.1" 200 40
+Bad Request: /orders/create/
+Bad Request: /orders/create/
+[15/Aug/2025 11:50:10] "POST /orders/create/ HTTP/1.1" 400 71
+Bad Request: /orders/create/
+Bad Request: /orders/create/
+[15/Aug/2025 11:50:11] "POST /orders/create/ HTTP/1.1" 400 71
+[15/Aug/2025 11:51:22] "GET /admin/ HTTP/1.1" 302 0
+[15/Aug/2025 11:51:22] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4368
+[15/Aug/2025 11:51:22] "POST /users/login/ HTTP/1.1" 200 121
+[15/Aug/2025 11:51:22] "GET /admin/ HTTP/1.1" 200 27552
+[15/Aug/2025 11:51:22] "GET /smart/index/ HTTP/1.1" 200 128
+[15/Aug/2025 11:51:22] "GET /smart/films/ HTTP/1.1" 200 25486
+[15/Aug/2025 11:51:22] "GET /smart/random/ HTTP/1.1" 200 30
+[15/Aug/2025 11:51:23] "GET /users/list/ HTTP/1.1" 200 1788
+[15/Aug/2025 11:51:23] "GET /users/detail/1/ HTTP/1.1" 200 285
+[15/Aug/2025 11:51:23] "POST /users/register/ HTTP/1.1" 201 119
+[15/Aug/2025 11:51:23] "GET /users/avatar/ HTTP/1.1" 200 82
+[15/Aug/2025 11:51:23] "GET /users/avatar/list/ HTTP/1.1" 200 45
+[15/Aug/2025 11:51:23] "GET /products/category/list/ HTTP/1.1" 200 733
+[15/Aug/2025 11:51:23] "GET /products/list/ HTTP/1.1" 200 1351
+[15/Aug/2025 11:51:23] "GET /products/detail/1/ HTTP/1.1" 200 710
+[15/Aug/2025 11:51:23] "GET /orders/list/ HTTP/1.1" 200 40
+获取订单详情时发生错误
+Traceback (most recent call last):
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/wjj/data/jtd_shop/jtd_shop/order_management/views.py", line 50, in order_detail
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+  File "/home/wjj/.local/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/detail/1/
+Internal Server Error: /orders/detail/1/
+[15/Aug/2025 11:51:23] "GET /orders/detail/1/ HTTP/1.1" 500 85
+[15/Aug/2025 11:51:23] "GET /orders/cart/list/ HTTP/1.1" 200 40
+Forbidden: /orders/create/
+Forbidden: /orders/create/
+[15/Aug/2025 11:51:23] "POST /orders/create/ HTTP/1.1" 403 82
+Forbidden: /orders/create/
+Forbidden: /orders/create/
+[15/Aug/2025 11:51:23] "POST /orders/create/ HTTP/1.1" 403 82
+Forbidden: /orders/create/
+Forbidden: /orders/create/
+[15/Aug/2025 11:51:23] "POST /orders/create/ HTTP/1.1" 403 82
+[15/Aug/2025 11:51:23] "GET /content/welcome/ HTTP/1.1" 200 215
+[15/Aug/2025 11:51:23] "GET /content/welcome/list/ HTTP/1.1" 200 215
+[15/Aug/2025 11:51:24] "GET /content/banner/list/ HTTP/1.1" 200 40
+[15/Aug/2025 11:51:24] "GET /content/article/list/ HTTP/1.1" 200 750
+[15/Aug/2025 11:51:24] "GET /content/article/detail/1/ HTTP/1.1" 200 263
+[15/Aug/2025 11:51:24] "GET /content/notice/list/ HTTP/1.1" 200 446
+Forbidden: /system/config/list/
+Forbidden: /system/config/list/
+[15/Aug/2025 11:51:24] "GET /system/config/list/ HTTP/1.1" 403 63
+Forbidden: /system/log/list/
+Forbidden: /system/log/list/
+[15/Aug/2025 11:51:24] "GET /system/log/list/ HTTP/1.1" 403 63
+Forbidden: /system/file/list/
+Forbidden: /system/file/list/
+[15/Aug/2025 11:51:24] "GET /system/file/list/ HTTP/1.1" 403 63
+Forbidden: /system/backup/list/
+Forbidden: /system/backup/list/
+[15/Aug/2025 11:51:24] "GET /system/backup/list/ HTTP/1.1" 403 63
+[15/Aug/2025 11:51:24] "GET /admin/ HTTP/1.1" 302 0
+[15/Aug/2025 11:51:24] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4368
+/home/wjj/data/jtd_shop/jtd_shop/user_management/views.py changed, reloading.
+/home/wjj/data/jtd_shop/jtd_shop/user_management/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 14, 2025 - 11:47:59
+Django version 5.2.4, using settings 'App_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/wjj/data/jtd_shop/jtd_shop/user_management/urls.py changed, reloading.
+/home/wjj/data/jtd_shop/jtd_shop/user_management/urls.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 15, 2025 - 12:10:38
+Django version 5.2.4, using settings 'App_backend.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[15/Aug/2025 12:12:27] "GET /users/csrf/info/ HTTP/1.1" 200 478
+[15/Aug/2025 12:12:27] "GET /users/csrf/token/ HTTP/1.1" 200 239
+Forbidden (CSRF cookie not set.): /
+Forbidden (CSRF cookie not set.): /
+[15/Aug/2025 12:12:27] "POST /users/csrf/validate/ HTTP/1.1" 200 85
+Forbidden (CSRF cookie not set.): /
+Forbidden (CSRF cookie not set.): /
+[15/Aug/2025 12:12:27] "POST /users/csrf/validate/ HTTP/1.1" 200 85
+Bad Request: /users/csrf/validate/
+Bad Request: /users/csrf/validate/
+[15/Aug/2025 12:12:27] "POST /users/csrf/validate/ HTTP/1.1" 400 51
+[15/Aug/2025 12:12:27] "POST /users/login/ HTTP/1.1" 200 117
+[15/Aug/2025 12:12:27] "GET /users/csrf/token/ HTTP/1.1" 200 239
+Bad Request: /orders/create/
+Bad Request: /orders/create/
+[15/Aug/2025 12:12:27] "POST /orders/create/ HTTP/1.1" 400 71

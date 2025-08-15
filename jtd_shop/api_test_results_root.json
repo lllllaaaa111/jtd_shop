@@ -1,5 +1,934 @@
 [
   {
+    "name": "首页接口",
+    "method": "GET",
+    "url": "/smart/index/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "product_name": "油滋滋汉堡",
+      "product_price": "16元",
+      "description": "汉堡赛高！"
+    }
+  },
+  {
+    "name": "电影列表",
+    "method": "GET",
+    "url": "/smart/films/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "status": 0,
+      "data": {
+        "films": [
+          {
+            "filmId": 7348,
+            "name": "向阳·花",
+            "poster": "https://pic.maizuo.com/usr/movie/63a5544d9a47b32bd3deb1603be2a446.jpg",
+            "actors": [
+              {
+                "name": "冯小刚",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/8412ec8377d454f980c54149d48f9051.jpg"
+              },
+              {
+                "name": "赵丽颖",
+                "role": "高月香",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/455bb5fadb9de2b7de45f5f9940842e1.jpg"
+              },
+              {
+                "name": "兰西雅",
+                "role": "黑妹",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/3fb22f5ed60618a96a7eea479b94cd70.jpg"
+              },
+              {
+                "name": "啜妮",
+                "role": "邓虹",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/13b6ffe5ed1daafd74cb9009306cb267.jpg"
+              },
+              {
+                "name": "王菊",
+                "role": "胡萍",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/302ddd40bf8c4027157ba6ecb0f4caa0.jpg"
+              }
+            ],
+            "director": "冯小刚",
+            "category": "剧情|犯罪",
+            "synopsis": "锒铛入狱，天崩开局，刑满释放女囚如何困境求生？为给女儿购买价值20万的人工耳蜗，高月香（赵丽颖 饰）铤而走险，被判刑入狱，却因这段经历结识了黑妹（兰西雅 饰）、邓虹（啜妮 饰）、胡萍（王菊 饰）、郭爱美（程潇 饰）。她们虽然性格不同，但却都有“和生活硬碰硬”的态度，不服输、不认命的她们，面对命运挑战一路为彼此撑腰，向阳而生！",
+            "filmType": {
+              "name": "2D",
+              "value": 1
+            },
+            "nation": "中国大陆",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1743724800,
+            "timeType": 3,
+            "runtime": 125,
+            "grade": "7.6",
+            "item": {
+              "name": "2D",
+              "type": 1
+            },
+            "isPresale": true,
+            "isSale": false
+          },
+          {
+            "filmId": 7338,
+            "name": "我的世界大电影",
+            "poster": "https://pic.maizuo.com/usr/movie/d491a1c25dfca2426a4b9636ac783dcf.jpg",
+            "actors": [
+              {
+                "name": "杰瑞德·赫斯",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/aaa867edc8796ef31b75cf04e8306efb.jpg"
+              },
+              {
+                "name": "彼得·苏列特",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/c3ae0958d9a723bf5e7395d222e7d983.jpg"
+              },
+              {
+                "name": "杰森·莫玛",
+                "role": "“垃圾侠”加雷特·加里森",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/83be1b651d239d18b6da3f8ebdba92e6.png"
+              },
+              {
+                "name": "杰克·布莱克",
+                "role": "史蒂夫",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/887044e2df426ab0c22c2d4463c5893e.png"
+              },
+              {
+                "name": "艾玛·迈尔斯",
+                "role": "娜塔莉",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/467f508dee2d25a4b4dd44f06e7a5436.png"
+              }
+            ],
+            "director": "杰瑞德·赫斯|彼得·苏列特",
+            "category": "动作|奇幻|冒险|家庭",
+            "synopsis": "欢迎来到方块世界！在《我的世界大电影》中，创造力不仅能帮你打造万物，更关乎生存。四个“异类”——“垃圾侠”加雷特·加里森（杰森·莫玛 饰）、亨利（塞巴斯蒂安·汉森 饰）、娜塔莉（艾玛·迈尔斯 饰）和道恩（丹妮尔·布鲁克斯 饰）——正为生活中的琐事苦恼时，突然被拉入一个神秘的传送门，进入了“主世界”：一个依赖想象力的奇异方块乐园。为了回到现实世界，他们不仅要掌握这个世界的规则，还要在不速之客——资深工匠史蒂夫（杰克·布莱克 饰）的帮助下，迈上一场魔幻探险之旅。探险之旅充满挑战，五人必须要勇敢面对，发掘各自独特的创造力。创造力，正是他们重返现实世界的关键技能。《我的世界大电影》由美国传奇影业和美国华纳兄弟影片公司联合出品，是根据全球畅销电子游戏《我的世界》创作的真人电影。影片将于2025年4月4日在中国内地上映。",
+            "filmType": {
+              "name": "4D",
+              "value": 13
+            },
+            "nation": "美国",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1743724800,
+            "timeType": 3,
+            "runtime": 101,
+            "grade": "7.6",
+            "item": {
+              "name": "4D",
+              "type": 13
+            },
+            "isPresale": true,
+            "isSale": false
+          },
+          {
+            "filmId": 7362,
+            "name": "水饺皇后",
+            "poster": "https://pic.maizuo.com/usr/movie/2334188aa38bea1cf6abd19b16818150.jpg",
+            "actors": [
+              {
+                "name": "马丽",
+                "role": "臧健和",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/f4e271abe4b44870a005f9b737627977.png"
+              },
+              {
+                "name": "惠英红",
+                "role": "红姐",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/9b4e98a6dec2523218b7c9308fe83e22.jpg"
+              },
+              {
+                "name": "朱亚文",
+                "role": "华哥",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/3e127b6829f0422865405fb2cf42c92f.jpg"
+              },
+              {
+                "name": "王祖蓝",
+                "role": "金先生",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/d6d1d3d39dfd5cfd60dea47bbe22c86a.jpg"
+              },
+              {
+                "name": "刘伟强",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/61cbfc8aa985ef7cd02eca7a587d69dd.jpg"
+              }
+            ],
+            "director": "刘伟强",
+            "category": "剧情",
+            "synopsis": "根据真人真事改编。马丽领衔演绎真实女性成长史，逆风翻盘，闯出自己的沸腾人生！他们都不看好你，偏偏你最争气！ 开局“地狱”？臧健和（马丽 饰）带着两个女儿在异乡漂泊无依。既然一无所有，不如靠自己拼搏出另一番天地，大女主人生马上开启！困难重重？虽然被老板欺骗、被病痛折磨、被生活压榨，但永不服输的志气早晚会让所有不看好臧健和的人大声鼓掌！还有红姐（惠英红 饰）、华哥（朱亚文 饰）、糖水伯（袁富华 饰）等善良邻里，做她最坚实的后盾！白手起家？靠自己双手改写命运走向，凭借一碗水饺登上人生巅峰！水饺皇后的故事就此拉开帷幕……",
+            "filmType": {
+              "name": "2D",
+              "value": 1
+            },
+            "nation": "中国大陆",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1745971200,
+            "timeType": 3,
+            "runtime": 119,
+            "item": {
+              "name": "2D",
+              "type": 1
+            },
+            "isPresale": true,
+            "isSale": false
+          },
+          {
+            "filmId": 7342,
+            "name": "不说话的爱",
+            "poster": "https://pic.maizuo.com/usr/movie/335f2116100f0bdf95ee4a4243497b60.jpg",
+            "actors": [
+              {
+                "name": "沙漠",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/3fa72a5df845646cf55fa1fcb4f36bfa.jpg"
+              },
+              {
+                "name": "张艺兴",
+                "role": "小马",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/0f522f3e4bd18e496d97e8c17c05bfc1.png"
+              },
+              {
+                "name": "李珞桉",
+                "role": "木木",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/d64128a72884f2233c3719f10acc658a.jpg"
+              },
+              {
+                "name": "黄尧",
+                "role": "演员",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/cbde940cf5bc7cc5381d2097641f5c46.jpg"
+              },
+              {
+                "name": "安沺",
+                "role": "演员",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/f1ce9a82e80f7e8427c5d6e1af22f6ad.jpg"
+              }
+            ],
+            "director": "沙漠",
+            "category": "剧情",
+            "synopsis": "改编自感动百万人的催泪短片！聋人小马 （张艺兴 饰）和女儿木木（李珞桉 饰）彼此为伴，小孩姐木木是家里的“顶梁柱”，替爸爸和外界沟通，帮爸爸接活赚钱。然而随着木木的长大，她必须要融入听人的世界，两人形影不离的生活即将被打破。就在此时，一个专门利用聋人犯罪的团伙盯上了小马，爱女心切的他一步步被骗入了犯罪的深渊.....",
+            "filmType": {
+              "name": "2D",
+              "value": 1
+            },
+            "nation": "中国大陆",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1743638400,
+            "timeType": 3,
+            "runtime": 111,
+            "grade": "7.3",
+            "item": {
+              "name": "2D",
+              "type": 1
+            },
+            "isPresale": true,
+            "isSale": false
+          },
+          {
+            "filmId": 7365,
+            "name": "孤独摇滚（上）",
+            "poster": "https://pic.maizuo.com/usr/movie/7cbe96fd9d2d3cef34ffb5d34653f12c.jpeg",
+            "actors": [
+              {
+                "name": "长谷川育美",
+                "role": "配音演员",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/d4953d5304a00157f7a37250a29f81a0.jpg"
+              },
+              {
+                "name": "斋藤圭一郎",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/aee9b63590c8da011765a278aa7095f7.jpg"
+              },
+              {
+                "name": "青山吉能",
+                "role": "配音演员",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/dec01b5188238c45fa8349b51600d2f8.jpg"
+              },
+              {
+                "name": "铃代纱弓",
+                "role": "配音演员",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/0744ce79b0eee8520b8acddf48ca78e1.jpg"
+              },
+              {
+                "name": "水野朔",
+                "role": "配音演员",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/b3faecc33ce4579e1926035ccf43dfa3.jpeg"
+              }
+            ],
+            "director": "斋藤圭一郎",
+            "category": "动画|音乐",
+            "synopsis": "作为网络吉他手“Guitar Hero”而广受好评的后藤一里，在现实中却是个什么都不会的沟通障碍者。　　一里有着组建乐队的梦想，但因为不敢向人主动搭话而一直没有成功，直到一天在公园中被伊地知虹夏发现并邀请进入缺少吉他手的“结束乐队”。可是，完全没有和他人合作经历的一里，在人前完全发挥不出原本的实力。　　为了努力克服沟通障碍，一里与“结束乐队”的成员们一同开始努力……",
+            "filmType": {
+              "name": "2D",
+              "value": 1
+            },
+            "nation": "日本",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1745539200,
+            "timeType": 3,
+            "runtime": 92,
+            "item": {
+              "name": "2D",
+              "type": 1
+            },
+            "isPresale": true,
+            "isSale": false
+          },
+          {
+            "filmId": 7286,
+            "name": "哪吒之魔童闹海",
+            "poster": "https://pic.maizuo.com/usr/movie/0041ec9868fca0a26cec07c5432af9d4.jpg",
+            "actors": [
+              {
+                "name": "饺子",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/3f224390f23f4ff84a1bc7b367238a87.jpg"
+              },
+              {
+                "name": "吕艳婷",
+                "role": "儿童哪吒",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/704413add4cd12e4f65d028215c3c593.png"
+              },
+              {
+                "name": "囧森瑟夫",
+                "role": "少年哪吒",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/b9e30247efd1fceb1fb705c9f0430dfe.png"
+              },
+              {
+                "name": "瀚墨",
+                "role": "敖丙",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/0286d4015e6f0014a6aad9b3fb170410.png"
+              },
+              {
+                "name": "陈浩",
+                "role": "李靖",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/6427391a4f6c3a28fd3ba53faf9527f6.png"
+              }
+            ],
+            "director": "饺子",
+            "category": "喜剧|剧情|动画",
+            "synopsis": "天劫之后，哪吒、敖丙的灵魂虽保住了，但肉身很快会魂飞魄散。太乙真人打算用七色宝莲给二人重塑肉身。但是在重塑肉身的过程中却遇到重重困难，哪吒、敖丙的命运将走向何方？",
+            "filmType": {
+              "name": "4D",
+              "value": 13
+            },
+            "nation": "中国大陆",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1738108800,
+            "timeType": 3,
+            "runtime": 144,
+            "grade": "7.8",
+            "item": {
+              "name": "4D",
+              "type": 13
+            },
+            "isPresale": true,
+            "isSale": false
+          },
+          {
+            "filmId": 7347,
+            "name": "猎狐·行动",
+            "poster": "https://pic.maizuo.com/usr/movie/71d12a748d39a6ca51d39a7b981530cb.jpg",
+            "actors": [
+              {
+                "name": "张立嘉",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/c97aba141da483afdcd9fccc486c69c4.jpg"
+              },
+              {
+                "name": "梁朝伟",
+                "role": "戴逸宸",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/dde9116fbb432a327cc2f71e9603da58.jpg"
+              },
+              {
+                "name": "段奕宏",
+                "role": "叶钧",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/71d4a5e7cc05b3852e3dc5c48e23d2fe.jpg"
+              },
+              {
+                "name": "夏侯云姗",
+                "role": "郭小佳",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/bb4f80bc452911906ffb8ad2983315f9.jpg"
+              },
+              {
+                "name": "张傲月",
+                "role": "赵毅",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/ea7820815406c705b19ff23e8e646baa.jpg"
+              }
+            ],
+            "director": "张立嘉",
+            "category": "犯罪|动作|剧情",
+            "synopsis": "真实案件改编！174亿老百姓血汗钱一夜蒸发！诈骗犯携款潜逃国外，救命钱化作海外豪宅，养老钱变成赌场筹码！梁朝伟、段奕宏起底跨国追逃惊天内幕！外逃7年的上海特大金融诈骗犯戴逸宸（梁朝伟 饰）现身法国巴黎，中国经侦警察叶钧（段奕宏 饰）带领“猎狐小队”跨国追赃。昔日老赖凭借国内骗取的百亿赃款跻身海外上流社会，上万百姓毕生积蓄尽毁，家破人亡......黑钱流向成谜，街头追杀、人体炸弹、恶徒设局围剿，步步紧逼！当猎手沦为猎物，猎狐小队能否逆风翻盘？百亿诈骗，跨境追逃，4月4日，敬请期待！",
+            "filmType": {
+              "name": "2D",
+              "value": 1
+            },
+            "nation": "中国大陆",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1743724800,
+            "timeType": 3,
+            "runtime": 105,
+            "grade": "7.6",
+            "item": {
+              "name": "2D",
+              "type": 1
+            },
+            "isPresale": true,
+            "isSale": false
+          },
+          {
+            "filmId": 7361,
+            "name": "有病才会喜欢你",
+            "poster": "https://pic.maizuo.com/usr/movie/2c8698cb550b693c658e2b98457b6c13.jpg",
+            "actors": [
+              {
+                "name": "许富翔",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/d67391122de594df87fd0b8d3d1b5fd9.jpg"
+              },
+              {
+                "name": "詹怀云",
+                "role": "叶子杰",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/880a45208a0e9e1c608bca07aec0994a.jpg"
+              },
+              {
+                "name": "江齐",
+                "role": "叶梓洁",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/bf6830e2a4f2db5ba9a64815ffcb1773.png"
+              },
+              {
+                "name": "刘修甫",
+                "role": "陈立",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/063ddf1ca5467ee7f8d681eac071d591.jpg"
+              },
+              {
+                "name": "黄冠智",
+                "role": "涂语窦",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/9bb49912ff96b6712dfcf86145c3f606.jpg"
+              }
+            ],
+            "director": "许富翔",
+            "category": "爱情|青春|剧情",
+            "synopsis": "我们忘不掉的是青春，还是青春里的那个人呢？一个是吊儿郎当，活在当下的学渣叶子杰（詹怀云 饰），在面临退学危机时，意外发现装病似乎可以逃过一劫？一个是沉稳内敛，渴望未来的学霸叶梓洁（江齐 饰），她仿佛装了测谎雷达，总会找到叶子杰疑似装病的证据！两个人相似的名字暗示了他们注定交织的命运。原本水火不相容的他们，因为这场“有病”乌龙，在一次次谍对谍的较量中渐渐靠近，暗生情愫…然而青春常常伴随遗憾，相爱的人也总是难免分离，但也正因如此，才要把握现在，在这个明媚的春天，即刻告白吧！告诉那个人：我就是有病，才会这么喜欢你。",
+            "filmType": {
+              "name": "2D",
+              "value": 1
+            },
+            "nation": "中国台湾",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1745020800,
+            "timeType": 3,
+            "runtime": 110,
+            "grade": "7.3",
+            "item": {
+              "name": "2D",
+              "type": 1
+            },
+            "isPresale": true,
+            "isSale": false
+          },
+          {
+            "filmId": 7368,
+            "name": "猎金·游戏",
+            "poster": "https://pic.maizuo.com/usr/movie/c423689d354b25494d4d626f4913a99a.jpg",
+            "actors": [
+              {
+                "name": "邱礼涛",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/03f51d6fde99eaa0a39cbc5db3d6514b.jpg"
+              },
+              {
+                "name": "刘德华",
+                "role": "张托德",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/a5fc45490b819cda18057b127816b7a3.jpg"
+              },
+              {
+                "name": "欧豪",
+                "role": "高寒",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/5a72a149ad8a8a2ea46ad41e98aa88d2.jpg"
+              },
+              {
+                "name": "倪妮",
+                "role": "安娜",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/e01f041890ae020fcec9c15768643e1d.jpg"
+              },
+              {
+                "name": "黄奕",
+                "role": "李海伦",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/d34a32bc5c6dde7aef658b27716ba986.jpg"
+              }
+            ],
+            "director": "邱礼涛",
+            "category": "剧情|犯罪",
+            "synopsis": "是谁在掏空你的钱包？想赚钱应该买股票还是买基金？看穿投资圈暴涨暴跌的“潜规则”，五一劳动节一起讨回血汗钱！金融大师张托德（刘德华 饰）堪称业界最强“预言家”，经他“点拨”的投资者全都赚了大钱！刚毕业的金融高材生高寒（欧豪 饰）阴错阳差与张托德成为师徒，高端客户、亿万大单随之涌现。随着张托德的旧识安娜（倪妮 饰）突然出现，股市狂潮再起，暴涨暴跌的背后是投资机遇还是资本游戏？深陷其中的股民是一夜暴富还是沦为“韭菜”？当金融市场被利用变成“赌场”，股市涨跌皆骗局，游戏规则该由谁来定？",
+            "filmType": {
+              "name": "4D",
+              "value": 13
+            },
+            "nation": "中国大陆",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1746057600,
+            "timeType": 3,
+            "runtime": 129,
+            "item": {
+              "name": "4D",
+              "type": 13
+            },
+            "isPresale": true,
+            "isSale": false
+          },
+          {
+            "filmId": 7353,
+            "name": "孤独的美食家 剧场版",
+            "poster": "https://pic.maizuo.com/usr/movie/9445121f794a21d3c09734610a510be1.jpg",
+            "actors": [
+              {
+                "name": "松重丰",
+                "role": "导演",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/40cc72de0b076ed60fe9a970acfce700.jpg"
+              },
+              {
+                "name": "内田有纪",
+                "role": "演员",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/c0158fa51dc15f2b5b61b00949641221.jpg"
+              },
+              {
+                "name": "矶村勇斗",
+                "role": "演员",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/4c5e9dd37e90f768df6a9085576183ff.jpg"
+              },
+              {
+                "name": "村田雄浩",
+                "role": "演员",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/437cb5afedbb23a76776a9193f827e74.jpg"
+              },
+              {
+                "name": "盐见三省",
+                "role": "演员",
+                "avatarAddress": "https://pic.maizuo.com/usr/movie/efd538f3291961f394f48b0ff0296e73.jpg"
+              }
+            ],
+            "director": "松重丰",
+            "category": "剧情",
+            "synopsis": "《孤独的美食家 剧场版》是2024年东京电视台开台 60 周年纪念作品，是继《孤独的美食家》十季电视剧和特别版电影的新戏，电影改编自久住昌之和谷口治郎的同名小说，由松重丰自导自演，主演还包括内田有纪、矶村勇斗、村田雄浩、盐见三省和小田切让。此次跟过往系列电影不同，在法国、韩国、日本群岛等地区寻找美食。剧情讲述井之头五郎收到法国老人委托去寻找他小时候在五岛群岛喝过的一酱汤，井之头五郎仅凭抽象的味道描述和少量线索，毅然踏上征途，台风亦阴差阳错地将他带到一个岛屿，认识到一位才华难得的厨师。",
+            "filmType": {
+              "name": "2D",
+              "value": 1
+            },
+            "nation": "日本",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1744934400,
+            "timeType": 3,
+            "runtime": 109,
+            "grade": "7.6",
+            "item": {
+              "name": "2D",
+              "type": 1
+            },
+            "isPresale": true,
+            "isSale": false
+          }
+        ],
+        "total": 55
+      },
+      "msg": "ok"
+    }
+  },
+  {
+    "name": "随机数据",
+    "method": "GET",
+    "url": "/smart/random/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": [
+      50458862,
+      91774212,
+      74933676
+    ]
+  },
+  {
+    "name": "用户列表",
+    "method": "GET",
+    "url": "/users/list/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": [
+        {
+          "id": 6,
+          "username": "root",
+          "email": "602212694@qq.com",
+          "first_name": "",
+          "last_name": "",
+          "phone": null,
+          "avatar": null,
+          "role": "user",
+          "is_active": true,
+          "profile": null,
+          "created_at": "2025-08-08T06:43:55.297681Z",
+          "updated_at": "2025-08-08T07:12:26.325744Z"
+        },
+        {
+          "id": 2,
+          "username": "test_user1",
+          "email": "user1@example.com",
+          "first_name": "",
+          "last_name": "",
+          "phone": null,
+          "avatar": null,
+          "role": "user",
+          "is_active": true,
+          "profile": null,
+          "created_at": "2025-08-08T05:54:01.397925Z",
+          "updated_at": "2025-08-08T05:54:01.572706Z"
+        },
+        {
+          "id": 3,
+          "username": "test_user2",
+          "email": "user2@example.com",
+          "first_name": "",
+          "last_name": "",
+          "phone": null,
+          "avatar": null,
+          "role": "user",
+          "is_active": true,
+          "profile": null,
+          "created_at": "2025-08-08T05:54:01.579451Z",
+          "updated_at": "2025-08-08T05:54:01.750433Z"
+        },
+        {
+          "id": 4,
+          "username": "test_user3",
+          "email": "user3@example.com",
+          "first_name": "",
+          "last_name": "",
+          "phone": null,
+          "avatar": null,
+          "role": "user",
+          "is_active": true,
+          "profile": null,
+          "created_at": "2025-08-08T05:54:01.752133Z",
+          "updated_at": "2025-08-08T05:54:01.920762Z"
+        },
+        {
+          "id": 5,
+          "username": "new_user",
+          "email": "new@example.com",
+          "first_name": "",
+          "last_name": "",
+          "phone": null,
+          "avatar": null,
+          "role": "user",
+          "is_active": true,
+          "profile": null,
+          "created_at": "2025-08-08T06:03:33.164361Z",
+          "updated_at": "2025-08-08T06:03:33.164367Z"
+        },
+        {
+          "id": 1,
+          "username": "admin",
+          "email": "18258031988@163.com",
+          "first_name": "",
+          "last_name": "",
+          "phone": null,
+          "avatar": null,
+          "role": "user",
+          "is_active": true,
+          "profile": null,
+          "created_at": "2025-08-07T08:11:25.955167Z",
+          "updated_at": "2025-08-07T08:11:25.955172Z"
+        },
+        {
+          "id": 7,
+          "username": "test_user_api",
+          "email": "test_api@example.com",
+          "first_name": "",
+          "last_name": "",
+          "phone": null,
+          "avatar": null,
+          "role": "user",
+          "is_active": true,
+          "profile": null,
+          "created_at": "2025-08-08T06:46:07.649384Z",
+          "updated_at": "2025-08-08T06:46:07.649390Z"
+        }
+      ]
+    }
+  },
+  {
+    "name": "用户详情",
+    "method": "GET",
+    "url": "/users/detail/1/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": {
+        "id": 1,
+        "username": "admin",
+        "email": "18258031988@163.com",
+        "first_name": "",
+        "last_name": "",
+        "phone": null,
+        "avatar": null,
+        "role": "user",
+        "is_active": true,
+        "profile": null,
+        "created_at": "2025-08-07T08:11:25.955167Z",
+        "updated_at": "2025-08-07T08:11:25.955172Z"
+      }
+    }
+  },
+  {
+    "name": "创建用户",
+    "method": "POST",
+    "url": "/users/register/",
+    "status": 201,
+    "expected": 201,
+    "success": true,
+    "response": {
+      "code": 201,
+      "msg": "注册成功",
+      "result": {
+        "user_id": 8,
+        "username": "root_api_user",
+        "email": "root_api_user@example.com"
+      }
+    }
+  },
+  {
+    "name": "获取用户头像",
+    "method": "GET",
+    "url": "/users/avatar/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 404,
+      "msg": "未找到头像图片",
+      "result": null
+    }
+  },
+  {
+    "name": "头像列表",
+    "method": "GET",
+    "url": "/users/avatar/list/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": []
+    }
+  },
+  {
+    "name": "分类列表",
+    "method": "GET",
+    "url": "/products/category/list/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": [
+        {
+          "id": 1,
+          "name": "食品",
+          "description": "",
+          "parent_id": null,
+          "parent_name": null
+        },
+        {
+          "id": 2,
+          "name": "零食",
+          "description": "包装量产食品",
+          "parent_id": 1,
+          "parent_name": "食品"
+        },
+        {
+          "id": 3,
+          "name": "默认分类",
+          "description": "用于测试的分类",
+          "parent_id": null,
+          "parent_name": null
+        },
+        {
+          "id": 4,
+          "name": "电子产品",
+          "description": "各类电子产品",
+          "parent_id": null,
+          "parent_name": null
+        },
+        {
+          "id": 5,
+          "name": "服装鞋帽",
+          "description": "时尚服装和鞋帽",
+          "parent_id": null,
+          "parent_name": null
+        },
+        {
+          "id": 6,
+          "name": "家居用品",
+          "description": "家居生活用品",
+          "parent_id": null,
+          "parent_name": null
+        },
+        {
+          "id": 7,
+          "name": "食品饮料",
+          "description": "各类食品和饮料",
+          "parent_id": null,
+          "parent_name": null
+        }
+      ]
+    }
+  },
+  {
+    "name": "商品列表",
+    "method": "GET",
+    "url": "/products/list/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": [
+        {
+          "id": 10,
+          "name": "薯片1",
+          "description": "",
+          "price": "31.00",
+          "original_price": "45.00",
+          "stock": 100,
+          "sales": 0,
+          "manufacturer": "华三小吃",
+          "category_id": 2,
+          "category_name": "零食",
+          "main_image": null,
+          "created_at": "2025-08-14 11:49:53"
+        },
+        {
+          "id": 9,
+          "name": "原味玉米芝麻片",
+          "description": "",
+          "price": "10.00",
+          "original_price": null,
+          "stock": 0,
+          "sales": 0,
+          "manufacturer": "两个女儿",
+          "category_id": 2,
+          "category_name": "零食",
+          "main_image": null,
+          "created_at": "2025-08-14 11:48:46"
+        },
+        {
+          "id": 8,
+          "name": "果蔬片",
+          "description": "",
+          "price": "21.00",
+          "original_price": "32.00",
+          "stock": 100,
+          "sales": 0,
+          "manufacturer": "华三小吃",
+          "category_id": 2,
+          "category_name": "零食",
+          "main_image": null,
+          "created_at": "2025-08-14 07:37:58"
+        },
+        {
+          "id": 7,
+          "name": "薯片1",
+          "description": "",
+          "price": "21.98",
+          "original_price": "26.00",
+          "stock": 100,
+          "sales": 6,
+          "manufacturer": "华三小吃",
+          "category_id": 2,
+          "category_name": "零食",
+          "main_image": null,
+          "created_at": "2025-08-14 07:37:03"
+        },
+        {
+          "id": 1,
+          "name": "原味玉米芝麻片",
+          "description": "",
+          "price": "10.00",
+          "original_price": null,
+          "stock": 100,
+          "sales": 1,
+          "manufacturer": "两个女儿",
+          "category_id": 2,
+          "category_name": "零食",
+          "main_image": "http://localhost:8000/media/products/%E4%B8%A4%E4%B8%AA%E5%A5%B3%E5%84%BF_%E5%8E%9F%E5%91%B3%E7%8E%89%E7%B1%B3%E8%8A%9D%E9%BA%BB%E7%89%87.jpg",
+          "created_at": "2025-08-08 04:46:34"
+        }
+      ]
+    }
+  },
+  {
+    "name": "商品详情",
+    "method": "GET",
+    "url": "/products/detail/1/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": {
+        "id": 1,
+        "name": "原味玉米芝麻片",
+        "description": "",
+        "price": "10.00",
+        "original_price": null,
+        "stock": 100,
+        "sales": 1,
+        "manufacturer": "两个女儿",
+        "category_id": 2,
+        "category_name": "零食",
+        "images": [
+          {
+            "id": 1,
+            "image_url": "http://localhost:8000/media/products/%E4%B8%A4%E4%B8%AA%E5%A5%B3%E5%84%BF_%E5%8E%9F%E5%91%B3%E7%8E%89%E7%B1%B3%E8%8A%9D%E9%BA%BB%E7%89%87.jpg",
+            "is_primary": true,
+            "order": 0
+          }
+        ],
+        "description_images": [
+          {
+            "id": 1,
+            "image_url": "http://localhost:8000/media/products/descriptions/%E4%B8%A4%E4%B8%AA%E5%A5%B3%E5%84%BF_%E5%8E%9F%E5%91%B3%E7%8E%89%E7%B1%B3%E8%8A%9D%E9%BA%BB%E7%89%87.jpg",
+            "order": 0
+          }
+        ],
+        "created_at": "2025-08-08 04:46:34",
+        "updated_at": "2025-08-08 04:46:34"
+      }
+    }
+  },
+  {
     "name": "订单列表",
     "method": "GET",
     "url": "/orders/list/",
@@ -29,13 +958,13 @@
     "name": "购物车列表",
     "method": "GET",
     "url": "/orders/cart/list/",
-    "status": 500,
+    "status": 200,
     "expected": 200,
-    "success": false,
+    "success": true,
     "response": {
-      "code": 500,
-      "msg": "服务器错误: 'Cart' object has no attribute 'price'",
-      "result": null
+      "code": 200,
+      "msg": "success",
+      "result": []
     }
   },
   {
@@ -46,7 +975,7 @@
     "expected": 200,
     "success": false,
     "response": {
-      "detail": "CSRF Failed: CSRF token missing."
+      "detail": "CSRF Failed: CSRF token from the 'X-Csrftoken' HTTP header incorrect."
     }
   },
   {
@@ -57,7 +986,7 @@
     "expected": 400,
     "success": false,
     "response": {
-      "detail": "CSRF Failed: CSRF token missing."
+      "detail": "CSRF Failed: CSRF token from the 'X-Csrftoken' HTTP header incorrect."
     }
   },
   {
@@ -68,7 +997,209 @@
     "expected": 400,
     "success": false,
     "response": {
-      "detail": "CSRF Failed: CSRF token missing."
+      "detail": "CSRF Failed: CSRF token from the 'X-Csrftoken' HTTP header incorrect."
     }
+  },
+  {
+    "name": "欢迎页面",
+    "method": "GET",
+    "url": "/content/welcome/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": {
+        "id": "1",
+        "title": "欢迎图片",
+        "image_url": "http://localhost:8000/media/welcome/%E5%B0%81%E9%9D%A2_Ll1Wdhe.jpeg",
+        "order": 0,
+        "created_at": "2025-08-08"
+      }
+    }
+  },
+  {
+    "name": "欢迎图片列表",
+    "method": "GET",
+    "url": "/content/welcome/list/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": [
+        {
+          "id": 1,
+          "title": "欢迎图片",
+          "image_url": "http://localhost:8000/media/welcome/%E5%B0%81%E9%9D%A2_Ll1Wdhe.jpeg",
+          "order": 0,
+          "created_at": "2025-08-08"
+        }
+      ]
+    }
+  },
+  {
+    "name": "轮播图列表",
+    "method": "GET",
+    "url": "/content/banner/list/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": []
+    }
+  },
+  {
+    "name": "文章列表",
+    "method": "GET",
+    "url": "/content/article/list/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": [
+        {
+          "id": 1,
+          "title": "测试文章一",
+          "summary": "测试文章摘要",
+          "cover_image": null,
+          "author": "admin",
+          "published_at": "2025-08-08 05:54:01"
+        },
+        {
+          "id": 4,
+          "title": "购物指南：如何避免买到假货",
+          "summary": "实用的购物防伪指南",
+          "cover_image": null,
+          "author": "admin",
+          "published_at": "2025-08-07 06:01:34"
+        },
+        {
+          "id": 3,
+          "title": "2024年最值得购买的数码产品",
+          "summary": "盘点2024年最值得购买的数码产品",
+          "cover_image": null,
+          "author": "admin",
+          "published_at": "2025-08-05 06:01:34"
+        },
+        {
+          "id": 2,
+          "title": "如何选择适合自己的电子产品",
+          "summary": "本文介绍了选择电子产品时需要考虑的几个重要因素",
+          "cover_image": null,
+          "author": "admin",
+          "published_at": "2025-08-03 06:01:34"
+        }
+      ]
+    }
+  },
+  {
+    "name": "文章详情",
+    "method": "GET",
+    "url": "/content/article/detail/1/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": {
+        "id": 1,
+        "title": "测试文章一",
+        "content": "这是一篇用于测试的文章内容",
+        "summary": "测试文章摘要",
+        "cover_image": null,
+        "author": "admin",
+        "published_at": "2025-08-08 05:54:01",
+        "created_at": "2025-08-08 05:54:01"
+      }
+    }
+  },
+  {
+    "name": "系统公告列表",
+    "method": "GET",
+    "url": "/content/notice/list/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": [
+        {
+          "id": 1,
+          "title": "系统维护通知",
+          "content": "系统将于今晚22:00-24:00进行维护，期间可能无法正常访问，请提前做好准备。",
+          "is_important": true,
+          "created_at": "2025-08-08 06:01:34"
+        },
+        {
+          "id": 2,
+          "title": "新功能上线",
+          "content": "我们新增了商品评价功能，用户现在可以对购买的商品进行评价和打分。",
+          "is_important": false,
+          "created_at": "2025-08-08 06:01:34"
+        }
+      ]
+    }
+  },
+  {
+    "name": "系统配置列表",
+    "method": "GET",
+    "url": "/system/config/list/",
+    "status": 403,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "detail": "You do not have permission to perform this action."
+    }
+  },
+  {
+    "name": "操作日志列表",
+    "method": "GET",
+    "url": "/system/log/list/",
+    "status": 403,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "detail": "You do not have permission to perform this action."
+    }
+  },
+  {
+    "name": "文件上传记录",
+    "method": "GET",
+    "url": "/system/file/list/",
+    "status": 403,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "detail": "You do not have permission to perform this action."
+    }
+  },
+  {
+    "name": "数据备份列表",
+    "method": "GET",
+    "url": "/system/backup/list/",
+    "status": 403,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "detail": "You do not have permission to perform this action."
+    }
+  },
+  {
+    "name": "Django管理后台",
+    "method": "GET",
+    "url": "/admin/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": "<!DOCTYPE html>\n\n\n<!--\n   The project use: django-simpleui\n   source code：\n   https://github.com/newpanjing/simpleui\n-->\n<html lang=\"en-us\" >\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"renderer\" content=\"webkit\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">\n    \n        <title>Django site admin-Log in</title>\n    \n    \n\n    \n\n    \n<link rel=\"stylesheet\" type=\"text/css\" href=\"/st"
   }
 ]
