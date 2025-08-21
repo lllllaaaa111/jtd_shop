@@ -160,7 +160,43 @@ class RootAPITester:
                 "error": str(e)
             })
             print(f"{name}: ERROR {e}")
-    
+
+    def post_multipart(self, path: str, name: str, form_data: dict, files=None, expected_status=201):
+        url = urljoin(self.base + '/', path.lstrip('/'))
+        headers = {}
+        if self.csrf_token:
+            headers['X-CSRFToken'] = self.csrf_token
+            headers['X-Csrftoken'] = self.csrf_token
+        try:
+            resp = self.s.post(url, data=form_data, files=files, headers=headers, timeout=20)
+            status = resp.status_code
+            success = status == expected_status
+            try:
+                body = resp.json()
+            except Exception:
+                body = resp.text[:500]
+            self.results.append({
+                "name": name,
+                "method": "POST",
+                "url": path,
+                "status": status,
+                "expected": expected_status,
+                "success": success,
+                "response": body
+            })
+            print(f"{name}: {status} ({'OK' if success else 'FAIL'})")
+        except requests.RequestException as e:
+            self.results.append({
+                "name": name,
+                "method": "POST",
+                "url": path,
+                "status": "ERROR",
+                "expected": expected_status,
+                "success": False,
+                "error": str(e)
+            })
+            print(f"{name}: ERROR {e}")
+
     def run(self):
         # 获取CSRF令牌
         print("🔑 正在获取CSRF令牌...")
@@ -213,7 +249,54 @@ class RootAPITester:
         # 测试空参数
         self.call('GET', '/products/by-category/?category_name=', '按分类模糊匹配-空参数', expected_status=400)
         
-       
+        # 新增商品接口（multipart/form-data）
+        print("🧪 测试新增商品接口（multipart/form-data）...")
+        product_form = {
+            'name': '自动化测试商品',
+            'price': '9.99',
+            'category_name': '电子产品',
+            'description': '由test_api_solo创建的商品',
+            'stock': '5',
+            'manufacturer': 'TestCo'
+        }
+        self.post_multipart('/products/create/', '新增商品-最小必填+可选', form_data=product_form, files=None, expected_status=201)
+        
+        # 使用指定的图片文件进行测试
+        try:
+            image_path = "/mnt/c/Users/Administrator.DESKTOP-DOMHQ5D/Desktop/金天得小程序/产品图片参考/test_1.jpg"
+            with open(image_path, 'rb') as img_file:
+                img_data = img_file.read()
+                files = [('images', ('test_1.jpg', img_data, 'image/jpeg'))]
+                product_form2 = {
+                    'name': '自动化测试商品-带图片',
+                    'price': '19.99',
+                    'category_name': '电子产品',
+                    'description': '含图片的商品，使用指定图片文件',
+                    'stock': '10',
+                    'manufacturer': 'TestCo'
+                }
+                self.post_multipart('/products/create/', '新增商品-含指定图片', form_data=product_form2, files=files, expected_status=201)
+        except Exception as e:
+            print(f"图片上传测试失败: {e}")
+            # 回退到内置图片测试
+            try:
+                import base64
+                png_b64 = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMB/afS7gAAAABJRU5ErkJggg=='
+                png_bytes = base64.b64decode(png_b64)
+                files = [('images', ('test.png', png_bytes, 'image/png'))]
+                product_form2 = {
+                    'name': '自动化测试商品-带内置图片',
+                    'price': '19.99',
+                    'category_name': '电子产品',
+                    'description': '含内置图片的商品',
+                }
+                self.post_multipart('/products/create/', '新增商品-含内置图片', form_data=product_form2, files=files, expected_status=201)
+            except Exception as e2:
+                print(f"内置图片测试也失败: {e2}")
+        
+        with open('api_test_results_solo.json','w',encoding='utf-8') as f:
+            json.dump(self.results, f, ensure_ascii=False, indent=2)
+        print('📄 结果已保存: api_test_results_solo.json')
 
 if __name__ == '__main__':
     RootAPITester().run() 

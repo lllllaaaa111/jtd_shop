@@ -3385,3 +3385,12 @@ Bad Request: /products/by-category/
 Bad Request: /products/by-category/
 Bad Request: /products/by-category/\u7535\u5b50\u4ea7\u54c1/
 Bad Request: /products/by-category/
+/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py changed, reloading.
+Watching for file changes with StatReloader
+/home/wjj/data/jtd_shop/jtd_shop/product_management/views.py changed, reloading.
+Watching for file changes with StatReloader
+/home/wjj/data/jtd_shop/jtd_shop/product_management/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/home/wjj/data/jtd_shop/jtd_shop/order_management/views.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /products/create/

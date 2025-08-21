@@ -350,7 +350,110 @@ GET /products/list/?limit=10
 
 ---
 
-### 4. 按分类名称模糊匹配获取商品
+### 4. 新增商品
+
+**接口地址**: `POST /products/create/`
+
+**功能描述**: 创建新商品，支持上传一张或多张图片
+
+**认证要求**: 需要用户登录（Session认证）
+
+**请求格式**: `multipart/form-data`
+
+**必填字段**:
+- `name`: 商品名称（字符串）
+- `price`: 价格（大于0的数值）
+- `category_id` 或 `category_name`: 商品分类（二选一）
+
+**可选字段**:
+- `description`: 商品描述（字符串）
+- `original_price`: 原价（大于0的数值）
+- `stock`: 库存数量（非负整数）
+- `sales`: 销量（非负整数）
+- `manufacturer`: 生产厂商（字符串）
+- `images`: 商品图片（多文件，字段名：images）
+
+**请求示例**:
+```bash
+# 基础商品创建（无图片）
+curl -b cookies.txt -X POST http://localhost:8000/products/create/ \
+  -H "X-CSRFToken: {csrf_token}" \
+  -F "name=测试商品" \
+  -F "price=99.99" \
+  -F "category_name=电子产品" \
+  -F "description=这是一个测试商品" \
+  -F "stock=10" \
+  -F "manufacturer=TestCo"
+
+# 带图片的商品创建
+curl -b cookies.txt -X POST http://localhost:8000/products/create/ \
+  -H "X-CSRFToken: {csrf_token}" \
+  -F "name=图片商品" \
+  -F "price=199.99" \
+  -F "category_name=电子产品" \
+  -F "description=包含图片的商品" \
+  -F "original_price=299.99" \
+  -F "stock=5" \
+  -F "images=@/path/to/image1.jpg" \
+  -F "images=@/path/to/image2.png"
+```
+
+**响应示例**:
+```json
+{
+    "code": 201,
+    "msg": "created",
+    "result": {
+        "id": 12,
+        "name": "图片商品",
+        "description": "包含图片的商品",
+        "price": "199.99",
+        "original_price": "299.99",
+        "stock": 5,
+        "sales": 0,
+        "manufacturer": "",
+        "category_id": 1,
+        "category_name": "电子产品",
+        "images": [
+            {
+                "id": 21,
+                "image_url": "http://localhost:8000/media/products/image1.jpg",
+                "is_primary": true,
+                "order": 0
+            },
+            {
+                "id": 22,
+                "image_url": "http://localhost:8000/media/products/image2.png",
+                "is_primary": false,
+                "order": 1
+            }
+        ],
+        "created_at": "2024-01-15 12:00:00"
+    }
+}
+```
+
+**错误响应**:
+```json
+{
+    "code": 400,
+    "msg": "商品名称为必填项",
+    "result": null
+}
+```
+
+**注意事项**:
+- 图片字段名为 `images`，支持多文件上传
+- 第一张图片自动设为主图（is_primary=true）
+- 图片按上传顺序排序（order字段）
+- 分类可通过ID或名称指定，但必须存在且激活
+- 价格必须大于0，库存和销量不能为负数
+
+**测试结果**: ✅ 成功 (201)
+
+---
+
+### 5. 按分类名称模糊匹配获取商品
 
 **接口地址**: `GET /products/by-category/`
 
@@ -421,7 +524,7 @@ GET /products/by-category/?category_name=服装&limit=5
 
 ---
 
-### 5. 按分类名称精确匹配获取商品
+### 6. 按分类名称精确匹配获取商品
 
 **接口地址**: `GET /products/by-category/{category_name}/`
 
