@@ -1,0 +1,30 @@
+[Unit]
+Description=JTD Shop Django Application
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=exec
+User=www-data
+Group=www-data
+WorkingDirectory=/data/jtd_backend/jtd_shop
+Environment=PATH=/data/jtd_backend/jtd_shop/.venv/bin
+ExecStart=/data/jtd_backend/jtd_shop/.venv/bin/gunicorn -c gunicorn.conf.py App_backend.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+RestartSec=3
+
+# 安全设置
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/data/jtd_backend/jtd_shop
+
+# 日志设置
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=jtd_shop
+
+[Install]
+WantedBy=multi-user.target 

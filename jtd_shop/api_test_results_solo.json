@@ -10,7 +10,7 @@
       "code": 200,
       "msg": "获取CSRF信息成功",
       "result": {
-        "csrf_token": "sOHSgmYyA4yfeHfKfOoI6swOUIcojJhJicdaPanVLy1dKOcpUi3pnK6qdCrwsAXP",
+        "csrf_token": "i37tVAp80V9NkiTdC6M7euVHSMgLe8aJnYkj1z55axMe23XlIKTTauu9HI2lW8E2",
         "token_length": 64,
         "cookie_name": "csrftoken",
         "header_name": "HTTP_X_CSRFTOKEN",
@@ -37,7 +37,7 @@
       "code": 200,
       "msg": "获取CSRF令牌成功",
       "result": {
-        "csrf_token": "kpTDOeqedHhF7fxPK8X2E8YvObcR4LnfaNpVn2PBobKDDmuupCCJVqy775rZdC3l",
+        "csrf_token": "a7xxJmYh0NI4n72km7WJEOq8VzJSHpHvf2KnPlEeaplv5S6ssL3vAOZAKvvsppbO",
         "token_length": 64,
         "expires_in": "session",
         "usage": "在POST请求头中使用 X-CSRFToken 或 X-Csrftoken"
@@ -48,16 +48,11 @@
     "name": "验证CSRF令牌",
     "method": "POST",
     "url": "/users/csrf/validate/",
-    "status": 200,
+    "status": 403,
     "expected": 200,
-    "success": true,
+    "success": false,
     "response": {
-      "code": 200,
-      "msg": "CSRF令牌验证成功",
-      "result": {
-        "valid": true,
-        "token_length": 64
-      }
+      "detail": "CSRF Failed: Referer checking failed - no Referer."
     }
   },
   {
@@ -73,50 +68,8 @@
       "result": [
         {
           "id": 1,
-          "name": "食品",
-          "description": "",
-          "parent_id": null,
-          "parent_name": null
-        },
-        {
-          "id": 2,
           "name": "零食",
-          "description": "包装量产食品",
-          "parent_id": 1,
-          "parent_name": "食品"
-        },
-        {
-          "id": 3,
-          "name": "默认分类",
-          "description": "用于测试的分类",
-          "parent_id": null,
-          "parent_name": null
-        },
-        {
-          "id": 4,
-          "name": "电子产品",
-          "description": "各类电子产品",
-          "parent_id": null,
-          "parent_name": null
-        },
-        {
-          "id": 5,
-          "name": "服装鞋帽",
-          "description": "时尚服装和鞋帽",
-          "parent_id": null,
-          "parent_name": null
-        },
-        {
-          "id": 6,
-          "name": "家居用品",
-          "description": "家居生活用品",
-          "parent_id": null,
-          "parent_name": null
-        },
-        {
-          "id": 7,
-          "name": "食品饮料",
-          "description": "各类食品和饮料",
+          "description": "",
           "parent_id": null,
           "parent_name": null
         }
@@ -133,78 +86,148 @@
     "response": {
       "code": 200,
       "msg": "success",
-      "result": [
-        {
-          "id": 10,
-          "name": "薯片1",
-          "description": "",
-          "price": "31.00",
-          "original_price": "45.00",
-          "stock": 100,
-          "sales": 0,
-          "manufacturer": "华三小吃",
-          "category_id": 2,
-          "category_name": "零食",
-          "main_image": null,
-          "created_at": "2025-08-14 11:49:53"
-        },
-        {
-          "id": 9,
-          "name": "原味玉米芝麻片",
-          "description": "",
-          "price": "10.00",
-          "original_price": null,
-          "stock": 0,
-          "sales": 0,
-          "manufacturer": "两个女儿",
-          "category_id": 2,
-          "category_name": "零食",
-          "main_image": null,
-          "created_at": "2025-08-14 11:48:46"
-        },
-        {
-          "id": 8,
-          "name": "果蔬片",
-          "description": "",
-          "price": "21.00",
-          "original_price": "32.00",
-          "stock": 100,
-          "sales": 0,
-          "manufacturer": "华三小吃",
-          "category_id": 2,
-          "category_name": "零食",
-          "main_image": null,
-          "created_at": "2025-08-14 07:37:58"
-        },
-        {
-          "id": 7,
-          "name": "薯片1",
-          "description": "",
-          "price": "21.98",
-          "original_price": "26.00",
-          "stock": 100,
-          "sales": 6,
-          "manufacturer": "华三小吃",
-          "category_id": 2,
-          "category_name": "零食",
-          "main_image": null,
-          "created_at": "2025-08-14 07:37:03"
-        },
-        {
-          "id": 1,
-          "name": "原味玉米芝麻片",
-          "description": "",
-          "price": "10.00",
-          "original_price": null,
-          "stock": 100,
-          "sales": 1,
-          "manufacturer": "两个女儿",
-          "category_id": 2,
-          "category_name": "零食",
-          "main_image": "http://localhost:8000/media/products/%E4%B8%A4%E4%B8%AA%E5%A5%B3%E5%84%BF_%E5%8E%9F%E5%91%B3%E7%8E%89%E7%B1%B3%E8%8A%9D%E9%BA%BB%E7%89%87.jpg",
-          "created_at": "2025-08-08 04:46:34"
-        }
-      ]
+      "result": {
+        "products": [
+          {
+            "id": 1,
+            "name": "薯片1",
+            "description": "test",
+            "price": "32.00",
+            "original_price": "55.99",
+            "stock": 100,
+            "sales": 6,
+            "manufacturer": "华三小吃",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/4C8A0290.jpg",
+            "created_at": "2025-08-21 07:11:39"
+          }
+        ],
+        "total_count": 1,
+        "limit": null
+      }
+    }
+  },
+  {
+    "name": "获取商品列表-限制5个",
+    "method": "GET",
+    "url": "/products/list/?limit=5",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": {
+        "products": [
+          {
+            "id": 1,
+            "name": "薯片1",
+            "description": "test",
+            "price": "32.00",
+            "original_price": "55.99",
+            "stock": 100,
+            "sales": 6,
+            "manufacturer": "华三小吃",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/4C8A0290.jpg",
+            "created_at": "2025-08-21 07:11:39"
+          }
+        ],
+        "total_count": 1,
+        "limit": 5
+      }
+    }
+  },
+  {
+    "name": "获取商品列表-限制10个",
+    "method": "GET",
+    "url": "/products/list/?limit=10",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": {
+        "products": [
+          {
+            "id": 1,
+            "name": "薯片1",
+            "description": "test",
+            "price": "32.00",
+            "original_price": "55.99",
+            "stock": 100,
+            "sales": 6,
+            "manufacturer": "华三小吃",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/4C8A0290.jpg",
+            "created_at": "2025-08-21 07:11:39"
+          }
+        ],
+        "total_count": 1,
+        "limit": 10
+      }
+    }
+  },
+  {
+    "name": "获取商品列表-限制1个",
+    "method": "GET",
+    "url": "/products/list/?limit=1",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": {
+        "products": [
+          {
+            "id": 1,
+            "name": "薯片1",
+            "description": "test",
+            "price": "32.00",
+            "original_price": "55.99",
+            "stock": 100,
+            "sales": 6,
+            "manufacturer": "华三小吃",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/4C8A0290.jpg",
+            "created_at": "2025-08-21 07:11:39"
+          }
+        ],
+        "total_count": 1,
+        "limit": 1
+      }
+    }
+  },
+  {
+    "name": "获取商品列表-限制0个",
+    "method": "GET",
+    "url": "/products/list/?limit=0",
+    "status": 400,
+    "expected": 400,
+    "success": true,
+    "response": {
+      "code": 400,
+      "msg": "数量参数必须大于0",
+      "result": null
+    }
+  },
+  {
+    "name": "获取商品列表-无效参数",
+    "method": "GET",
+    "url": "/products/list/?limit=abc",
+    "status": 400,
+    "expected": 400,
+    "success": true,
+    "response": {
+      "code": 400,
+      "msg": "数量参数必须是有效的整数",
+      "result": null
     }
   },
   {
@@ -219,32 +242,32 @@
       "msg": "success",
       "result": {
         "id": 1,
-        "name": "原味玉米芝麻片",
-        "description": "",
-        "price": "10.00",
-        "original_price": null,
+        "name": "薯片1",
+        "description": "test",
+        "price": "32.00",
+        "original_price": "55.99",
         "stock": 100,
-        "sales": 1,
-        "manufacturer": "两个女儿",
-        "category_id": 2,
+        "sales": 6,
+        "manufacturer": "华三小吃",
+        "category_id": 1,
         "category_name": "零食",
         "images": [
           {
-            "id": 1,
-            "image_url": "http://localhost:8000/media/products/%E4%B8%A4%E4%B8%AA%E5%A5%B3%E5%84%BF_%E5%8E%9F%E5%91%B3%E7%8E%89%E7%B1%B3%E8%8A%9D%E9%BA%BB%E7%89%87.jpg",
+            "id": 2,
+            "image_url": "https://jtd.wxdnet.cn:8080/media/products/4C8A0290.jpg",
             "is_primary": true,
             "order": 0
-          }
-        ],
-        "description_images": [
+          },
           {
             "id": 1,
-            "image_url": "http://localhost:8000/media/products/descriptions/%E4%B8%A4%E4%B8%AA%E5%A5%B3%E5%84%BF_%E5%8E%9F%E5%91%B3%E7%8E%89%E7%B1%B3%E8%8A%9D%E9%BA%BB%E7%89%87.jpg",
+            "image_url": "https://jtd.wxdnet.cn:8080/media/products/%E5%9B%BE%E7%89%8705713_l8POLPu.jpg",
+            "is_primary": false,
             "order": 0
           }
         ],
-        "created_at": "2025-08-08 04:46:34",
-        "updated_at": "2025-08-08 04:46:34"
+        "description_images": [],
+        "created_at": "2025-08-21 07:11:39",
+        "updated_at": "2025-08-27 06:34:57"
       }
     }
   },
@@ -252,23 +275,35 @@
     "name": "按分类模糊匹配-电子",
     "method": "GET",
     "url": "/products/by-category/?category_name=电子",
-    "status": 200,
+    "status": 404,
     "expected": 200,
-    "success": true,
+    "success": false,
     "response": {
-      "code": 200,
-      "msg": "success",
+      "code": 404,
+      "msg": "未找到分类名称包含\"电子\"的分类",
       "result": {
         "category_name": "电子",
-        "matched_categories": [
-          {
-            "id": 4,
-            "name": "电子产品",
-            "description": "各类电子产品"
-          }
-        ],
         "products": [],
-        "total_count": 0
+        "total_count": 0,
+        "limit": null
+      }
+    }
+  },
+  {
+    "name": "按分类模糊匹配-电子-限制3个",
+    "method": "GET",
+    "url": "/products/by-category/?category_name=电子&limit=3",
+    "status": 404,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "code": 404,
+      "msg": "未找到分类名称包含\"电子\"的分类",
+      "result": {
+        "category_name": "电子",
+        "products": [],
+        "total_count": 0,
+        "limit": "3"
       }
     }
   },
@@ -276,23 +311,35 @@
     "name": "按分类模糊匹配-服装",
     "method": "GET",
     "url": "/products/by-category/?category_name=服装",
-    "status": 200,
+    "status": 404,
     "expected": 200,
-    "success": true,
+    "success": false,
     "response": {
-      "code": 200,
-      "msg": "success",
+      "code": 404,
+      "msg": "未找到分类名称包含\"服装\"的分类",
       "result": {
         "category_name": "服装",
-        "matched_categories": [
-          {
-            "id": 5,
-            "name": "服装鞋帽",
-            "description": "时尚服装和鞋帽"
-          }
-        ],
         "products": [],
-        "total_count": 0
+        "total_count": 0,
+        "limit": null
+      }
+    }
+  },
+  {
+    "name": "按分类模糊匹配-服装-限制5个",
+    "method": "GET",
+    "url": "/products/by-category/?category_name=服装&limit=5",
+    "status": 404,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "code": 404,
+      "msg": "未找到分类名称包含\"服装\"的分类",
+      "result": {
+        "category_name": "服装",
+        "products": [],
+        "total_count": 0,
+        "limit": "5"
       }
     }
   },
@@ -310,84 +357,69 @@
         "category_name": "零",
         "matched_categories": [
           {
-            "id": 2,
+            "id": 1,
             "name": "零食",
-            "description": "包装量产食品"
+            "description": ""
           }
         ],
         "products": [
           {
-            "id": 10,
+            "id": 1,
             "name": "薯片1",
-            "description": "",
-            "price": "31.00",
-            "original_price": "45.00",
-            "stock": 100,
-            "sales": 0,
-            "manufacturer": "华三小吃",
-            "category_id": 2,
-            "category_name": "零食",
-            "main_image": null,
-            "created_at": "2025-08-14 11:49:53"
-          },
-          {
-            "id": 9,
-            "name": "原味玉米芝麻片",
-            "description": "",
-            "price": "10.00",
-            "original_price": null,
-            "stock": 0,
-            "sales": 0,
-            "manufacturer": "两个女儿",
-            "category_id": 2,
-            "category_name": "零食",
-            "main_image": null,
-            "created_at": "2025-08-14 11:48:46"
-          },
-          {
-            "id": 8,
-            "name": "果蔬片",
-            "description": "",
-            "price": "21.00",
-            "original_price": "32.00",
-            "stock": 100,
-            "sales": 0,
-            "manufacturer": "华三小吃",
-            "category_id": 2,
-            "category_name": "零食",
-            "main_image": null,
-            "created_at": "2025-08-14 07:37:58"
-          },
-          {
-            "id": 7,
-            "name": "薯片1",
-            "description": "",
-            "price": "21.98",
-            "original_price": "26.00",
+            "description": "test",
+            "price": "32.00",
+            "original_price": "55.99",
             "stock": 100,
             "sales": 6,
             "manufacturer": "华三小吃",
-            "category_id": 2,
+            "category_id": 1,
             "category_name": "零食",
-            "main_image": null,
-            "created_at": "2025-08-14 07:37:03"
-          },
-          {
-            "id": 1,
-            "name": "原味玉米芝麻片",
-            "description": "",
-            "price": "10.00",
-            "original_price": null,
-            "stock": 100,
-            "sales": 1,
-            "manufacturer": "两个女儿",
-            "category_id": 2,
-            "category_name": "零食",
-            "main_image": "http://localhost:8000/media/products/%E4%B8%A4%E4%B8%AA%E5%A5%B3%E5%84%BF_%E5%8E%9F%E5%91%B3%E7%8E%89%E7%B1%B3%E8%8A%9D%E9%BA%BB%E7%89%87.jpg",
-            "created_at": "2025-08-08 04:46:34"
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/4C8A0290.jpg",
+            "created_at": "2025-08-21 07:11:39"
           }
         ],
-        "total_count": 5
+        "total_count": 1,
+        "limit": null
+      }
+    }
+  },
+  {
+    "name": "按分类模糊匹配-零-限制1个",
+    "method": "GET",
+    "url": "/products/by-category/?category_name=零&limit=1",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": {
+        "category_name": "零",
+        "matched_categories": [
+          {
+            "id": 1,
+            "name": "零食",
+            "description": ""
+          }
+        ],
+        "products": [
+          {
+            "id": 1,
+            "name": "薯片1",
+            "description": "test",
+            "price": "32.00",
+            "original_price": "55.99",
+            "stock": 100,
+            "sales": 6,
+            "manufacturer": "华三小吃",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/4C8A0290.jpg",
+            "created_at": "2025-08-21 07:11:39"
+          }
+        ],
+        "total_count": 1,
+        "limit": 1
       }
     }
   },
@@ -395,20 +427,35 @@
     "name": "按分类精确匹配-电子产品",
     "method": "GET",
     "url": "/products/by-category/电子产品/",
-    "status": 200,
+    "status": 404,
     "expected": 200,
-    "success": true,
+    "success": false,
     "response": {
-      "code": 200,
-      "msg": "success",
+      "code": 404,
+      "msg": "分类\"电子产品\"不存在",
       "result": {
-        "category": {
-          "id": 4,
-          "name": "电子产品",
-          "description": "各类电子产品"
-        },
+        "category_name": "电子产品",
         "products": [],
-        "total_count": 0
+        "total_count": 0,
+        "limit": null
+      }
+    }
+  },
+  {
+    "name": "按分类精确匹配-电子产品-限制2个",
+    "method": "GET",
+    "url": "/products/by-category/电子产品/?limit=2",
+    "status": 404,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "code": 404,
+      "msg": "分类\"电子产品\"不存在",
+      "result": {
+        "category_name": "电子产品",
+        "products": [],
+        "total_count": 0,
+        "limit": "2"
       }
     }
   },
@@ -416,20 +463,35 @@
     "name": "按分类精确匹配-服装鞋帽",
     "method": "GET",
     "url": "/products/by-category/服装鞋帽/",
-    "status": 200,
+    "status": 404,
     "expected": 200,
-    "success": true,
+    "success": false,
     "response": {
-      "code": 200,
-      "msg": "success",
+      "code": 404,
+      "msg": "分类\"服装鞋帽\"不存在",
       "result": {
-        "category": {
-          "id": 5,
-          "name": "服装鞋帽",
-          "description": "时尚服装和鞋帽"
-        },
+        "category_name": "服装鞋帽",
         "products": [],
-        "total_count": 0
+        "total_count": 0,
+        "limit": null
+      }
+    }
+  },
+  {
+    "name": "按分类精确匹配-服装鞋帽-限制10个",
+    "method": "GET",
+    "url": "/products/by-category/服装鞋帽/?limit=10",
+    "status": 404,
+    "expected": 200,
+    "success": false,
+    "response": {
+      "code": 404,
+      "msg": "分类\"服装鞋帽\"不存在",
+      "result": {
+        "category_name": "服装鞋帽",
+        "products": [],
+        "total_count": 0,
+        "limit": "10"
       }
     }
   },
@@ -446,7 +508,62 @@
       "result": {
         "category_name": "不存在的分类",
         "products": [],
-        "total_count": 0
+        "total_count": 0,
+        "limit": null
+      }
+    }
+  },
+  {
+    "name": "按分类模糊匹配-无效limit-0",
+    "method": "GET",
+    "url": "/products/by-category/?category_name=电子&limit=0",
+    "status": 404,
+    "expected": 400,
+    "success": false,
+    "response": {
+      "code": 404,
+      "msg": "未找到分类名称包含\"电子\"的分类",
+      "result": {
+        "category_name": "电子",
+        "products": [],
+        "total_count": 0,
+        "limit": "0"
+      }
+    }
+  },
+  {
+    "name": "按分类模糊匹配-无效limit-字符串",
+    "method": "GET",
+    "url": "/products/by-category/?category_name=电子&limit=abc",
+    "status": 404,
+    "expected": 400,
+    "success": false,
+    "response": {
+      "code": 404,
+      "msg": "未找到分类名称包含\"电子\"的分类",
+      "result": {
+        "category_name": "电子",
+        "products": [],
+        "total_count": 0,
+        "limit": "abc"
+      }
+    }
+  },
+  {
+    "name": "按分类精确匹配-无效limit-负数",
+    "method": "GET",
+    "url": "/products/by-category/电子产品/?limit=-1",
+    "status": 404,
+    "expected": 400,
+    "success": false,
+    "response": {
+      "code": 404,
+      "msg": "分类\"电子产品\"不存在",
+      "result": {
+        "category_name": "电子产品",
+        "products": [],
+        "total_count": 0,
+        "limit": "-1"
       }
     }
   },
@@ -464,81 +581,25 @@
     }
   },
   {
-    "name": "新建订单-完整数据",
+    "name": "新增商品-最小必填+可选",
     "method": "POST",
-    "url": "/orders/create/",
-    "status": 400,
-    "expected": 200,
+    "url": "/products/create/",
+    "status": 403,
+    "expected": 201,
     "success": false,
     "response": {
-      "code": 400,
-      "msg": "购物车为空，无法创建订单",
-      "result": null
+      "detail": "CSRF Failed: Referer checking failed - no Referer."
     }
   },
   {
-    "name": "订单列表",
-    "method": "GET",
-    "url": "/orders/list/",
-    "status": 200,
-    "expected": 200,
-    "success": true,
-    "response": {
-      "code": 200,
-      "msg": "success",
-      "result": []
-    }
-  },
-  {
-    "name": "订单详情",
-    "method": "GET",
-    "url": "/orders/detail/1/",
-    "status": 500,
-    "expected": 200,
+    "name": "新增商品-含内置图片",
+    "method": "POST",
+    "url": "/products/create/",
+    "status": 403,
+    "expected": 201,
     "success": false,
     "response": {
-      "code": 500,
-      "msg": "服务器错误: No Order matches the given query.",
-      "result": null
-    }
-  },
-  {
-    "name": "购物车列表",
-    "method": "GET",
-    "url": "/orders/cart/list/",
-    "status": 200,
-    "expected": 200,
-    "success": true,
-    "response": {
-      "code": 200,
-      "msg": "success",
-      "result": []
-    }
-  },
-  {
-    "name": "新建订单-缺少必填字段",
-    "method": "POST",
-    "url": "/orders/create/",
-    "status": 400,
-    "expected": 400,
-    "success": true,
-    "response": {
-      "code": 400,
-      "msg": "购物车为空，无法创建订单",
-      "result": null
-    }
-  },
-  {
-    "name": "新建订单-空购物车",
-    "method": "POST",
-    "url": "/orders/create/",
-    "status": 400,
-    "expected": 400,
-    "success": true,
-    "response": {
-      "code": 400,
-      "msg": "购物车为空，无法创建订单",
-      "result": null
+      "detail": "CSRF Failed: Referer checking failed - no Referer."
     }
   }
 ]

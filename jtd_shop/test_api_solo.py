@@ -8,7 +8,9 @@ import requests
 import json
 from urllib.parse import urljoin
 
-BASE_URL = "http://localhost:8000"
+# BASE_URL = "http://localhost:6580"
+# BASE_URL = "https://jtd.wxdnet.cn:8080"
+BASE_URL = "https://jtd.wxdnet.cn:8080"
 USERNAME = "root"
 PASSWORD = "Gg666666"
 
