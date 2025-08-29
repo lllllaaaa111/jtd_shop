@@ -10,7 +10,7 @@
       "code": 200,
       "msg": "获取CSRF信息成功",
       "result": {
-        "csrf_token": "i37tVAp80V9NkiTdC6M7euVHSMgLe8aJnYkj1z55axMe23XlIKTTauu9HI2lW8E2",
+        "csrf_token": "xZL2XNbdk5f1yGoyddQCjS8m5j9DlxnhY8MYEvKFB92LruTSyEBD3rdw2VyfkPSh",
         "token_length": 64,
         "cookie_name": "csrftoken",
         "header_name": "HTTP_X_CSRFTOKEN",
@@ -37,7 +37,7 @@
       "code": 200,
       "msg": "获取CSRF令牌成功",
       "result": {
-        "csrf_token": "a7xxJmYh0NI4n72km7WJEOq8VzJSHpHvf2KnPlEeaplv5S6ssL3vAOZAKvvsppbO",
+        "csrf_token": "FqJ33wGqDr6ubsaTd8TRLYbHBHvWrQT36zKZKefSUvTe4gFdyzESvxgRyjUyq8o3",
         "token_length": 64,
         "expires_in": "session",
         "usage": "在POST请求头中使用 X-CSRFToken 或 X-Csrftoken"
@@ -48,11 +48,16 @@
     "name": "验证CSRF令牌",
     "method": "POST",
     "url": "/users/csrf/validate/",
-    "status": 403,
+    "status": 200,
     "expected": 200,
-    "success": false,
+    "success": true,
     "response": {
-      "detail": "CSRF Failed: Referer checking failed - no Referer."
+      "code": 200,
+      "msg": "CSRF令牌验证成功",
+      "result": {
+        "valid": true,
+        "token_length": 64
+      }
     }
   },
   {
@@ -89,6 +94,62 @@
       "result": {
         "products": [
           {
+            "id": 5,
+            "name": "糖果",
+            "description": "",
+            "price": "111.00",
+            "original_price": "11.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E7%B3%96%E6%9E%9C.jpg",
+            "created_at": "2025-08-29 07:44:01"
+          },
+          {
+            "id": 4,
+            "name": "乐事薯片",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "乐事",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E4%B9%90%E4%BA%8B%E8%96%AF%E7%89%87.jpg",
+            "created_at": "2025-08-29 07:43:29"
+          },
+          {
+            "id": 3,
+            "name": "花生",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E8%8A%B1%E7%94%9F.jpg",
+            "created_at": "2025-08-29 07:43:00"
+          },
+          {
+            "id": 2,
+            "name": "饼干",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E9%A5%BC%E5%B9%B2.jpg",
+            "created_at": "2025-08-29 07:42:37"
+          },
+          {
             "id": 1,
             "name": "薯片1",
             "description": "test",
@@ -103,7 +164,7 @@
             "created_at": "2025-08-21 07:11:39"
           }
         ],
-        "total_count": 1,
+        "total_count": 5,
         "limit": null
       }
     }
@@ -121,6 +182,62 @@
       "result": {
         "products": [
           {
+            "id": 5,
+            "name": "糖果",
+            "description": "",
+            "price": "111.00",
+            "original_price": "11.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E7%B3%96%E6%9E%9C.jpg",
+            "created_at": "2025-08-29 07:44:01"
+          },
+          {
+            "id": 4,
+            "name": "乐事薯片",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "乐事",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E4%B9%90%E4%BA%8B%E8%96%AF%E7%89%87.jpg",
+            "created_at": "2025-08-29 07:43:29"
+          },
+          {
+            "id": 3,
+            "name": "花生",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E8%8A%B1%E7%94%9F.jpg",
+            "created_at": "2025-08-29 07:43:00"
+          },
+          {
+            "id": 2,
+            "name": "饼干",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E9%A5%BC%E5%B9%B2.jpg",
+            "created_at": "2025-08-29 07:42:37"
+          },
+          {
             "id": 1,
             "name": "薯片1",
             "description": "test",
@@ -135,7 +252,7 @@
             "created_at": "2025-08-21 07:11:39"
           }
         ],
-        "total_count": 1,
+        "total_count": 5,
         "limit": 5
       }
     }
@@ -153,6 +270,62 @@
       "result": {
         "products": [
           {
+            "id": 5,
+            "name": "糖果",
+            "description": "",
+            "price": "111.00",
+            "original_price": "11.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E7%B3%96%E6%9E%9C.jpg",
+            "created_at": "2025-08-29 07:44:01"
+          },
+          {
+            "id": 4,
+            "name": "乐事薯片",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "乐事",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E4%B9%90%E4%BA%8B%E8%96%AF%E7%89%87.jpg",
+            "created_at": "2025-08-29 07:43:29"
+          },
+          {
+            "id": 3,
+            "name": "花生",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E8%8A%B1%E7%94%9F.jpg",
+            "created_at": "2025-08-29 07:43:00"
+          },
+          {
+            "id": 2,
+            "name": "饼干",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E9%A5%BC%E5%B9%B2.jpg",
+            "created_at": "2025-08-29 07:42:37"
+          },
+          {
             "id": 1,
             "name": "薯片1",
             "description": "test",
@@ -167,7 +340,7 @@
             "created_at": "2025-08-21 07:11:39"
           }
         ],
-        "total_count": 1,
+        "total_count": 5,
         "limit": 10
       }
     }
@@ -185,18 +358,18 @@
       "result": {
         "products": [
           {
-            "id": 1,
-            "name": "薯片1",
-            "description": "test",
-            "price": "32.00",
-            "original_price": "55.99",
-            "stock": 100,
-            "sales": 6,
-            "manufacturer": "华三小吃",
+            "id": 5,
+            "name": "糖果",
+            "description": "",
+            "price": "111.00",
+            "original_price": "11.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
             "category_id": 1,
             "category_name": "零食",
-            "main_image": "https://jtd.wxdnet.cn:8080/media/products/4C8A0290.jpg",
-            "created_at": "2025-08-21 07:11:39"
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E7%B3%96%E6%9E%9C.jpg",
+            "created_at": "2025-08-29 07:44:01"
           }
         ],
         "total_count": 1,
@@ -364,6 +537,62 @@
         ],
         "products": [
           {
+            "id": 5,
+            "name": "糖果",
+            "description": "",
+            "price": "111.00",
+            "original_price": "11.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E7%B3%96%E6%9E%9C.jpg",
+            "created_at": "2025-08-29 07:44:01"
+          },
+          {
+            "id": 4,
+            "name": "乐事薯片",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "乐事",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E4%B9%90%E4%BA%8B%E8%96%AF%E7%89%87.jpg",
+            "created_at": "2025-08-29 07:43:29"
+          },
+          {
+            "id": 3,
+            "name": "花生",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E8%8A%B1%E7%94%9F.jpg",
+            "created_at": "2025-08-29 07:43:00"
+          },
+          {
+            "id": 2,
+            "name": "饼干",
+            "description": "",
+            "price": "11.00",
+            "original_price": "21.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
+            "category_id": 1,
+            "category_name": "零食",
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E9%A5%BC%E5%B9%B2.jpg",
+            "created_at": "2025-08-29 07:42:37"
+          },
+          {
             "id": 1,
             "name": "薯片1",
             "description": "test",
@@ -378,7 +607,7 @@
             "created_at": "2025-08-21 07:11:39"
           }
         ],
-        "total_count": 1,
+        "total_count": 5,
         "limit": null
       }
     }
@@ -404,18 +633,18 @@
         ],
         "products": [
           {
-            "id": 1,
-            "name": "薯片1",
-            "description": "test",
-            "price": "32.00",
-            "original_price": "55.99",
-            "stock": 100,
-            "sales": 6,
-            "manufacturer": "华三小吃",
+            "id": 5,
+            "name": "糖果",
+            "description": "",
+            "price": "111.00",
+            "original_price": "11.00",
+            "stock": 111,
+            "sales": 1,
+            "manufacturer": "两个女儿",
             "category_id": 1,
             "category_name": "零食",
-            "main_image": "https://jtd.wxdnet.cn:8080/media/products/4C8A0290.jpg",
-            "created_at": "2025-08-21 07:11:39"
+            "main_image": "https://jtd.wxdnet.cn:8080/media/products/%E7%B3%96%E6%9E%9C.jpg",
+            "created_at": "2025-08-29 07:44:01"
           }
         ],
         "total_count": 1,
@@ -600,6 +829,74 @@
     "success": false,
     "response": {
       "detail": "CSRF Failed: Referer checking failed - no Referer."
+    }
+  },
+  {
+    "name": "创建订单",
+    "method": "POST",
+    "url": "/orders/create/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "订单创建成功",
+      "result": {
+        "id": 1,
+        "order_number": "ORD202508290751430002",
+        "internal_order_number": "000000000001",
+        "total_amount": "122.00",
+        "status": "pending",
+        "status_display": "待支付",
+        "delivery_address": "上海市徐汇区XX路1号",
+        "recipient_name": "张三",
+        "recipient_phone": "13800000000",
+        "created_at": "2025-08-29 07:51:43",
+        "items_count": 2
+      }
+    }
+  },
+  {
+    "name": "订单列表",
+    "method": "GET",
+    "url": "/orders/list/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": [
+        {
+          "id": 1,
+          "order_number": "ORD202508290751430002",
+          "total_amount": "122.00",
+          "status": "pending",
+          "status_display": "待支付",
+          "payment_method": "wechat",
+          "created_at": "2025-08-29 07:51:43",
+          "paid_at": null
+        }
+      ]
+    }
+  },
+  {
+    "name": "更新订单状态为已支付",
+    "method": "POST",
+    "url": "/orders/update-status/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "订单状态更新成功",
+      "result": {
+        "internal_order_number": "000000000001",
+        "order_number": "ORD202508290751430002",
+        "status": "paid",
+        "payment_method": "wechat",
+        "paid_at": "2025-08-29 07:51:43"
+      }
     }
   }
 ]

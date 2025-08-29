@@ -3,6 +3,15 @@ from django.utils import timezone
 from user_management.models import User
 from product_management.models import Product
 
+class OrderNumberSequence(models.Model):
+    """订单内部编号序列表，每个实例代表一次递增，以自增ID作为序号来源"""
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'order_number_sequence'
+        verbose_name = '订单编号序列'
+        verbose_name_plural = '订单编号序列'
+
 class Order(models.Model):
     """订单模型"""
     STATUS_CHOICES = [
@@ -22,6 +31,8 @@ class Order(models.Model):
     ]
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='用户ID')
+    # 新增：内部订单号（12位，唯一，从000000000001开始）
+    internal_order_number = models.CharField(max_length=12, unique=True, db_index=True, verbose_name='内部订单号')
     order_number = models.CharField(max_length=100, unique=True, verbose_name='订单号')
     total_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='总金额')
     status = models.CharField(
@@ -58,7 +69,12 @@ class Order(models.Model):
         return f"订单 {self.order_number}"
     
     def save(self, *args, **kwargs):
-        # 自动生成订单号
+        # 自动生成内部订单号（12位，从000000000001开始）
+        if not self.internal_order_number:
+            # 创建一个序列记录以获取自增ID
+            seq = OrderNumberSequence.objects.create()
+            self.internal_order_number = str(seq.id).zfill(12)
+        # 自动生成订单号（保持原逻辑）
         if not self.order_number:
             self.order_number = f"ORD{timezone.now().strftime('%Y%m%d%H%M%S')}{self.user.id:04d}"
         super().save(*args, **kwargs)

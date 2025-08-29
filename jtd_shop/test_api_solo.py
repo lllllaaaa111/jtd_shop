@@ -117,6 +117,8 @@ class RootAPITester:
                 kwargs['headers']['X-CSRFToken'] = self.csrf_token
                 kwargs['headers']['X-Csrftoken'] = self.csrf_token  # Django也接受这个格式
                 kwargs['headers']['Content-Type'] = 'application/json'
+                # 关键：Referer 需与可信域一致
+                kwargs['headers']['Referer'] = self.base + '/'
             
             # 特殊处理用户注册
             if path.endswith('/users/register/'):
@@ -151,6 +153,7 @@ class RootAPITester:
                 "response": body
             })
             print(f"{name}: {status} ({'OK' if success else 'FAIL'})")
+            return resp
         except requests.RequestException as e:
             self.results.append({
                 "name": name,
@@ -162,6 +165,7 @@ class RootAPITester:
                 "error": str(e)
             })
             print(f"{name}: ERROR {e}")
+            return None
 
     def post_multipart(self, path: str, name: str, form_data: dict, files=None, expected_status=201):
         url = urljoin(self.base + '/', path.lstrip('/'))
@@ -295,6 +299,56 @@ class RootAPITester:
                 self.post_multipart('/products/create/', '新增商品-含内置图片', form_data=product_form2, files=files, expected_status=201)
             except Exception as e2:
                 print(f"内置图片测试也失败: {e2}")
+
+        # 订单接口测试
+        print("🧾 测试订单接口...")
+        # 先尝试创建订单（如果购物车为空，可能返回400）
+        create_payload = {
+            'delivery_address': '上海市徐汇区XX路1号',
+            'recipient_name': '张三',
+            'recipient_phone': '13800000000',
+            'payment_method': 'wechat'
+        }
+        resp_create = self.call('POST', '/orders/create/', '创建订单', expected_status=200, json_data=create_payload)
+        internal_no = None
+        try:
+            if resp_create is not None and resp_create.status_code == 200:
+                data = resp_create.json()
+                if isinstance(data, dict) and isinstance(data.get('result'), dict):
+                    internal_no = data['result'].get('internal_order_number')
+        except Exception:
+            pass
+
+        # 如创建失败或未返回内部订单号，则查询订单列表以获取一个可用订单
+        resp_list = self.call('GET', '/orders/list/', '订单列表')
+        try:
+            if not internal_no and resp_list is not None:
+                data = resp_list.json()
+                if isinstance(data, dict) and isinstance(data.get('result'), list) and data['result']:
+                    first = data['result'][0]
+                    internal_no = first.get('internal_order_number') or None
+        except Exception:
+            pass
+
+        # 若拿到内部订单号，测试更新状态为已支付
+        if internal_no:
+            update_payload = {
+                'internal_order_number': internal_no,
+                'status': 'paid',
+                'payment_method': 'wechat'
+            }
+            self.call('POST', '/orders/update-status/', '更新订单状态为已支付', expected_status=200, json_data=update_payload)
+        else:
+            # 记录未能获得内部订单号的情况
+            self.results.append({
+                'name': '更新订单状态为已支付',
+                'method': 'POST',
+                'url': '/orders/update-status/',
+                'status': 'SKIPPED',
+                'expected': 200,
+                'success': False,
+                'response': '未找到可用于更新的内部订单号（创建失败且订单列表为空）'
+            })
         
         with open('api_test_results_solo.json','w',encoding='utf-8') as f:
             json.dump(self.results, f, ensure_ascii=False, indent=2)

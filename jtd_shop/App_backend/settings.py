@@ -205,6 +205,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://139.224.104.126',
     'http://localhost:8080',
     'http://127.0.0.1:8080',
+    'https://jtd.wxdnet.cn:8080',
 ]
 
 # 如果将来使用HTTPS，添加：
