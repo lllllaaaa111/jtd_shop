@@ -18,6 +18,12 @@ import json
 import os
 import uuid
 from django.db import models
+import base64
+
+try:
+    from Crypto.Cipher import AES
+except Exception:  # noqa: E722
+    AES = None
 
 logger = logging.getLogger(__name__)
 
@@ -696,3 +702,96 @@ def set_mine_avatar(request):
         'code': 405,
         'msg': f'不支持的请求方法: {request.method}'
     }, status=405)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def aes_phone(request):
+    """
+    AES-CBC(PKCS7) 解密用户手机号
+    请求JSON参数: { "key": base64字符串, "encryptedDatastr": base64字符串, "iv": base64字符串 }
+    返回: { code, msg, result: { phone_number } }
+    注: 需要客户端携带CSRF（POST）
+    """
+    try:
+        if AES is None:
+            return Response({
+                'code': 500,
+                'msg': '服务器未安装AES库，请安装 pycryptodome',
+                'result': None
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        data = request.data if isinstance(request.data, dict) else {}
+        key_b64 = data.get('key')
+        enc_b64 = data.get('encryptedDatastr')
+        iv_b64 = data.get('iv')
+        if not key_b64 or not enc_b64 or not iv_b64:
+            return Response({
+                'code': 400,
+                'msg': '缺少必填参数: key / encryptedDatastr / iv',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            key = base64.b64decode(key_b64)
+            iv = base64.b64decode(iv_b64)
+            cipher_data = base64.b64decode(enc_b64)
+        except Exception:
+            return Response({
+                'code': 400,
+                'msg': '参数Base64解码失败',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        if len(key) not in (16, 24, 32) or len(iv) != 16:
+            return Response({
+                'code': 400,
+                'msg': 'key或iv长度不合法',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        cipher = AES.new(key, AES.MODE_CBC, iv)
+        decrypted = cipher.decrypt(cipher_data)
+
+        # PKCS7 去填充
+        pad_len = decrypted[-1]
+        if isinstance(pad_len, str):
+            pad_len = ord(pad_len)
+        if pad_len < 1 or pad_len > 16:
+            return Response({
+                'code': 400,
+                'msg': '解密填充无效',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+        plaintext = decrypted[:-pad_len]
+
+        try:
+            payload = json.loads(plaintext.decode('utf-8'))
+        except Exception:
+            return Response({
+                'code': 400,
+                'msg': '解密后JSON解析失败',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        phone = payload.get('phoneNumber') or payload.get('purePhoneNumber') or payload.get('phone')
+        if not phone:
+            return Response({
+                'code': 404,
+                'msg': '未在解密数据中找到手机号字段',
+                'result': {'raw': payload}
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({
+            'code': 200,
+            'msg': '解密成功',
+            'result': {
+                'phone_number': phone
+            }
+        })
+    except Exception as e:
+        logger.exception('AES解密失败')
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

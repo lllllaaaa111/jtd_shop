@@ -31,4 +31,7 @@ urlpatterns = [
     path('avatar/upload/', views.upload_mine_image, name='upload_avatar'),            #上传用户头像
     path('avatar/delete/', views.delete_mine_image, name='delete_avatar'),            #删除用户头像
     path('avatar/set/', views.set_mine_avatar, name='set_avatar'),                    #设置用户头像
+
+    #  aes解密得到
+    path('aes/phone/', views.aes_phone, name='aes_phone'),                       #电话号码解密
 ]
