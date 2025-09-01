@@ -5863,3 +5863,354 @@ Internal Server Error: /users/aes/phone/
 Internal Server Error: /users/aes/phone/
 Internal Server Error: /users/aes/phone/
 Bad Request: /users/aes/phone/
+Not Found: /aes/
+Not Found: /aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Forbidden: /users/aes/phone/
+Forbidden: /users/aes/phone/
+Forbidden: /users/aes/phone/
+Forbidden: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Method Not Allowed: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Not Found: /login.asp
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /orders/create-direct/
+Not Found: /orders/create-direct/
+Forbidden (CSRF cookie not set.): /
+Bad Request: /products/list/
+Bad Request: /products/list/
+Not Found: /products/by-category/
+Not Found: /products/by-category/
+Not Found: /products/by-category/
+Not Found: /products/by-category/
+Forbidden (CSRF cookie not set.): /
+Not Found: /orders/create-direct/
+Forbidden: /products/list/
+Not Found: /aaa9
+Not Found: /aab8
+Not Found: /
+Not Found: /
+Not Found: /aaa9
+Not Found: /aab9
+Not Found: /aaa9
+Not Found: /aab9
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /sitemap.xml
+Not Found: /robots.txt
+Not Found: /
+Not Found: /login.asp
+Not Found: /
+Not Found: /
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /login.asp
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /manage/account/login
+Not Found: /index.html
+Not Found: /+CSCOE+/logon.html
+Not Found: /cgi-bin/login.cgi
+Not Found: /login.htm
+Not Found: /login.html
+Not Found: /login.jsp
+Not Found: /login
+Not Found: /doc/index.html
+Not Found: /remote/login
+Not Found: //admin/login.asp
+Not Found: /web/
+Not Found: //webpages/login.html
+Not Found: /login.asp
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /login.asp
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Forbidden: /system/wechat/certificate/
+Bad Request: /system/wechat/callback/decrypt/
+Forbidden: /system/wechat/certificate/decrypt/
+Not Found: /aaa9
+Not Found: /aab8
+Not Found: /
+Internal Server Error: /admin/system_management/systemconfig/
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedColumn: column system_config.key does not exist
+LINE 1: SELECT "system_config"."id", "system_config"."key", "system_...
+                                     ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/contrib/admin/options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/contrib/admin/options.py", line 2163, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: column system_config.key does not exist
+LINE 1: SELECT "system_config"."id", "system_config"."key", "system_...
+                                     ^
+
+Internal Server Error: /admin/system_management/systemconfig/
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedColumn: column system_config.key does not exist
+LINE 1: SELECT "system_config"."id", "system_config"."key", "system_...
+                                     ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/contrib/admin/options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/contrib/admin/options.py", line 2163, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: column system_config.key does not exist
+LINE 1: SELECT "system_config"."id", "system_config"."key", "system_...
+                                     ^
+
+Internal Server Error: /admin/system_management/systemconfig/
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UndefinedColumn: column system_config.key does not exist
+LINE 1: SELECT "system_config"."id", "system_config"."key", "system_...
+                                     ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/contrib/admin/options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/contrib/admin/options.py", line 2163, in changelist_view
+    "selection_note": _("0 of %(cnt)s selected") % {"cnt": len(cl.result_list)},
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.ProgrammingError: column system_config.key does not exist
+LINE 1: SELECT "system_config"."id", "system_config"."key", "system_...
+                                     ^
+
+Not Found: /
+Not Found: /wiki
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /
+Not Found: /login.asp
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Not Found: /
+Not Found: /login.asp
+Not Found: /aaa9
+Not Found: /aab8
+Not Found: /
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Forbidden: /system/wechat/certificate/
+Not Found: /
+Not Found: /system/signature/generate/
+Not Found: /system/signature/generate/
+Not Found: /system/signature/generate/
+Not Found: /system/signature/generate/
+Not Found: /system/signature/generate/
+Not Found: /system/signature/generate/
+Not Found: /system/signature/generate/
+Not Found: /system/signature/generate/
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /robots.txt
+Not Found: /robots.txt
+Not Found: /sitemap.xml
+Not Found: /sitemap.xml

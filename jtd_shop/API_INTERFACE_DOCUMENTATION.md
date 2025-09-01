@@ -1,5 +1,12 @@
 # JTD Shop API 接口文档
 
+## 目录
+- [用户管理](#用户管理)
+- [商品管理](#商品管理)
+- [订单管理](#订单管理)
+- [内容管理](#内容管理)
+- [系统管理](#系统管理)
+
 ## 📋 文档信息
 
 - **项目名称**: JTD Shop 电商系统
@@ -116,7 +123,7 @@
 
 ---
 
-### 3. 新建订单 ⭐
+### 3. 新建订单（从购物车）
 
 **接口地址**: `POST /orders/create/`
 
@@ -131,12 +138,12 @@ X-CSRFToken: {csrf_token}
 **请求参数**:
 ```json
 {
-    "delivery_address": "北京市朝阳区某某街道123号",  // 必填：收货地址
-    "recipient_name": "张三",                      // 必填：收件人姓名
-    "recipient_phone": "13800138000",             // 必填：收件人电话
-    "shipping_address": "上海市浦东新区某某仓库",    // 可选：发货地址
-    "notes": "请尽快发货",                         // 可选：订单备注
-    "payment_method": "alipay"                    // 可选：支付方式
+    "delivery_address": "北京市朝阳区某某街道123号",
+    "recipient_name": "张三",
+    "recipient_phone": "13800138000",
+    "shipping_address": "上海市浦东新区某某仓库",
+    "notes": "请尽快发货",
+    "payment_method": "alipay"
 }
 ```
 
@@ -173,6 +180,70 @@ X-CSRFToken: {csrf_token}
 - ✅ 业务逻辑验证正常 (400)
 - ✅ CSRF保护正常工作
 - ⚠️ 需要先添加商品到购物车
+
+---
+
+### 3+. 直接新建订单（不依赖购物车）
+
+**接口地址**: `POST /orders/create-direct/`
+
+**功能描述**: 根据提交的商品项直接创建订单，不依赖购物车。
+
+**请求头**:
+```
+Content-Type: application/json
+X-CSRFToken: {csrf_token}
+```
+
+**请求参数**:
+```json
+{
+  "items": [
+    {"product_id": 1, "quantity": 2},
+    {"product_id": 2, "quantity": 1}
+  ],
+  "delivery_address": "北京市朝阳区某某街道123号",
+  "recipient_name": "张三",
+  "recipient_phone": "13800138000",
+  "shipping_address": "上海市浦东新区某某仓库",
+  "notes": "请尽快发货",
+  "payment_method": "wechat"
+}
+```
+
+- `items` 为必填数组，元素包含：
+  - `product_id` 商品ID
+  - `quantity` 数量，必须大于0
+- 其余与 `/orders/create/` 相同
+
+**成功响应**:
+```json
+{
+  "code": 200,
+  "msg": "订单创建成功",
+  "result": {
+    "id": 12,
+    "order_number": "ORD202501011200001",
+    "internal_order_number": "000000001234",
+    "total_amount": "399.00",
+    "status": "pending",
+    "status_display": "待支付",
+    "delivery_address": "北京市朝阳区某某街道123号",
+    "recipient_name": "张三",
+    "recipient_phone": "13800138000",
+    "created_at": "2025-01-01 12:00:00"
+  }
+}
+```
+
+**错误响应**:
+```json
+{
+  "code": 400,
+  "msg": "items 不能为空且必须为数组",
+  "result": null
+}
+```
 
 ---
 
@@ -688,3 +759,268 @@ curl -b cookies.txt -X POST http://localhost:8000/orders/create/ \
 2. 用户认证是否成功
 3. CSRF令牌是否有效
 4. 购物车中是否有商品 
+
+## 系统管理
+
+### 获取系统配置列表
+- **接口**: `GET /system/config/list/`
+- **描述**: 获取系统配置列表
+- **权限**: 需要管理员权限
+- **响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "result": [
+    {
+      "id": 1,
+      "key": "site_name",
+      "value": "JTD Shop",
+      "description": "网站名称",
+      "updated_at": "2024-01-01 12:00:00"
+    }
+  ]
+}
+```
+
+### 获取操作日志列表
+- **接口**: `GET /system/log/list/`
+- **描述**: 获取系统操作日志列表
+- **权限**: 需要管理员权限
+- **响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "result": [
+    {
+      "id": 1,
+      "user": "admin",
+      "action": "CREATE",
+      "resource": "Product",
+      "resource_id": "123",
+      "description": "创建商品",
+      "ip_address": "127.0.0.1",
+      "created_at": "2024-01-01 12:00:00"
+    }
+  ]
+}
+```
+
+### 获取文件上传记录列表
+- **接口**: `GET /system/file/list/`
+- **描述**: 获取文件上传记录列表
+- **权限**: 需要管理员权限
+- **响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "result": [
+    {
+      "id": 1,
+      "file_name": "product.jpg",
+      "file_path": "/media/products/product.jpg",
+      "file_size": 1024000,
+      "file_size_mb": 1.0,
+      "file_type": "image/jpeg",
+      "upload_time": "2024-01-01 12:00:00",
+      "user": "admin"
+    }
+  ]
+}
+```
+
+### 获取数据备份记录列表
+- **接口**: `GET /system/backup/list/`
+- **描述**: 获取数据备份记录列表
+- **权限**: 需要管理员权限
+- **响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "result": [
+    {
+      "id": 1,
+      "backup_name": "daily_backup_20240101",
+      "backup_type": "daily",
+      "file_path": "/backups/daily_backup_20240101.sql",
+      "file_size": 1048576,
+      "description": "每日备份",
+      "created_by": "system",
+      "created_at": "2024-01-01 12:00:00",
+      "is_success": true
+    }
+  ]
+}
+```
+
+### 生成签名串
+- **接口**: `POST /system/signature/generate/`
+- **描述**: 生成符合微信支付规范的签名串，包含HTTP请求方法、URL、时间戳、随机串和请求报文主体
+- **权限**: 无需认证（允许任何人访问）
+- **请求参数**:
+```json
+{
+  "method": "POST",
+  "url_path": "/v3/pay/transactions/jsapi",
+  "timestamp": 1756735194,
+  "nonce_str": "test_nonce_string_12345",
+  "body": "{\"appid\":\"wx123456\",\"mchid\":\"1234567890\",\"description\":\"测试商品\"}"
+}
+```
+- **响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "result": {
+    "signature_string": "POST\n/v3/pay/transactions/jsapi\n1756735194\ntest_nonce_string_12345\n{\"appid\":\"wx123456\",\"mchid\":\"1234567890\",\"description\":\"测试商品\"}\n",
+    "signature_string_hex": "504f53540a2f76332f7061792f7472616e73616374696f6e732f6a736170690a...",
+    "signature_string_ascii": [80, 79, 83, 84, 10, 47, 118, 51, ...],
+    "method": "POST",
+    "url_path": "/v3/pay/transactions/jsapi",
+    "timestamp": 1756735194,
+    "nonce_str": "test_nonce_string_12345",
+    "body": "{\"appid\":\"wx123456\",\"mchid\":\"1234567890\",\"description\":\"测试商品\"}",
+    "note": "签名串格式：HTTP请求方法\\n + URL\\n + 请求时间戳\\n + 请求随机串\\n + 请求报文主体\\n"
+  }
+}
+```
+
+### 获取微信支付证书/签名头
+- **接口**: `POST /system/wechat/certificate/`
+- **描述**: 生成微信支付API调用所需的签名头
+- **权限**: 需要管理员权限
+- **请求参数**:
+```json
+{
+  "method": "POST",
+  "url_path": "/v3/pay/transactions/native",
+  "query_string": "",
+  "body": "{\"appid\":\"wx123456\",\"mchid\":\"1234567890\",\"description\":\"测试商品\",\"out_trade_no\":\"TEST123456\",\"notify_url\":\"https://example.com/notify\",\"amount\":{\"total\":100,\"currency\":\"CNY\"}}"
+}
+```
+- **响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "result": {
+    "authorization": "mchid=\"1725611901\",nonce_str=\"c5ac7061fccab6bf3e254dcf98995b8c\",timestamp=\"1704067200\",serial_no=\"4557B9E49272B1D50A48D672BA2BA9581399DBC2\",signature=\"base64_encoded_signature\"",
+    "timestamp": 1704067200,
+    "nonce_str": "c5ac7061fccab6bf3e254dcf98995b8c",
+    "serial_no": "4557B9E49272B1D50A48D672BA2BA9581399DBC2",
+    "mchid": "1725611901",
+    "signature": "base64_encoded_signature",
+    "message": "POST\n/v3/pay/transactions/native\n1704067200\nc5ac7061fccab6bf3e254dcf98995b8c\n{\"appid\":\"wx123456\",\"mchid\":\"1234567890\",\"description\":\"测试商品\",\"out_trade_no\":\"TEST123456\",\"notify_url\":\"https://example.com/notify\",\"amount\":{\"total\":100,\"currency\":\"CNY\"}}\n",
+    "canonical_url": "/v3/pay/transactions/native",
+    "signature_method": "RSA-SHA256"
+  }
+}
+```
+
+### 解密微信支付回调通知
+- **接口**: `POST /system/wechat/callback/decrypt/`
+- **描述**: 解密微信支付回调通知中的加密数据
+- **权限**: 无需认证（微信回调专用）
+- **请求参数**:
+```json
+{
+  "resource": {
+    "ciphertext": "base64_encoded_ciphertext",
+    "nonce": "base64_encoded_nonce",
+    "associated_data": ""
+  }
+}
+```
+- **响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "解密成功",
+  "result": {
+    "decrypted_data": {
+      "resource_type": "encrypt-resource",
+      "event_type": "TRANSACTION.SUCCESS",
+      "summary": "支付成功",
+      "resource": {
+        "transaction_id": "4200001234567890",
+        "amount": 100,
+        "currency": "CNY"
+      }
+    },
+    "resource_type": "encrypt-resource",
+    "event_type": "TRANSACTION.SUCCESS",
+    "summary": "支付成功"
+  }
+}
+```
+
+### 解密微信支付平台证书
+- **接口**: `POST /system/wechat/certificate/decrypt/`
+- **描述**: 解密微信支付平台证书下载接口返回的证书数据
+- **权限**: 需要管理员权限
+- **请求参数**:
+```json
+{
+  "data": [
+    {
+      "serial_no": "1234567890ABCDEF",
+      "effective_time": "2023-01-01T00:00:00+08:00",
+      "expire_time": "2024-01-01T00:00:00+08:00",
+      "ciphertext": "base64_encoded_ciphertext",
+      "nonce": "base64_encoded_nonce",
+      "associated_data": ""
+    }
+  ]
+}
+```
+- **响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "证书解密成功",
+  "result": {
+    "total_count": 1,
+    "success_count": 1,
+    "certificates": [
+      {
+        "serial_no": "1234567890ABCDEF",
+        "effective_time": "2023-01-01T00:00:00+08:00",
+        "expire_time": "2024-01-01T00:00:00+08:00",
+        "decrypted_cert": {
+          "serial_no": "1234567890ABCDEF",
+          "effective_time": "2023-01-01T00:00:00+08:00",
+          "expire_time": "2024-01-01T00:00:00+08:00",
+          "encrypt_certificate": "-----BEGIN CERTIFICATE-----..."
+        }
+      }
+    ]
+  }
+}
+```
+
+## 注意事项
+
+### 微信支付配置
+1. **商户号 (mchid)**: 微信支付商户号
+2. **商户API证书序列号 (serial_no)**: 商户API证书的序列号
+3. **商户私钥**: PEM格式的RSA私钥，用于生成签名
+4. **API V3密钥**: 用于解密回调通知和平台证书的密钥
+
+### 签名算法
+- 使用 `WECHATPAY2-SHA256-RSA2048` 签名算法
+- 签名消息格式: `method\nurl\ntimestamp\nnonce_str\nbody\n`
+- 支持RSA-SHA256和HMAC-SHA256两种签名方式
+
+### 加密算法
+- 使用AES-256-GCM加密算法
+- 需要提供ciphertext、nonce和associated_data参数
+- 支持Base64编码的加密数据
+
+### 权限控制
+- 证书生成和证书解密接口需要管理员权限
+- 回调解密接口无需认证，供微信服务器调用
+- 所有接口都支持CSRF保护（除回调解密外） 

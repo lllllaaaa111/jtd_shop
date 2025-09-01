@@ -3,22 +3,58 @@ from django.utils import timezone
 from user_management.models import User
 
 class SystemConfig(models.Model):
-    """系统配置"""
-    key = models.CharField(max_length=100, unique=True, verbose_name="配置键")
-    value = models.TextField(verbose_name="配置值")
-    description = models.TextField(blank=True, verbose_name="配置描述")
+    """微信支付系统配置"""
+    mchid = models.CharField(max_length=50, verbose_name="微信支付商户号", help_text="微信支付商户号", default="", blank=True)
+    serial_no = models.CharField(max_length=100, verbose_name="商户API证书序列号", help_text="商户API证书序列号", default="", blank=True)
+    api_v2_key = models.TextField(verbose_name="API v2私钥", help_text="微信支付API v2私钥", default="", blank=True)
+    api_v3_key = models.CharField(max_length=100, verbose_name="API V3密钥", help_text="微信支付API V3密钥", default="", blank=True)
+    cert_file = models.TextField(verbose_name="微信支付证书文件", help_text="微信支付证书文件内容（PEM格式）", default="", blank=True)
+    key_file = models.TextField(verbose_name="微信支付私钥文件", help_text="微信支付私钥文件内容（PEM格式）", default="", blank=True)
+    appid = models.CharField(max_length=50, verbose_name="微信小程序AppID", help_text="微信小程序AppID", default="", blank=True)
+    app_secret = models.CharField(max_length=100, verbose_name="微信小程序AppSecret", help_text="微信小程序AppSecret", default="", blank=True)
     is_active = models.BooleanField(default=True, verbose_name="是否激活")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="更新时间")
     
     class Meta:
-        verbose_name = "系统配置"
-        verbose_name_plural = "系统配置"
+        verbose_name = "微信支付配置"
+        verbose_name_plural = "微信支付配置"
         db_table = 'system_config'
-        ordering = ['key']
     
     def __str__(self):
-        return self.key
+        return f"微信支付配置 - {self.mchid}"
+    
+    @classmethod
+    def get_wechat_pay_config(cls):
+        """获取微信支付配置"""
+        try:
+            config = cls.objects.filter(is_active=True).first()
+            if config:
+                return {
+                    'mchid': config.mchid,
+                    'serial_no': config.serial_no,
+                    'api_v2_key': config.api_v2_key,
+                    'api_v3_key': config.api_v3_key,
+                    'cert_file': config.cert_file,
+                    'key_file': config.key_file,
+                    'appid': config.appid,
+                    'app_secret': config.app_secret
+                }
+            return {}
+        except Exception:
+            return {}
+    
+    @classmethod
+    def get_config_value(cls, key, default=None):
+        """获取指定配置的值"""
+        try:
+            config = cls.objects.filter(is_active=True).first()
+            if config and hasattr(config, key):
+                return getattr(config, key)
+            return default
+        except Exception:
+            return default
+
 
 class OperationLog(models.Model):
     """操作日志"""
@@ -71,7 +107,7 @@ class DataBackup(models.Model):
     file_path = models.CharField(max_length=500, verbose_name="备份文件路径")
     file_size = models.BigIntegerField(verbose_name="文件大小(字节)")
     description = models.TextField(blank=True, verbose_name="备份描述")
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="创建人")
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, verbose_name="创建人")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
     is_success = models.BooleanField(default=True, verbose_name="是否成功")
     

@@ -226,6 +226,110 @@ def create_order(request):
             'result': None
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_order_direct(request):
+    """直接创建订单（不依赖购物车）
+    请求体:
+    {
+      "items": [{"product_id": 1, "quantity": 2}, ...],  // 至少一项
+      "delivery_address": "收货地址",
+      "recipient_name": "收件人",
+      "recipient_phone": "手机号",
+      "shipping_address": "发货地址(可选)",
+      "notes": "备注(可选)",
+      "payment_method": "wechat|alipay|bank(可选)"
+    }
+    """
+    try:
+        data = request.data if isinstance(request.data, dict) else {}
+        items = data.get('items') or []
+        if not isinstance(items, list) or not items:
+            return Response({
+                'code': 400,
+                'msg': 'items 不能为空且必须为数组',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+        # 基本字段校验
+        for f in ['delivery_address', 'recipient_name', 'recipient_phone']:
+            if not data.get(f):
+                return Response({
+                    'code': 400,
+                    'msg': f'缺少必填字段: {f}',
+                    'result': None
+                }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 汇总价格并校验商品
+        from product_management.models import Product
+        total_amount = 0
+        normalized = []
+        for it in items:
+            try:
+                pid = int(it.get('product_id'))
+                qty = int(it.get('quantity'))
+                if qty <= 0:
+                    return Response({'code':400,'msg':'quantity 必须大于0','result':None}, status=400)
+            except Exception:
+                return Response({'code':400,'msg':'product_id/quantity 非法','result':None}, status=400)
+            product = get_object_or_404(Product, id=pid)
+            line_total = product.price * qty
+            total_amount += line_total
+            normalized.append((product, qty, product.price, line_total))
+        
+        # 创建订单
+        order = Order.objects.create(
+            user=request.user,
+            total_amount=total_amount,
+            delivery_address=data.get('delivery_address'),
+            recipient_name=data.get('recipient_name'),
+            recipient_phone=data.get('recipient_phone'),
+            shipping_address=data.get('shipping_address') or '',
+            notes=data.get('notes') or '',
+            payment_method=data.get('payment_method') or ''
+        )
+        
+        # 创建订单项
+        for product, qty, unit_price, line_total in normalized:
+            OrderItem.objects.create(
+                order=order,
+                product=product,
+                quantity=qty,
+                price=unit_price,
+                total_price=line_total
+            )
+        
+        OrderStatusLog.objects.create(
+            order=order,
+            from_status='',
+            to_status='pending',
+            operator=request.user,
+            notes='直接新建订单'
+        )
+        
+        return Response({
+            'code': 200,
+            'msg': '订单创建成功',
+            'result': {
+                'id': order.id,
+                'order_number': order.order_number,
+                'internal_order_number': getattr(order, 'internal_order_number', None),
+                'total_amount': str(order.total_amount),
+                'status': order.status,
+                'status_display': order.get_status_display(),
+                'delivery_address': order.delivery_address,
+                'recipient_name': order.recipient_name,
+                'recipient_phone': order.recipient_phone,
+                'created_at': order.created_at.strftime('%Y-%m-%d %H:%M:%S')
+            }
+        })
+    except Exception as e:
+        logger.exception("直接创建订单时发生错误")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 @csrf_exempt
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

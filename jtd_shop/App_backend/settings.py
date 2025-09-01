@@ -115,7 +115,7 @@ DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'jtd_shop',
-            'USER': 'myuser',
+            'USER': 'postgres',
             'PASSWORD': '123',
             'HOST': '127.0.0.1',
             'PORT': '5432',
@@ -219,5 +219,7 @@ SESSION_COOKIE_SECURE = False  # 如果使用HTTP
 SESSION_COOKIE_HTTPONLY = True
 
 # 微信小程序配置
-WECHAT_APPID = 'wxc5b4fd8b8b846c62'  # 替换为你的微信小程序AppID
-WECHAT_SECRET = '72744b818b84117bc15faf174f086662'  # 替换为你的微信小程序AppSecret
+WECHAT_APPID = 'wx2f7c9bff0a509c73'  # 替换为你的微信小程序AppID
+WECHAT_SECRET = 'fb662e714a8c7bdac00286c02ebb575f'  # 替换为你的微信小程序AppSecret
+mchid = '1725611901' #商户号
+serial_no ='4557B9E49272B1D50A48D672BA2BA9581399DBC2'   #商户api证书

@@ -6,23 +6,29 @@ from user_management.models import User
 class SystemConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = SystemConfig
-        fields = ['id', 'key', 'value', 'description', 'is_active', 'created_at', 'updated_at']
+        fields = [
+            'id', 'mchid', 'serial_no', 'api_v2_key', 'api_v3_key', 'cert_file', 'key_file',
+            'appid', 'app_secret', 'is_active', 'created_at', 'updated_at'
+        ]
         read_only_fields = ['created_at', 'updated_at']
 
 
 class SystemConfigCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = SystemConfig
-        fields = ['key', 'value', 'description', 'is_active']
+        fields = [
+            'mchid', 'serial_no', 'api_v2_key', 'api_v3_key', 'cert_file', 'key_file',
+            'appid', 'app_secret', 'is_active'
+        ]
 
 
 class SystemConfigUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = SystemConfig
-        fields = ['value', 'description', 'is_active']
-        extra_kwargs = {
-            'value': {'required': False},
-        }
+        fields = [
+            'mchid', 'serial_no', 'api_v2_key', 'api_v3_key', 'cert_file', 'key_file',
+            'appid', 'app_secret', 'is_active'
+        ]
 
 
 class OperationLogSerializer(serializers.ModelSerializer):
