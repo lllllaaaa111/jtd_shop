@@ -149,43 +149,128 @@ def data_backup_list(request):
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
-@permission_classes([AllowAny])  # 允许任何人访问，用于测试
-def generate_signature_string(request):
-    """生成微信支付签名串"""
+@permission_classes([AllowAny])  # 临时改为允许任何人访问，用于测试
+def get_wechat_certificate(request):
+    """生成微信支付签名头（按五行规范 + SHA256withRSA）。
+    支持参数：method, url_path, query_string, body, serial_no(可覆盖DB), nonce_str(可选), timestamp(可选)
+    返回：
+      - signature_params: 不带算法前缀的签名参数串（对齐示例）
+      - authorization: 带算法前缀的完整Authorization
+      - 以及本次签名细节
+    """
     try:
-        # 从请求中获取参数
         method = request.data.get('method', 'GET')
         url_path = request.data.get('url_path', '/')
-        timestamp = request.data.get('timestamp', int(time.time()))
-        nonce_str = request.data.get('nonce_str', str(uuid.uuid4()).replace('-', '')[:32])
+        query_string = request.data.get('query_string', '')
         body = request.data.get('body', '')
+        # serial_no 固定从数据库读取
+        req_nonce = request.data.get('nonce_str')
+        req_timestamp = request.data.get('timestamp')
+
+        # 规范化 body 为字符串
+        if body is None:
+            body = ''
+        elif not isinstance(body, str):
+            try:
+                body = json.dumps(body, ensure_ascii=False)
+            except Exception:
+                body = str(body)
+
+        # 读取微信配置
+        wechat_config = SystemConfig.objects.filter(is_active=True).first()
+        if not wechat_config:
+            return Response({'code': 400, 'msg': '未找到微信支付配置，请先配置', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
         
-        # 构建签名串（每行以\n结尾，包括最后一行）
-        signature_string = f"{method}\n{url_path}\n{timestamp}\n{nonce_str}\n{body}\n"
+        mchid = (wechat_config.mchid or '').strip()
+        serial_no = (wechat_config.serial_no or '').strip()
+        private_key_pem = (wechat_config.key_file or '').strip().replace('\r\n', '\n').replace('\r', '\n')
+        
+        if not mchid or not serial_no or not private_key_pem:
+            return Response({'code': 400, 'msg': '配置不完整：需包含mchid/serial_no/key_file', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+        if 'BEGIN' not in private_key_pem or 'PRIVATE KEY' not in private_key_pem:
+            return Response({'code': 400, 'msg': 'key_file不是PEM私钥（缺少BEGIN/END PRIVATE KEY）', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 生成时间戳与随机串（允许外部传入覆盖，方便压测/复现）
+        timestamp = int(req_timestamp) if str(req_timestamp).isdigit() else int(time.time())
+        nonce_str = str(req_nonce) if req_nonce else str(uuid.uuid4()).replace('-', '')[:32]
+        
+        # 构建canonical URL
+        canonical_url = url_path or '/'
+        if query_string:
+            canonical_url += '?' + query_string
+        
+        # 五行待签名串
+        message = build_message_rsa(method, canonical_url, timestamp, nonce_str, body)
+        
+        # 签名：SHA256withRSA(Base64)
+        try:
+            # 优先 cryptography
+            from cryptography.hazmat.primitives import hashes, serialization
+            from cryptography.hazmat.primitives.asymmetric import padding
+            from cryptography.hazmat.backends import default_backend
+
+            private_key = serialization.load_pem_private_key(
+                private_key_pem.encode('utf-8'),
+                password=None,
+                backend=default_backend()
+            )
+            signature_bytes = private_key.sign(
+                message.encode('utf-8'),
+                padding.PKCS1v15(),
+                hashes.SHA256()
+            )
+            signature_b64 = base64.b64encode(signature_bytes).decode('utf-8')
+        except ImportError:
+            # 退回到 rsa 库
+            try:
+                import rsa
+                pk = rsa.PrivateKey.load_pkcs1(private_key_pem.encode('utf-8'))
+                signature_bytes = rsa.sign(message.encode('utf-8'), pk, 'SHA-256')
+                signature_b64 = base64.b64encode(signature_bytes).decode('utf-8')
+            except ImportError:
+                return Response({'code': 400, 'msg': '缺少签名依赖，请安装 cryptography 或 rsa', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            logger.exception('签名失败')
+            return Response({'code': 400, 'msg': f'签名失败: {str(e)}', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+
+        # 对齐示例：返回不带算法前缀的签名参数串
+        signature_params = (
+            f'mchid="{mchid}",' \
+            f'nonce_str="{nonce_str}",' \
+            f'timestamp="{timestamp}",' \
+            f'serial_no="{serial_no}",' \
+            f'signature="{signature_b64}"'
+        )
+
+        # 同时返回带算法前缀的完整Authorization（便于直接使用）
+        authorization_full = (
+            'WECHATPAY2-SHA256-RSA2048 ' + signature_params
+        )
         
         return Response({
             'code': 200,
             'msg': 'success',
             'result': {
-                'signature_string': signature_string,
-                'signature_string_hex': signature_string.encode('utf-8').hex(),
-                'signature_string_ascii': [ord(c) for c in signature_string],
-                'method': method,
-                'url_path': url_path,
+                'signature_params': signature_params,
+                'authorization': authorization_full,
                 'timestamp': timestamp,
                 'nonce_str': nonce_str,
-                'body': body,
-                'note': '签名串格式：HTTP请求方法\\n + URL\\n + 请求时间戳\\n + 请求随机串\\n + 请求报文主体\\n'
+                'serial_no': serial_no,
+                'mchid': mchid,
+                'signature': signature_b64,
+                'message': message,
+                'canonical_url': canonical_url
             }
         })
         
     except Exception as e:
-        logger.exception("生成签名串时发生错误")
-        return Response({
-            'code': 500,
-            'msg': f'服务器错误: {str(e)}',
-            'result': None
-        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        logger.exception("生成微信支付签名头时发生错误")
+        try:
+            import traceback
+            trace = traceback.format_exc()
+        except Exception:
+            trace = ''
+        return Response({'code': 500, 'msg': f'服务器错误: {str(e)}', 'trace': trace, 'result': None}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 def build_message_rsa(method, canonical_url, timestamp, nonce_str, body):
     """构建RSA签名消息"""
@@ -255,3 +340,54 @@ def generate_signature(message, secret):
     # 使用HMAC-SHA256
     signature = hmac.new(secret_bytes, message_bytes, hashlib.sha256).digest()
     return base64.b64encode(signature).decode('utf-8')
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def generate_signature_string(request):
+    """生成五行签名串（每行以\n结束，包括最后一行）。
+    输入：method, url_path, query_string(可选), timestamp(可选), nonce_str(可选), body
+    返回：signature_string 及基础字段，便于调试。
+    """
+    try:
+        method = request.data.get('method', 'GET')
+        url_path = request.data.get('url_path', '/')
+        query_string = request.data.get('query_string', '')
+        body = request.data.get('body', '')
+        req_timestamp = request.data.get('timestamp')
+        req_nonce = request.data.get('nonce_str')
+
+        # 规范化 body 为字符串
+        if body is None:
+            body = ''
+        elif not isinstance(body, str):
+            try:
+                body = json.dumps(body, ensure_ascii=False)
+            except Exception:
+                body = str(body)
+
+        timestamp = int(req_timestamp) if str(req_timestamp).isdigit() else int(time.time())
+        nonce_str = str(req_nonce) if req_nonce else str(uuid.uuid4()).replace('-', '')[:32]
+
+        canonical_url = url_path or '/'
+        if query_string:
+            canonical_url += '?' + query_string
+
+        signature_string = build_message_rsa(method, canonical_url, timestamp, nonce_str, body)
+
+        return Response({
+            'code': 200,
+            'msg': 'success',
+            'result': {
+                'signature_string': signature_string,
+                'method': method,
+                'url_path': url_path,
+                'query_string': query_string,
+                'timestamp': timestamp,
+                'nonce_str': nonce_str,
+                'body': body,
+                'canonical_url': canonical_url
+            }
+        })
+    except Exception as e:
+        logger.exception('生成签名串失败')
+        return Response({'code': 500, 'msg': f'服务器错误: {str(e)}', 'result': None}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -10,7 +10,7 @@
       "code": 200,
       "msg": "获取CSRF信息成功",
       "result": {
-        "csrf_token": "qA52EEFX8NdAbcpNojrJE8DELDQ58frm3Fv5I1SsNxpzyK963U2RmxVSiDucvx7n",
+        "csrf_token": "rFtp1Lq7alRVg16eDdbfjG7Cg1eQd7qJUZe3HIkZTYxMVvE2Y4jfrOpc1PwapfCA",
         "token_length": 64,
         "cookie_name": "csrftoken",
         "header_name": "HTTP_X_CSRFTOKEN",
@@ -37,7 +37,7 @@
       "code": 200,
       "msg": "获取CSRF令牌成功",
       "result": {
-        "csrf_token": "aGqlqSvNdlGUlIew5aEgAP9OWKtRXSqSNLQoufIiS5STIgYPKLfoier2tK7Yka6T",
+        "csrf_token": "XNprsfYCybGDg8GqBfM7Vq60mcc0eU2eq7a58cSuhOmuVCeeW6U73yoA70ukq2e5",
         "token_length": 64,
         "expires_in": "session",
         "usage": "在POST请求头中使用 X-CSRFToken 或 X-Csrftoken"
@@ -64,19 +64,38 @@
     "name": "直接创建订单",
     "method": "POST",
     "url": "/orders/create-direct/",
-    "status": 404,
+    "status": 200,
     "expected": 200,
-    "success": false,
-    "response": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n  <title>Page not found at /orders/create-direct/</title>\n  <meta name=\"robots\" content=\"NONE,NOARCHIVE\">\n  <style>\n    html * { padding:0; margin:0; }\n    body * { padding:10px 20px; }\n    body * * { padding:0; }\n    body { font-family: sans-serif; background:#eee; color:#000; }\n    body > :where(header, main, footer) { border-bottom:1px solid #ddd; }\n    h1 { font-weight:normal; margin"
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "订单创建成功",
+      "result": {
+        "id": 2,
+        "order_number": "ORD202509021332010002",
+        "internal_order_number": "000000000002",
+        "total_amount": "32.00",
+        "status": "pending",
+        "status_display": "待支付",
+        "delivery_address": "上海市徐汇区XX路1号",
+        "recipient_name": "张三",
+        "recipient_phone": "13800000000",
+        "created_at": "2025-09-02 13:32:01"
+      }
+    }
   },
   {
     "name": "创建订单",
     "method": "POST",
     "url": "/orders/create/",
-    "status": "ERROR",
+    "status": 400,
     "expected": 200,
     "success": false,
-    "error": "HTTPSConnectionPool(host='jtd.wxdnet.cn', port=8080): Read timed out. (read timeout=15)"
+    "response": {
+      "code": 400,
+      "msg": "购物车为空，无法创建订单",
+      "result": null
+    }
   },
   {
     "name": "订单列表",
@@ -89,6 +108,16 @@
       "code": 200,
       "msg": "success",
       "result": [
+        {
+          "id": 2,
+          "order_number": "ORD202509021332010002",
+          "total_amount": "32.00",
+          "status": "pending",
+          "status_display": "待支付",
+          "payment_method": "wechat",
+          "created_at": "2025-09-02 13:32:01",
+          "paid_at": null
+        },
         {
           "id": 1,
           "order_number": "ORD202508290751430002",
@@ -106,9 +135,19 @@
     "name": "更新订单状态为已支付",
     "method": "POST",
     "url": "/orders/update-status/",
-    "status": "SKIPPED",
+    "status": 200,
     "expected": 200,
-    "success": false,
-    "response": "未找到可用于更新的内部订单号（直接创建/购物车创建失败且订单列表为空）"
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "订单状态更新成功",
+      "result": {
+        "internal_order_number": "000000000002",
+        "order_number": "ORD202509021332010002",
+        "status": "paid",
+        "payment_method": "wechat",
+        "paid_at": "2025-09-02 13:32:02"
+      }
+    }
   }
 ]

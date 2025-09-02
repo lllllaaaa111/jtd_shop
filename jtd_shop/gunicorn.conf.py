@@ -14,15 +14,16 @@ worker_class = "sync"
 worker_connections = 1000
 
 # 超时设置
-timeout = 30
-keepalive = 2
+timeout = 120
+keepalive = 5
 
 # 日志配置
-accesslog = "/var/log/gunicorn/access.log"
-errorlog = "/var/log/gunicorn/error.log"
+accesslog = "/var/log/jtd_shop/gunicorn_access.log"
+errorlog = "/var/log/jtd_shop/gunicorn_error.log"
 # accesslog = "-"
 # errorlog = "-"
 loglevel = "info"
+umask = 0o022
 
 # 进程名称
 proc_name = "jtd_shop"

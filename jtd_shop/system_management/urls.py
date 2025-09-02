@@ -21,4 +21,7 @@ urlpatterns = [
 
     # 生成签名串
     path('signature/generate/', views.generate_signature_string, name='generate_signature_string'),
+
+    # 微信支付：生成签名头
+    path('wechat/certificate/', views.get_wechat_certificate, name='get_wechat_certificate'),
 ]
