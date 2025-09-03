@@ -152,27 +152,57 @@ def data_backup_list(request):
 @permission_classes([AllowAny])  # 临时改为允许任何人访问，用于测试
 def get_wechat_certificate(request):
     """生成微信支付签名头（按五行规范 + SHA256withRSA）。
-    支持参数：method, url_path, query_string, body, serial_no(可覆盖DB), nonce_str(可选), timestamp(可选)
+    支持参数：
+      - method, url_path, query_string
+      - body: 字符串；或者提供结构化字段由服务端生成：
+        appid, mchid, description, out_trade_no, notify_url,
+        amount: { total, currency }, payer: { openid }
+      - nonce_str(可选), timestamp(可选)
     返回：
-      - signature_params: 不带算法前缀的签名参数串（对齐示例）
+      - signature_params: 不带算法前缀的签名参数串
       - authorization: 带算法前缀的完整Authorization
-      - 以及本次签名细节
+      - signature_string/message: 五行签名串（每行以\n）
     """
     try:
-        method = request.data.get('method', 'GET')
-        url_path = request.data.get('url_path', '/')
+        method = request.data.get('method', 'POST')
+        url_path = request.data.get('url_path', '/v3/pay/transactions/jsapi')
         query_string = request.data.get('query_string', '')
         body = request.data.get('body', '')
         # serial_no 固定从数据库读取
         req_nonce = request.data.get('nonce_str')
         req_timestamp = request.data.get('timestamp')
 
+        # 如果未提供字符串body，尝试用结构化字段拼装（严格无空格，保证稳定序列化）
+        if (not body) or not isinstance(body, str):
+            appid = request.data.get('appid')
+            mchid = request.data.get('mchid')
+            description = request.data.get('description')
+            out_trade_no = request.data.get('out_trade_no')
+            notify_url = request.data.get('notify_url')
+            amount = request.data.get('amount')
+            payer = request.data.get('payer')
+            try:
+                if all([appid, mchid, description, out_trade_no, notify_url, amount, payer]):
+                    body_obj = {
+                        "appid": appid,
+                        "mchid": mchid,
+                        "description": description,
+                        "out_trade_no": out_trade_no,
+                        "notify_url": notify_url,
+                        "amount": amount,
+                        "payer": payer,
+                    }
+                    # 稳定序列化：无空格，使用ASCII保留原样字符转义
+                    body = json.dumps(body_obj, ensure_ascii=False, separators=(",", ":"))
+            except Exception:
+                pass
+
         # 规范化 body 为字符串
         if body is None:
             body = ''
         elif not isinstance(body, str):
             try:
-                body = json.dumps(body, ensure_ascii=False)
+                body = json.dumps(body, ensure_ascii=False, separators=(",", ":"))
             except Exception:
                 body = str(body)
 
@@ -181,7 +211,7 @@ def get_wechat_certificate(request):
         if not wechat_config:
             return Response({'code': 400, 'msg': '未找到微信支付配置，请先配置', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
         
-        mchid = (wechat_config.mchid or '').strip()
+        mchid = (request.data.get('mchid') or '').strip()
         serial_no = (wechat_config.serial_no or '').strip()
         private_key_pem = (wechat_config.key_file or '').strip().replace('\r\n', '\n').replace('\r', '\n')
         
@@ -190,7 +220,7 @@ def get_wechat_certificate(request):
         if 'BEGIN' not in private_key_pem or 'PRIVATE KEY' not in private_key_pem:
             return Response({'code': 400, 'msg': 'key_file不是PEM私钥（缺少BEGIN/END PRIVATE KEY）', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
         
-        # 生成时间戳与随机串（允许外部传入覆盖，方便压测/复现）
+        # 时间戳/随机串
         timestamp = int(req_timestamp) if str(req_timestamp).isdigit() else int(time.time())
         nonce_str = str(req_nonce) if req_nonce else str(uuid.uuid4()).replace('-', '')[:32]
         
@@ -204,7 +234,6 @@ def get_wechat_certificate(request):
         
         # 签名：SHA256withRSA(Base64)
         try:
-            # 优先 cryptography
             from cryptography.hazmat.primitives import hashes, serialization
             from cryptography.hazmat.primitives.asymmetric import padding
             from cryptography.hazmat.backends import default_backend
@@ -221,7 +250,6 @@ def get_wechat_certificate(request):
             )
             signature_b64 = base64.b64encode(signature_bytes).decode('utf-8')
         except ImportError:
-            # 退回到 rsa 库
             try:
                 import rsa
                 pk = rsa.PrivateKey.load_pkcs1(private_key_pem.encode('utf-8'))
@@ -233,7 +261,6 @@ def get_wechat_certificate(request):
             logger.exception('签名失败')
             return Response({'code': 400, 'msg': f'签名失败: {str(e)}', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
 
-        # 对齐示例：返回不带算法前缀的签名参数串
         signature_params = (
             f'mchid="{mchid}",' \
             f'nonce_str="{nonce_str}",' \
@@ -241,11 +268,7 @@ def get_wechat_certificate(request):
             f'serial_no="{serial_no}",' \
             f'signature="{signature_b64}"'
         )
-
-        # 同时返回带算法前缀的完整Authorization（便于直接使用）
-        authorization_full = (
-            'WECHATPAY2-SHA256-RSA2048 ' + signature_params
-        )
+        authorization_full = 'WECHATPAY2-SHA256-RSA2048 ' + signature_params
         
         return Response({
             'code': 200,
@@ -258,11 +281,13 @@ def get_wechat_certificate(request):
                 'serial_no': serial_no,
                 'mchid': mchid,
                 'signature': signature_b64,
+                'signature_string': message,
                 'message': message,
-                'canonical_url': canonical_url
+                'canonical_url': canonical_url,
+                'body': body
             }
         })
-        
+
     except Exception as e:
         logger.exception("生成微信支付签名头时发生错误")
         try:
@@ -345,23 +370,44 @@ def generate_signature(message, secret):
 @permission_classes([AllowAny])
 def generate_signature_string(request):
     """生成五行签名串（每行以\n结束，包括最后一行）。
-    输入：method, url_path, query_string(可选), timestamp(可选), nonce_str(可选), body
-    返回：signature_string 及基础字段，便于调试。
+    支持传入 body 字符串，或用结构化字段：appid, mchid, description, out_trade_no, notify_url, amount, payer。
     """
     try:
-        method = request.data.get('method', 'GET')
-        url_path = request.data.get('url_path', '/')
+        method = request.data.get('method', 'POST')
+        url_path = request.data.get('url_path', '/v3/pay/transactions/jsapi')
         query_string = request.data.get('query_string', '')
         body = request.data.get('body', '')
         req_timestamp = request.data.get('timestamp')
         req_nonce = request.data.get('nonce_str')
 
-        # 规范化 body 为字符串
+        if (not body) or not isinstance(body, str):
+            appid = request.data.get('appid')
+            mchid = request.data.get('mchid')
+            description = request.data.get('description')
+            out_trade_no = request.data.get('out_trade_no')
+            notify_url = request.data.get('notify_url')
+            amount = request.data.get('amount')
+            payer = request.data.get('payer')
+            try:
+                if all([appid, mchid, description, out_trade_no, notify_url, amount, payer]):
+                    body_obj = {
+                        "appid": appid,
+                        "mchid": mchid,
+                        "description": description,
+                        "out_trade_no": out_trade_no,
+                        "notify_url": notify_url,
+                        "amount": amount,
+                        "payer": payer,
+                    }
+                    body = json.dumps(body_obj, ensure_ascii=False, separators=(",", ":"))
+            except Exception:
+                pass
+
         if body is None:
             body = ''
         elif not isinstance(body, str):
             try:
-                body = json.dumps(body, ensure_ascii=False)
+                body = json.dumps(body, ensure_ascii=False, separators=(",", ":"))
             except Exception:
                 body = str(body)
 
