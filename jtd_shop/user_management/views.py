@@ -708,6 +708,7 @@ def set_mine_avatar(request):
 def aes_phone(request):
     """
     AES-CBC(PKCS7) 解密用户手机号
+    支持AES-128(16字节key)和AES-192(24字节key)
     请求JSON参数: { "key": base64字符串, "encryptedDatastr": base64字符串, "iv": base64字符串 }
     返回: { code, msg, result: { phone_number } }
     注: 需要客户端携带CSRF（POST）
@@ -724,6 +725,7 @@ def aes_phone(request):
         key_b64 = data.get('key')
         enc_b64 = data.get('encryptedDatastr')
         iv_b64 = data.get('iv')
+        
         if not key_b64 or not enc_b64 or not iv_b64:
             return Response({
                 'code': 400,
@@ -731,48 +733,155 @@ def aes_phone(request):
                 'result': None
             }, status=status.HTTP_400_BAD_REQUEST)
 
+        # Base64解码
         try:
             key = base64.b64decode(key_b64)
             iv = base64.b64decode(iv_b64)
             cipher_data = base64.b64decode(enc_b64)
-        except Exception:
+            logger.info(f"Base64解码成功 - Key长度: {len(key)}, IV长度: {len(iv)}, 密文长度: {len(cipher_data)}")
+        except Exception as e:
+            logger.error(f"Base64解码失败: {e}")
             return Response({
                 'code': 400,
-                'msg': '参数Base64解码失败',
+                'msg': 'Base64解码失败，请检查参数格式',
                 'result': None
             }, status=status.HTTP_400_BAD_REQUEST)
 
-        if len(key) not in (16, 24, 32) or len(iv) != 16:
+        # 长度校验 - 支持AES-128和AES-192
+        if len(key) not in (16, 24):
             return Response({
                 'code': 400,
-                'msg': 'key或iv长度不合法',
+                'msg': f'key长度必须为16字节（AES-128）或24字节（AES-192），实际{len(key)}字节',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+            
+        if len(iv) != 16:
+            return Response({
+                'code': 400,
+                'msg': f'iv长度必须为16字节，实际{len(iv)}字节',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+            
+        if len(cipher_data) == 0 or (len(cipher_data) % 16) != 0:
+            return Response({
+                'code': 400,
+                'msg': f'密文长度必须为16的整数倍，实际{len(cipher_data)}字节',
                 'result': None
             }, status=status.HTTP_400_BAD_REQUEST)
 
-        cipher = AES.new(key, AES.MODE_CBC, iv)
-        decrypted = cipher.decrypt(cipher_data)
-
-        # PKCS7 去填充
-        pad_len = decrypted[-1]
-        if isinstance(pad_len, str):
-            pad_len = ord(pad_len)
-        if pad_len < 1 or pad_len > 16:
-            return Response({
-                'code': 400,
-                'msg': '解密填充无效',
-                'result': None
-            }, status=status.HTTP_400_BAD_REQUEST)
-        plaintext = decrypted[:-pad_len]
-
+        # AES-CBC解密
         try:
-            payload = json.loads(plaintext.decode('utf-8'))
-        except Exception:
+            cipher = AES.new(key, AES.MODE_CBC, iv)
+            decrypted = cipher.decrypt(cipher_data)
+            logger.info(f"AES-CBC解密成功，解密后数据长度: {len(decrypted)}")
+            logger.info(f"解密后数据末尾字节: {[b for b in decrypted[-16:]]}")
+        except Exception as e:
+            logger.exception("AES-CBC解密失败")
             return Response({
                 'code': 400,
-                'msg': '解密后JSON解析失败',
+                'msg': f'AES解密失败：{str(e)}',
                 'result': None
             }, status=status.HTTP_400_BAD_REQUEST)
 
+        # PKCS7去填充 - 改进版本
+        try:
+            plaintext = None
+            
+            # 方式1: 标准PKCS7去填充
+            try:
+                pad_len = decrypted[-1]
+                if isinstance(pad_len, str):
+                    pad_len = ord(pad_len)
+                
+                logger.info(f"检测到填充长度: {pad_len}")
+                
+                # 验证填充的有效性
+                if 1 <= pad_len <= 16:
+                    # 验证填充内容
+                    padding = decrypted[-pad_len:]
+                    logger.info(f"填充内容: {[b for b in padding]}")
+                    
+                    if all(b == pad_len for b in padding):
+                        plaintext = decrypted[:-pad_len]
+                        logger.info(f"标准PKCS7去填充成功，填充长度: {pad_len}")
+                    else:
+                        logger.warning("PKCS7填充内容验证失败")
+                else:
+                    logger.warning(f"填充长度超出范围: {pad_len}")
+            except Exception as e:
+                logger.warning(f"标准PKCS7去填充失败: {e}")
+            
+            # 方式2: 如果标准PKCS7失败，尝试其他方法
+            if plaintext is None:
+                logger.info("尝试其他去填充方法...")
+                
+                # 检查是否以JSON结尾字符结束
+                if decrypted.endswith(b'}') or decrypted.endswith(b']') or decrypted.endswith(b'"'):
+                    plaintext = decrypted
+                    logger.info("使用无填充模式（数据以有效JSON结尾）")
+                else:
+                    # 尝试去除零填充
+                    plaintext = decrypted.rstrip(b'\x00')
+                    if len(plaintext) < len(decrypted):
+                        logger.info(f"去除零填充，长度从{len(decrypted)}变为{len(plaintext)}")
+                    else:
+                        # 如果还是失败，尝试去除末尾的无效字节
+                        # 寻找可能的JSON结束位置
+                        for i in range(len(decrypted) - 1, max(0, len(decrypted) - 20), -1):
+                            if decrypted[i] in [b'}', b']', b'"']:
+                                plaintext = decrypted[:i+1]
+                                logger.info(f"通过查找JSON结束符去填充，长度: {len(plaintext)}")
+                                break
+                        else:
+                            plaintext = decrypted
+                            logger.info("使用原始解密数据")
+            
+            if plaintext is None or len(plaintext) == 0:
+                return Response({
+                    'code': 400,
+                    'msg': '解密后数据为空',
+                    'result': None
+                }, status=status.HTTP_400_BAD_REQUEST)
+                
+            logger.info(f"最终明文长度: {len(plaintext)}")
+            logger.info(f"明文数据(hex): {plaintext.hex()}")
+                
+        except Exception as e:
+            logger.exception("去填充处理失败")
+            return Response({
+                'code': 400,
+                'msg': f'去填充失败: {str(e)}',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # 解析JSON
+        try:
+            # 尝试UTF-8解码
+            try:
+                text = plaintext.decode('utf-8')
+                logger.info(f"UTF-8解码成功: {repr(text)}")
+            except UnicodeDecodeError as e:
+                logger.warning(f"UTF-8解码失败: {e}")
+                # 尝试其他编码
+                try:
+                    text = plaintext.decode('latin-1')
+                    logger.info(f"Latin-1解码成功: {repr(text)}")
+                except Exception:
+                    # 如果都失败，尝试忽略错误
+                    text = plaintext.decode('utf-8', errors='ignore')
+                    logger.info(f"UTF-8忽略错误解码: {repr(text)}")
+            
+            payload = json.loads(text)
+            logger.info(f"JSON解析成功: {payload}")
+        except Exception as e:
+            logger.exception("JSON解析失败")
+            return Response({
+                'code': 400,
+                'msg': f'JSON解析失败: {str(e)}',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # 提取手机号
         phone = payload.get('phoneNumber') or payload.get('purePhoneNumber') or payload.get('phone')
         if not phone:
             return Response({
@@ -788,8 +897,166 @@ def aes_phone(request):
                 'phone_number': phone
             }
         })
+        
     except Exception as e:
         logger.exception('AES解密失败')
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# -------------------- 地址管理相关接口 --------------------
+from .serializers import AddressSerializer, AddressCreateSerializer, AddressUpdateSerializer
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def address_list(request):
+    """查询用户地址列表（默认当前用户，可通过?user_id= 指定）"""
+    try:
+        user_id = request.query_params.get('user_id')
+        if user_id:
+            target_user = get_object_or_404(User, id=user_id)
+        else:
+            target_user = request.user
+        
+        if (not request.user.is_staff) and (target_user != request.user):
+            return Response({
+                'code': 403,
+                'msg': '无权限查看其他用户地址',
+                'result': None
+            }, status=status.HTTP_403_FORBIDDEN)
+        
+        addresses = Address.objects.filter(user=target_user).order_by('-is_default', 'id')
+        serializer = AddressSerializer(addresses, many=True)
+        return Response({
+            'code': 200,
+            'msg': 'success',
+            'result': serializer.data
+        })
+    except Exception as e:
+        logger.exception("获取地址列表失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def address_detail(request, address_id):
+    """查询单个地址详情"""
+    try:
+        address = get_object_or_404(Address, id=address_id)
+        if (not request.user.is_staff) and (address.user != request.user):
+            return Response({
+                'code': 403,
+                'msg': '无权限查看该地址',
+                'result': None
+            }, status=status.HTTP_403_FORBIDDEN)
+        serializer = AddressSerializer(address)
+        return Response({
+            'code': 200,
+            'msg': 'success',
+            'result': serializer.data
+        })
+    except Exception as e:
+        logger.exception("获取地址详情失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def address_create(request):
+    """添加用户地址。若is_default为True，则取消该用户其他默认地址"""
+    try:
+        data = request.data.copy()
+        if not data.get('user'):
+            data['user'] = request.user.id
+        serializer = AddressCreateSerializer(data=data)
+        if serializer.is_valid():
+            address = serializer.save()
+            # 处理默认地址唯一性
+            if address.is_default:
+                Address.objects.filter(user=address.user).exclude(id=address.id).update(is_default=False)
+            return Response({
+                'code': 201,
+                'msg': '地址添加成功',
+                'result': AddressSerializer(address).data
+            }, status=status.HTTP_201_CREATED)
+        else:
+            return Response({
+                'code': 400,
+                'msg': '参数错误',
+                'result': serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        logger.exception("添加地址失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['PUT', 'PATCH'])
+@permission_classes([IsAuthenticated])
+def address_update(request, address_id):
+    """修改用户地址。若is_default为True，则取消该用户其他默认地址"""
+    try:
+        address = get_object_or_404(Address, id=address_id)
+        if (not request.user.is_staff) and (address.user != request.user):
+            return Response({
+                'code': 403,
+                'msg': '无权限修改该地址',
+                'result': None
+            }, status=status.HTTP_403_FORBIDDEN)
+        serializer = AddressUpdateSerializer(address, data=request.data, partial=True)
+        if serializer.is_valid():
+            updated = serializer.save()
+            if serializer.validated_data.get('is_default') is True:
+                Address.objects.filter(user=updated.user).exclude(id=updated.id).update(is_default=False)
+            return Response({
+                'code': 200,
+                'msg': '地址更新成功',
+                'result': AddressSerializer(updated).data
+            })
+        else:
+            return Response({
+                'code': 400,
+                'msg': '参数错误',
+                'result': serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        logger.exception("更新地址失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def address_delete(request, address_id):
+    """删除用户地址"""
+    try:
+        address = get_object_or_404(Address, id=address_id)
+        if (not request.user.is_staff) and (address.user != request.user):
+            return Response({
+                'code': 403,
+                'msg': '无权限删除该地址',
+                'result': None
+            }, status=status.HTTP_403_FORBIDDEN)
+        address.delete()
+        return Response({
+            'code': 200,
+            'msg': '地址删除成功',
+            'result': {'deleted_id': address_id}
+        })
+    except Exception as e:
+        logger.exception("删除地址失败")
         return Response({
             'code': 500,
             'msg': f'服务器错误: {str(e)}',

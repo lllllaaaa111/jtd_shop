@@ -1,0 +1,134 @@
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.utils.html import format_html
+from .models import User, UserProfile, Address, Mine
+
+
+class UserProfileInline(admin.StackedInline):
+    """用户详细信息内联编辑"""
+    model = UserProfile
+    can_delete = False
+    verbose_name_plural = '详细信息'
+    fields = ('nickname', 'bio', 'birth_date', 'gender')
+    extra = 0
+
+
+class AddressInline(admin.TabularInline):
+    """用户地址内联编辑"""
+    model = Address
+    extra = 0
+    fields = ('recipient', 'address', 'contact', 'is_default')
+    readonly_fields = ('is_default',)
+
+
+class MineInline(admin.TabularInline):
+    """用户头像图片内联编辑"""
+    model = Mine
+    extra = 0
+    fields = ('name', 'img', 'order', 'is_delete')
+    readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(User)
+class UserAdmin(BaseUserAdmin):
+    """用户管理"""
+    inlines = [UserProfileInline, AddressInline, MineInline]
+    
+    # 列表页显示的字段
+    list_display = (
+        'id', 'username', 'email', 'phone', 'role', 
+        'is_active', 'is_staff', 'is_superuser', 'date_joined', 'last_login'
+    )
+    
+    # 列表页可过滤的字段
+    list_filter = (
+        'is_active', 'is_staff', 'is_superuser', 'role', 
+        'date_joined', 'last_login'
+    )
+    
+    # 搜索字段
+    search_fields = ('username', 'email', 'phone', 'first_name', 'last_name')
+    
+    # 排序
+    ordering = ('-date_joined',)
+    
+    # 详情页字段分组
+    fieldsets = (
+        ('基本信息', {
+            'fields': ('username', 'password', 'email', 'phone')
+        }),
+        ('个人信息', {
+            'fields': ('first_name', 'last_name', 'avatar', 'role')
+        }),
+        ('权限设置', {
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
+        }),
+        ('重要日期', {
+            'fields': ('last_login', 'date_joined', 'created_at', 'updated_at')
+        }),
+    )
+    
+    # 添加用户时的字段
+    add_fieldsets = (
+        ('基本信息', {
+            'classes': ('wide',),
+            'fields': ('username', 'email', 'phone', 'password1', 'password2'),
+        }),
+        ('个人信息', {
+            'fields': ('first_name', 'last_name', 'role'),
+        }),
+        ('权限设置', {
+            'fields': ('is_active', 'is_staff', 'is_superuser'),
+        }),
+    )
+    
+    readonly_fields = ('date_joined', 'last_login', 'created_at', 'updated_at')
+    
+    def get_queryset(self, request):
+        """优化查询，减少数据库查询次数"""
+        return super().get_queryset(request).select_related('profile')
+    
+    def get_inline_instances(self, request, obj=None):
+        """根据用户权限显示内联编辑"""
+        if not obj:
+            # 新建用户时，只显示基本信息
+            return []
+        return super().get_inline_instances(request, obj)
+
+
+# 注意：移除了UserProfile的单独注册，现在只在User页面中作为内联编辑显示
+
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    """地址管理"""
+    list_display = ('id', 'user', 'recipient', 'contact', 'is_default', 'address_preview')
+    list_filter = ('is_default', 'user__role')
+    search_fields = ('user__username', 'recipient', 'contact', 'address')
+    raw_id_fields = ('user',)
+    
+    def address_preview(self, obj):
+        """地址预览（截取前30个字符）"""
+        if len(obj.address) > 30:
+            return obj.address[:30] + '...'
+        return obj.address
+    address_preview.short_description = '地址预览'
+
+
+@admin.register(Mine)
+class MineAdmin(admin.ModelAdmin):
+    """用户头像图片管理"""
+    list_display = ('id', 'name', 'user', 'order', 'is_delete', 'file_size', 'created_at')
+    list_filter = ('is_delete', 'created_at', 'user__role')
+    search_fields = ('name', 'user__username')
+    raw_id_fields = ('user',)
+    readonly_fields = ('created_at', 'updated_at', 'file_size')
+    
+    def get_queryset(self, request):
+        """优化查询"""
+        return super().get_queryset(request).select_related('user')
+
+
+# 自定义管理页面标题
+admin.site.site_header = 'JTD商店管理系统'
+admin.site.site_title = 'JTD管理'
+admin.site.index_title = '欢迎使用JTD商店管理系统'

@@ -25,6 +25,13 @@ urlpatterns = [
     path('update/<int:user_id>/', views.user_update, name='user_update'),             #更新用户
     path('delete/<int:user_id>/', views.user_delete, name='user_delete'),             #删除用户
     
+    # 地址管理相关
+    path('address/', views.address_list, name='address_list'),                        #地址列表（当前用户）
+    path('address/<int:address_id>/', views.address_detail, name='address_detail'),   #地址详情
+    path('address/create/', views.address_create, name='address_create'),             #创建地址
+    path('address/update/<int:address_id>/', views.address_update, name='address_update'), #更新地址
+    path('address/delete/<int:address_id>/', views.address_delete, name='address_delete'), #删除地址
+    
     # 头像管理相关
     path('avatar/', views.get_user_mine, name='get_user_avatar'),                    #获取用户头像
     path('avatar/list/', views.mine_image_list, name='avatar_list'),                  #获取用户头像列表
