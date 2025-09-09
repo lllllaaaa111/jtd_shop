@@ -105,30 +105,28 @@ class RootAPITester:
         url = urljoin(self.base + '/', path.lstrip('/'))
         kwargs = {"timeout": 15}
         
-        # 处理POST请求的JSON数据和CSRF令牌
-        if method == 'POST':
-            if json_data:
-                kwargs["json"] = json_data
-            
-            # 添加CSRF令牌到请求头
-            if self.csrf_token:
-                if 'headers' not in kwargs:
-                    kwargs['headers'] = {}
-                kwargs['headers']['X-CSRFToken'] = self.csrf_token
-                kwargs['headers']['X-Csrftoken'] = self.csrf_token  # Django也接受这个格式
-                kwargs['headers']['Content-Type'] = 'application/json'
-                # 关键：Referer 需与可信域一致
-                kwargs['headers']['Referer'] = self.base + '/'
-            
-            # 特殊处理用户注册
-            if path.endswith('/users/register/'):
-                if not json_data:
-                    kwargs["json"] = {
-                        "username": "root_api_user",
-                        "email": "root_api_user@example.com",
-                        "password": "testpass123",
-                        "password_confirm": "testpass123"
-                    }
+        # 处理请求的JSON数据和CSRF令牌
+        unsafe_methods = {'POST', 'PUT', 'PATCH', 'DELETE'}
+        if method in {'POST', 'PUT', 'PATCH'} and json_data is not None:
+            kwargs["json"] = json_data
+        
+        # 添加CSRF令牌到不安全方法的请求头
+        if method in unsafe_methods and self.csrf_token:
+            if 'headers' not in kwargs:
+                kwargs['headers'] = {}
+            kwargs['headers']['X-CSRFToken'] = self.csrf_token
+            kwargs['headers']['X-Csrftoken'] = self.csrf_token
+            kwargs['headers']['Content-Type'] = 'application/json'
+            kwargs['headers']['Referer'] = self.base + '/'
+        
+        # 特殊处理用户注册
+        if method == 'POST' and path.endswith('/users/register/') and not json_data:
+            kwargs["json"] = {
+                "username": "root_api_user",
+                "email": "root_api_user@example.com",
+                "password": "testpass123",
+                "password_confirm": "testpass123"
+            }
         
         try:
             # 先用session（如已登录）
@@ -221,6 +219,42 @@ class RootAPITester:
         if self.csrf_token:
             self.call('POST', '/users/csrf/validate/', '验证CSRF令牌', expected_status=200, json_data={})
         
+        # 地址接口测试
+        print("📮 测试地址管理接口...")
+        addr_payload = {
+            'recipient': '测试收件人',
+            'address': '上海市徐汇区漕溪北路XXX号',
+            'contact': '13800000000',
+            'is_default': True
+        }
+        resp_create_addr = self.call('POST', '/users/address/create/', '创建地址', expected_status=201, json_data=addr_payload)
+        created_address_id = None
+        try:
+            if resp_create_addr is not None and resp_create_addr.status_code in (200, 201):
+                data = resp_create_addr.json()
+                if isinstance(data, dict) and isinstance(data.get('result'), dict):
+                    created_address_id = data['result'].get('id')
+        except Exception:
+            pass
+        
+        # 列表
+        self.call('GET', '/users/address/', '地址列表')
+        
+        # 详情
+        if created_address_id:
+            self.call('GET', f'/users/address/{created_address_id}/', '地址详情')
+        
+        # 更新
+        if created_address_id:
+            update_payload = {
+                'contact': '13900000001',
+                'is_default': True
+            }
+            self.call('PATCH', f'/users/address/update/{created_address_id}/', '更新地址', expected_status=200, json_data=update_payload)
+        
+        # 删除
+        if created_address_id:
+            self.call('DELETE', f'/users/address/delete/{created_address_id}/', '删除地址', expected_status=200)
 
         # 订单接口测试
         print("🧾 测试订单接口...")
@@ -273,6 +307,7 @@ class RootAPITester:
 
         # 若拿到内部订单号，测试更新状态为已支付
         if internal_no:
+            print(f"🔄 更新订单状态为已支付: {internal_no}")
             update_payload = {
                 'internal_order_number': internal_no,
                 'status': 'paid',

@@ -705,6 +705,7 @@ def set_mine_avatar(request):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
+
 def aes_phone(request):
     """
     AES-CBC(PKCS7) 解密用户手机号

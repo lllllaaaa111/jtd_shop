@@ -10,7 +10,7 @@
       "code": 200,
       "msg": "获取CSRF信息成功",
       "result": {
-        "csrf_token": "rFtp1Lq7alRVg16eDdbfjG7Cg1eQd7qJUZe3HIkZTYxMVvE2Y4jfrOpc1PwapfCA",
+        "csrf_token": "8C53SyDqzcuVFMnnVwmBxoF07G1z6pq5wQDPphHq1qmdDEpJBxZcg2sMwsITlKne",
         "token_length": 64,
         "cookie_name": "csrftoken",
         "header_name": "HTTP_X_CSRFTOKEN",
@@ -37,7 +37,7 @@
       "code": 200,
       "msg": "获取CSRF令牌成功",
       "result": {
-        "csrf_token": "XNprsfYCybGDg8GqBfM7Vq60mcc0eU2eq7a58cSuhOmuVCeeW6U73yoA70ukq2e5",
+        "csrf_token": "heHzyhyRJlm9KEswAffRAtFhDgBtzoGaFsfl50CRbzerIwuSggSsj7s322iNOJDj",
         "token_length": 64,
         "expires_in": "session",
         "usage": "在POST请求头中使用 X-CSRFToken 或 X-Csrftoken"
@@ -61,6 +61,116 @@
     }
   },
   {
+    "name": "创建地址",
+    "method": "POST",
+    "url": "/users/address/create/",
+    "status": 201,
+    "expected": 201,
+    "success": true,
+    "response": {
+      "code": 201,
+      "msg": "地址添加成功",
+      "result": {
+        "id": 4,
+        "user": 2,
+        "user_name": "root",
+        "recipient": "测试收件人",
+        "address": "上海市徐汇区漕溪北路XXX号",
+        "contact": "13800000000",
+        "is_default": true
+      }
+    }
+  },
+  {
+    "name": "地址列表",
+    "method": "GET",
+    "url": "/users/address/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": [
+        {
+          "id": 4,
+          "user": 2,
+          "user_name": "root",
+          "recipient": "测试收件人",
+          "address": "上海市徐汇区漕溪北路XXX号",
+          "contact": "13800000000",
+          "is_default": true
+        },
+        {
+          "id": 2,
+          "user": 2,
+          "user_name": "root",
+          "recipient": "测试收件人",
+          "address": "上海市徐汇区漕溪北路XXX号",
+          "contact": "13800000000",
+          "is_default": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "地址详情",
+    "method": "GET",
+    "url": "/users/address/4/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "success",
+      "result": {
+        "id": 4,
+        "user": 2,
+        "user_name": "root",
+        "recipient": "测试收件人",
+        "address": "上海市徐汇区漕溪北路XXX号",
+        "contact": "13800000000",
+        "is_default": true
+      }
+    }
+  },
+  {
+    "name": "更新地址",
+    "method": "PATCH",
+    "url": "/users/address/update/4/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "地址更新成功",
+      "result": {
+        "id": 4,
+        "user": 2,
+        "user_name": "root",
+        "recipient": "测试收件人",
+        "address": "上海市徐汇区漕溪北路XXX号",
+        "contact": "13900000001",
+        "is_default": true
+      }
+    }
+  },
+  {
+    "name": "删除地址",
+    "method": "DELETE",
+    "url": "/users/address/delete/4/",
+    "status": 200,
+    "expected": 200,
+    "success": true,
+    "response": {
+      "code": 200,
+      "msg": "地址删除成功",
+      "result": {
+        "deleted_id": 4
+      }
+    }
+  },
+  {
     "name": "直接创建订单",
     "method": "POST",
     "url": "/orders/create-direct/",
@@ -71,16 +181,16 @@
       "code": 200,
       "msg": "订单创建成功",
       "result": {
-        "id": 2,
-        "order_number": "ORD202509021332010002",
-        "internal_order_number": "000000000002",
+        "id": 6,
+        "order_number": "ORD202509080728320002",
+        "internal_order_number": "000000000006",
         "total_amount": "32.00",
         "status": "pending",
         "status_display": "待支付",
         "delivery_address": "上海市徐汇区XX路1号",
         "recipient_name": "张三",
         "recipient_phone": "13800000000",
-        "created_at": "2025-09-02 13:32:01"
+        "created_at": "2025-09-08 07:28:32"
       }
     }
   },
@@ -109,14 +219,54 @@
       "msg": "success",
       "result": [
         {
-          "id": 2,
-          "order_number": "ORD202509021332010002",
+          "id": 6,
+          "order_number": "ORD202509080728320002",
           "total_amount": "32.00",
           "status": "pending",
           "status_display": "待支付",
           "payment_method": "wechat",
-          "created_at": "2025-09-02 13:32:01",
+          "created_at": "2025-09-08 07:28:32",
           "paid_at": null
+        },
+        {
+          "id": 5,
+          "order_number": "ORD202509080656520002",
+          "total_amount": "75.00",
+          "status": "pending",
+          "status_display": "待支付",
+          "payment_method": "wechat",
+          "created_at": "2025-09-08 06:56:52",
+          "paid_at": null
+        },
+        {
+          "id": 4,
+          "order_number": "ORD202509050753560002",
+          "total_amount": "32.00",
+          "status": "paid",
+          "status_display": "已支付",
+          "payment_method": "wechat",
+          "created_at": "2025-09-05 07:53:56",
+          "paid_at": "2025-09-05 07:53:56"
+        },
+        {
+          "id": 3,
+          "order_number": "ORD202509041642120002",
+          "total_amount": "32.00",
+          "status": "paid",
+          "status_display": "已支付",
+          "payment_method": "wechat",
+          "created_at": "2025-09-04 16:42:12",
+          "paid_at": "2025-09-04 16:42:12"
+        },
+        {
+          "id": 2,
+          "order_number": "ORD202509021332010002",
+          "total_amount": "32.00",
+          "status": "paid",
+          "status_display": "已支付",
+          "payment_method": "wechat",
+          "created_at": "2025-09-02 13:32:01",
+          "paid_at": "2025-09-02 13:32:02"
         },
         {
           "id": 1,
@@ -142,11 +292,11 @@
       "code": 200,
       "msg": "订单状态更新成功",
       "result": {
-        "internal_order_number": "000000000002",
-        "order_number": "ORD202509021332010002",
+        "internal_order_number": "000000000006",
+        "order_number": "ORD202509080728320002",
         "status": "paid",
         "payment_method": "wechat",
-        "paid_at": "2025-09-02 13:32:02"
+        "paid_at": "2025-09-08 07:28:32"
       }
     }
   }

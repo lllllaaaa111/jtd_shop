@@ -45,16 +45,68 @@ def product_list(request):
     try:
         # 获取可选的数量参数
         limit = request.GET.get('limit')
+        # 新增：位置参数 offset / index（index 表示第 index 条，等价于 offset=index 且 limit=1）
+        offset_param = request.GET.get('offset')
+        index_param = request.GET.get('index')
+        
+        # 互斥校验
+        if offset_param is not None and index_param is not None:
+            return Response({
+                'code': 400,
+                'msg': 'offset 与 index 不能同时使用',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
         
         # 构建查询集
         products = Product.objects.filter(is_active=True).order_by('-created_at')
         
+        # 解析并应用 offset/index
+        applied_offset = None
+        applied_index = None
+        if index_param is not None:
+            try:
+                idx = int(index_param)
+                if idx < 0:
+                    return Response({
+                        'code': 400,
+                        'msg': 'index 必须是大于等于0的整数',
+                        'result': None
+                    }, status=status.HTTP_400_BAD_REQUEST)
+            except ValueError:
+                return Response({
+                    'code': 400,
+                    'msg': 'index 必须是有效的整数',
+                    'result': None
+                }, status=status.HTTP_400_BAD_REQUEST)
+            applied_index = idx
+            applied_offset = idx
+            products = products[idx:]
+            # index 语义为取单条，强制 limit=1
+            limit = '1'
+        elif offset_param is not None:
+            try:
+                off = int(offset_param)
+                if off < 0:
+                    return Response({
+                        'code': 400,
+                        'msg': 'offset 必须是大于等于0的整数',
+                        'result': None
+                    }, status=status.HTTP_400_BAD_REQUEST)
+            except ValueError:
+                return Response({
+                    'code': 400,
+                    'msg': 'offset 必须是有效的整数',
+                    'result': None
+                }, status=status.HTTP_400_BAD_REQUEST)
+            applied_offset = off
+            products = products[off:]
+        
         # 如果指定了数量参数，则限制返回数量
         if limit:
             try:
-                limit = int(limit)
-                if limit > 0:
-                    products = products[:limit]
+                limit_int = int(limit)
+                if limit_int > 0:
+                    products = products[:limit_int]
                 else:
                     return Response({
                         'code': 400,
@@ -95,7 +147,9 @@ def product_list(request):
             'result': {
                 'products': data,
                 'total_count': len(data),
-                'limit': limit if limit else None
+                'limit': int(limit) if (isinstance(limit, str) and limit.isdigit()) else (limit if limit else None),
+                'offset': applied_offset,
+                'index': applied_index
             }
         })
     except Exception as e:
@@ -105,6 +159,77 @@ def product_list(request):
             'msg': f'服务器错误: {str(e)}',
             'result': None
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['GET'])
+def product_search_by_name(request):
+    """按商品名称检索（模糊匹配）
+    参数：
+    - q 或 name: 关键词，必填
+    - limit: 返回条数，可选
+    - offset: 起始偏移，可选
+    """
+    try:
+        keyword = (request.GET.get('q') or request.GET.get('name') or '').strip()
+        if not keyword:
+            return Response({'code': 400, 'msg': '缺少检索关键词 q 或 name', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+        
+        limit = request.GET.get('limit')
+        offset_param = request.GET.get('offset')
+        
+        qs = Product.objects.filter(is_active=True, name__icontains=keyword).order_by('-created_at')
+        applied_offset = None
+        if offset_param is not None:
+            try:
+                off = int(offset_param)
+                if off < 0:
+                    return Response({'code': 400, 'msg': 'offset 必须是大于等于0的整数', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+            except ValueError:
+                return Response({'code': 400, 'msg': 'offset 必须是有效的整数', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+            applied_offset = off
+            qs = qs[off:]
+        
+        if limit:
+            try:
+                lim = int(limit)
+                if lim <= 0:
+                    return Response({'code': 400, 'msg': 'limit 必须大于0', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+                qs = qs[:lim]
+            except ValueError:
+                return Response({'code': 400, 'msg': 'limit 必须是有效的整数', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+        
+        data = []
+        for product in qs:
+            main_image = product.images.filter(is_primary=True).first()
+            main_image_url = request.build_absolute_uri(main_image.image.url) if main_image else None
+            data.append({
+                'id': product.id,
+                'name': product.name,
+                'description': product.description,
+                'price': str(product.price),
+                'original_price': str(product.original_price) if product.original_price else None,
+                'stock': product.stock,
+                'sales': product.sales,
+                'manufacturer': product.manufacturer,
+                'category_id': product.category.id,
+                'category_name': product.category.name,
+                'main_image': main_image_url,
+                'created_at': product.created_at.strftime("%Y-%m-%d %H:%M:%S")
+            })
+        
+        return Response({
+            'code': 200,
+            'msg': 'success',
+            'result': {
+                'products': data,
+                'total_count': len(data),
+                'limit': int(limit) if (isinstance(limit, str) and limit.isdigit()) else (limit if limit else None),
+                'offset': applied_offset,
+                'keyword': keyword
+            }
+        })
+    except Exception as e:
+        logger.exception("按名称检索商品时发生错误")
+        return Response({'code': 500, 'msg': f'服务器错误: {str(e)}', 'result': None}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
 def product_detail(request, product_id):

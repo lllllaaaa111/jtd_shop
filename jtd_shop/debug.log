@@ -6533,3 +6533,624 @@ Traceback (most recent call last):
     raise ParseError('JSON parse error - %s' % str(exc))
 rest_framework.exceptions.ParseError: JSON parse error - Expecting value: line 1 column 1 (char 0)
 Internal Server Error: /system/wechat/certificate/
+AES解密失败
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/user_management/views.py", line 723, in aes_phone
+    data = request.data if isinstance(request.data, dict) else {}
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "text/plain" in request.
+Internal Server Error: /users/aes/phone/
+Bad Request: /users/aes/phone/
+生成微信支付签名头时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/system_management/views.py", line 167, in get_wechat_certificate
+    method = request.data.get('method', 'POST')
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "text/plain" in request.
+Internal Server Error: /system/wechat/certificate/
+生成微信支付签名头时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/system_management/views.py", line 167, in get_wechat_certificate
+    method = request.data.get('method', 'POST')
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "text/plain" in request.
+Internal Server Error: /system/wechat/certificate/
+生成微信支付签名头时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/system_management/views.py", line 167, in get_wechat_certificate
+    method = request.data.get('method', 'POST')
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "text/plain" in request.
+Internal Server Error: /system/wechat/certificate/
+生成微信支付签名头时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/system_management/views.py", line 167, in get_wechat_certificate
+    method = request.data.get('method', 'POST')
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "text/plain" in request.
+Internal Server Error: /system/wechat/certificate/
+生成微信支付签名头时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/system_management/views.py", line 167, in get_wechat_certificate
+    method = request.data.get('method', 'POST')
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "text/plain" in request.
+Internal Server Error: /system/wechat/certificate/
+生成微信支付签名头时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/system_management/views.py", line 167, in get_wechat_certificate
+    method = request.data.get('method', 'POST')
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "text/plain" in request.
+Internal Server Error: /system/wechat/certificate/
+生成微信支付签名头时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/system_management/views.py", line 167, in get_wechat_certificate
+    method = request.data.get('method', 'POST')
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 221, in data
+    self._load_data_and_files()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 284, in _load_data_and_files
+    self._data, self._files = self._parse()
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/rest_framework/request.py", line 356, in _parse
+    raise exceptions.UnsupportedMediaType(media_type)
+rest_framework.exceptions.UnsupportedMediaType: Unsupported media type "text/plain" in request.
+Internal Server Error: /system/wechat/certificate/
+Not Found: /
+Not Found: /manage/account/login
+Not Found: /index.html
+Not Found: /+CSCOE+/logon.html
+Not Found: /cgi-bin/login.cgi
+Not Found: /login.htm
+Not Found: /login.html
+Not Found: /login.jsp
+Not Found: /login
+Not Found: /doc/index.html
+Not Found: /remote/login
+Not Found: //admin/login.asp
+Not Found: /web/
+Not Found: //webpages/login.html
+Method Not Allowed: /system/wechat/certificate/
+Forbidden: /products/list/
+Not Found: /login.asp
+Bad Request: /products/list/
+Not Found: /products/by-category//+\u96f6\u98df+/
+Not Found: /products/by-category//\u96f6\u98df/
+Not Found: /products/by-category//\u96f6\u98df/
+Not Found: /favicon.ico
+Not Found: /products/list//
+Not Found: /
+Not Found: /login
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /system/aes/phone/
+AES解密失败
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/user_management/views.py", line 753, in aes_phone
+    decrypted = cipher.decrypt(cipher_data)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/Crypto/Cipher/_mode_cbc.py", line 246, in decrypt
+    raise ValueError("Data must be padded to %d byte boundary in CBC mode" % self.block_size)
+ValueError: Data must be padded to 16 byte boundary in CBC mode
+Internal Server Error: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Not Found: /
+Bad Request: /users/aes/phone/
+Forbidden: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Forbidden: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /
+Not Found: /containers/json
+Not Found: /version
+Not Found: /system/aes/phone/
+Not Found: /system/aes/phone/
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /favicon.ico
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /login.asp
+Not Found: /login.asp
+Not Found: /
+解密成功，原始密文长度: 160
+解密后数据长度: 160
+密钥长度: 24, IV长度: 16
+解密后数据长度: 160
+解密后数据末尾字节: [121, 50, 27, 215, 95, 38, 110, 63, 112, 50, 253, 79, 61, 195, 19, 66]
+去除零填充后长度: 160
+Bad Request: /users/aes/phone/
+Not Found: /login.asp
+Bad Request: /users/aes/phone/
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /robots.txt
+Not Found: /sitemap.xml
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /system/aes/phone/
+Not Found: /system/aes/phone/
+解密成功，原始密文长度: 160
+解密后数据长度: 160
+密钥长度: 24, IV长度: 16
+解密后数据长度: 160
+解密后数据末尾字节: [205, 192, 42, 200, 33, 119, 106, 47, 8, 152, 123, 30, 245, 207, 183, 137]
+去除零填充后长度: 160
+Bad Request: /users/aes/phone/
+Not Found: /system/aes/phone/
+解密成功，原始密文长度: 160
+解密后数据长度: 160
+密钥长度: 24, IV长度: 16
+解密后数据长度: 160
+解密后数据末尾字节: [205, 192, 42, 200, 33, 119, 106, 47, 8, 152, 123, 30, 245, 207, 183, 137]
+去除零填充后长度: 160
+Bad Request: /users/aes/phone/
+解密成功，原始密文长度: 160
+解密后数据长度: 160
+密钥长度: 24, IV长度: 16
+解密后数据长度: 160
+解密后数据末尾字节: [205, 192, 42, 200, 33, 119, 106, 47, 8, 152, 123, 30, 245, 207, 183, 137]
+去除零填充后长度: 160
+Bad Request: /users/aes/phone/
+解密成功，原始密文长度: 160
+解密后数据长度: 160
+密钥长度: 24, IV长度: 16
+解密后数据长度: 160
+解密后数据末尾字节: [205, 192, 42, 200, 33, 119, 106, 47, 8, 152, 123, 30, 245, 207, 183, 137]
+去除零填充后长度: 160
+Bad Request: /users/aes/phone/
+Forbidden (CSRF cookie not set.): /
+Bad Request: /orders/create/
+解密成功，原始密文长度: 160
+解密后数据长度: 160
+密钥长度: 24, IV长度: 16
+解密后数据长度: 160
+解密后数据末尾字节: [205, 192, 42, 200, 33, 119, 106, 47, 8, 152, 123, 30, 245, 207, 183, 137]
+去除零填充后长度: 160
+Bad Request: /users/aes/phone/
+Not Found: /login.asp
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /login.asp
+Not Found: /
+Not Found: /login.asp
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /login.asp
+Not Found: /v2/vectordb/collections/describe
+Not Found: /
+Forbidden: /users/login/
+Not Found: /users/detail
+Not Found: /users/address/creeate/
+Forbidden (CSRF cookie not set.): /
+Bad Request: /orders/create/
+Forbidden: /users/address/create/
+Not Found: /
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Forbidden: /users/login/
+Forbidden: /users/login/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/login/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/login/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /login.asp
+Not Found: /favicon.ico
+Bad Request: /users/aes/phone/
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /sdk
+Not Found: /nmaplowercheck1757078769
+Not Found: /HNAP1
+Not Found: /evox/about
+Not Found: /
+Not Found: /
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /
+Not Found: /
+Not Found: /security.txt
+Not Found: /login.asp
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /security.txt
+Forbidden: /users/login/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /manage/account/login
+Not Found: /index.html
+Not Found: /+CSCOE+/logon.html
+Not Found: /cgi-bin/login.cgi
+Not Found: /login.html
+Not Found: /login.jsp
+Not Found: /login
+Not Found: /doc/index.html
+Not Found: /remote/login
+Not Found: //admin/login.asp
+Not Found: /web/
+Not Found: //webpages/login.html
+Not Found: /aaa9
+Not Found: /aab8
+Not Found: /
+Not Found: /
+Not Found: /login.asp
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /login.asp
+Not Found: /login.asp
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Bad Request: /users/address/create/
+Forbidden: /users/login/
+Bad Request: /users/address/create/
+Not Found: /
+Not Found: /favicon.ico
+Bad Request: /users/address/create/
+Not Found: /favicon.ico
+Not Found: /v2/vectordb/collections/describe
+Not Found: /
+Not Found: /login.asp
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /
+Not Found: /sitemap.xml
+Not Found: /
+Not Found: /login.asp
+Not Found: /
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /telescope/requests
+Not Found: /info.php
+Not Found: /server-status
+Not Found: /config.json
+Not Found: /users/address/delete/{3}/
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /sdk
+Not Found: /nmaplowercheck1757283776
+Not Found: /HNAP1
+Not Found: /evox/about
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /products/search/
+Not Found: /
+Not Found: /order/list/
+Not Found: /order/list/
+Method Not Allowed: /orders/create-direct/
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Bad Request: /orders/update-status/
+Bad Request: /orders/update-status/
+Bad Request: /orders/update-status/
+更新订单状态时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 364, in update_order_status
+    order = get_object_or_404(Order, internal_order_number=internal_no, user=request.user)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/update-status/
+更新订单状态时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 364, in update_order_status
+    order = get_object_or_404(Order, internal_order_number=internal_no, user=request.user)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/update-status/
+Bad Request: /orders/update-status/
+更新订单状态时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 364, in update_order_status
+    order = get_object_or_404(Order, internal_order_number=internal_no, user=request.user)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/update-status/
+更新订单状态时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 364, in update_order_status
+    order = get_object_or_404(Order, internal_order_number=internal_no, user=request.user)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/update-status/
+Not Found: /
+Not Found: /
+Forbidden (CSRF cookie not set.): /
+Bad Request: /orders/create/
+Bad Request: /orders/update-status/
+Bad Request: /orders/update-status/
+更新订单状态时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 90, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 633, in get
+    raise self.model.DoesNotExist(
+order_management.models.Order.DoesNotExist: Order matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 364, in update_order_status
+    order = get_object_or_404(Order, internal_order_number=internal_no, user=request.user)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 92, in get_object_or_404
+    raise Http404(
+django.http.response.Http404: No Order matches the given query.
+Internal Server Error: /orders/update-status/
+Bad Request: /orders/update-status/
+Bad Request: /orders/update-status/
+Bad Request: /orders/update-status/
+Bad Request: /orders/update-status/
+Bad Request: /orders/update-status/
+Bad Request: /orders/update-status/
+Bad Request: /orders/update-status/
+Bad Request: /orders/update-status/
+Forbidden: /orders/search/
+Method Not Allowed: /orders/search/
+Not Found: /
+Not Found: /orders/detail/by-number/ORD202508290751430002/
+Method Not Allowed: /orders/delete/by-number/ORD202508290751430002/
+Forbidden: /orders/delete/by-number/ORD202508290751430002/
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /login.asp
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /
+Not Found: /robots.txt
+Not Found: /favicon.ico
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Bad Request: /users/aes/phone/
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373333373237382c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757337278,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757337278, 'appid': 'wx2f7c9bff0a509c73'}}
+Not Found: /
+Not Found: /login.asp
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /aaa9
+Not Found: /aab8
+Not Found: /
+Not Found: /
+Not Found: /login.asp
+Not Found: /KxLM
+Not Found: /x2Mf
+Not Found: /aab8
+Not Found: /aab9
+Not Found: /jquery-3.3.2.slim.min.js
+Bad Request: /users/aes/phone/
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373339303233302c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757390230,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757390230, 'appid': 'wx2f7c9bff0a509c73'}}
+Not Found: /
+Method Not Allowed: /orders/create-direct/
+Method Not Allowed: /orders/create-direct/
+Method Not Allowed: /orders/create-direct/
+Method Not Allowed: /orders/create-direct/
+Method Not Allowed: /orders/create-direct/
+Not Found: /favicon.ico

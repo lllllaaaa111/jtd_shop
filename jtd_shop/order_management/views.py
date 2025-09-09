@@ -45,6 +45,200 @@ def order_list(request):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
+def order_search(request):
+    """按关键词检索订单（当前用户）
+    关键词匹配：订单号（order_number）、商品名称（items.product.name）
+    可选过滤：status, date_from, date_to
+    分页：page（默认1），page_size（默认20）
+    """
+    try:
+        keyword = (request.GET.get('q') or request.GET.get('keyword') or '').strip()
+        status_filter = (request.GET.get('status') or '').strip()
+        date_from = (request.GET.get('date_from') or '').strip()
+        date_to = (request.GET.get('date_to') or '').strip()
+        page_raw = request.GET.get('page')
+        page_size_raw = request.GET.get('page_size')
+        
+        # 基本查询（仅当前用户）
+        qs = Order.objects.filter(user=request.user)
+        
+        # 关键词匹配：订单号或商品名称
+        if keyword:
+            from django.db.models import Q
+            qs = qs.filter(
+                Q(order_number__icontains=keyword) |
+                Q(items__product__name__icontains=keyword)
+            ).distinct()
+        
+        # 状态过滤
+        if status_filter:
+            qs = qs.filter(status=status_filter)
+        
+        # 时间过滤（基于 created_at）
+        from django.utils.dateparse import parse_datetime
+        if date_from:
+            dt_from = parse_datetime(date_from)
+            if not dt_from:
+                return Response({'code':400,'msg':'date_from 需为ISO日期时间格式','result':None}, status=400)
+            qs = qs.filter(created_at__gte=dt_from)
+        if date_to:
+            dt_to = parse_datetime(date_to)
+            if not dt_to:
+                return Response({'code':400,'msg':'date_to 需为ISO日期时间格式','result':None}, status=400)
+            qs = qs.filter(created_at__lte=dt_to)
+        
+        qs = qs.order_by('-created_at')
+        
+        # 分页
+        def to_int(val, default):
+            try:
+                i = int(val)
+                return i if i > 0 else default
+            except Exception:
+                return default
+        page = to_int(page_raw, 1)
+        page_size = to_int(page_size_raw, 20)
+        start = (page - 1) * page_size
+        end = start + page_size
+        total = qs.count()
+        qs = qs[start:end]
+        
+        data = []
+        for order in qs:
+            data.append({
+                'id': order.id,
+                'order_number': order.order_number,
+                'internal_order_number': getattr(order, 'internal_order_number', None),
+                'total_amount': str(order.total_amount),
+                'status': order.status,
+                'status_display': order.get_status_display(),
+                'payment_method': order.payment_method,
+                'recipient_name': order.recipient_name,
+                'recipient_phone': order.recipient_phone,
+                'delivery_address': order.delivery_address,
+                'created_at': order.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+                'paid_at': order.paid_at.strftime("%Y-%m-%d %H:%M:%S") if order.paid_at else None,
+            })
+        
+        return Response({
+            'code': 200,
+            'msg': 'success',
+            'result': {
+                'orders': data,
+                'total': total,
+                'page': page,
+                'page_size': page_size,
+                'keyword': keyword or None,
+                'status': status_filter or None,
+                'date_from': date_from or None,
+                'date_to': date_to or None
+            }
+        })
+    except Exception as e:
+        logger.exception("检索订单时发生错误")
+        return Response({'code':500,'msg':f'服务器错误: {str(e)}','result':None}, status=500)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def order_by_number(request, order_number):
+    """根据订单编号 order_number 获取订单详情（当前用户）"""
+    try:
+        order = get_object_or_404(Order, order_number=order_number, user=request.user)
+        items = order.items.all()
+        item_list = []
+        for item in items:
+            item_list.append({
+                'id': item.id,
+                'product_id': item.product.id,
+                'product_name': item.product.name,
+                'quantity': item.quantity,
+                'price': str(item.price),
+                'total_price': str(item.total_price)
+            })
+        data = {
+            'id': order.id,
+            'order_number': order.order_number,
+            'internal_order_number': getattr(order, 'internal_order_number', None),
+            'total_amount': str(order.total_amount),
+            'status': order.status,
+            'status_display': order.get_status_display(),
+            'payment_method': order.payment_method,
+            'shipping_address': order.shipping_address,
+            'delivery_address': order.delivery_address,
+            'recipient_name': order.recipient_name,
+            'recipient_phone': order.recipient_phone,
+            'notes': order.notes,
+            'items': item_list,
+            'created_at': order.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+            'paid_at': order.paid_at.strftime("%Y-%m-%d %H:%M:%S") if order.paid_at else None,
+            'shipped_at': order.shipped_at.strftime("%Y-%m-%d %H:%M:%S") if order.shipped_at else None,
+            'delivered_at': order.delivered_at.strftime("%Y-%m-%d %H:%M:%S") if order.delivered_at else None,
+        }
+        return Response({'code':200,'msg':'success','result':data})
+    except Exception as e:
+        logger.exception("按订单号查询时发生错误")
+        return Response({'code':500,'msg':f'服务器错误: {str(e)}','result':None}, status=500)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def order_delete_by_number(request, order_number):
+    """按订单编号删除订单（仅当前用户，未支付或已取消）"""
+    try:
+        order = get_object_or_404(Order, order_number=order_number, user=request.user)
+        if order.status not in ('pending', 'cancelled') and order.paid_at:
+            return Response({'code':403,'msg':'仅未支付或已取消订单可删除','result':None}, status=403)
+        old_status = order.status
+        oid = order.id
+        order.delete()
+        try:
+            OrderStatusLog.objects.create(
+                order_id=oid,
+                from_status=old_status,
+                to_status='deleted',
+                operator=request.user,
+                notes='按订单号删除订单'
+            )
+        except Exception:
+            pass
+        return Response({'code':200,'msg':'订单删除成功','result':{'deleted_id': oid, 'order_number': order_number}})
+    except Order.DoesNotExist:
+        return Response({'code':404,'msg':'订单不存在','result':None}, status=404)
+    except Exception as e:
+        logger.exception('按订单号删除订单时发生错误')
+        return Response({'code':500,'msg':f'服务器错误: {str(e)}','result':None}, status=500)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def order_delete(request, order_id):
+    """删除指定订单（仅限当前用户且未支付/未发货状态）"""
+    try:
+        order = get_object_or_404(Order, id=order_id, user=request.user)
+        if order.status not in ('pending', 'cancelled') and order.paid_at:
+            return Response({'code':403,'msg':'仅未支付或已取消订单可删除','result':None}, status=403)
+        # 记录删除前状态
+        old_status = order.status
+        # 实际删除（硬删除）
+        order.delete()
+        # 记录日志（无法再关联订单，写简要信息）
+        try:
+            OrderStatusLog.objects.create(
+                order_id=order_id,  # 若模型允许直接指定外键id
+                from_status=old_status,
+                to_status='deleted',
+                operator=request.user,
+                notes='用户删除订单'
+            )
+        except Exception:
+            pass
+        return Response({'code':200,'msg':'订单删除成功','result':{'deleted_id': order_id}})
+    except Order.DoesNotExist:
+        return Response({'code':404,'msg':'订单不存在','result':None}, status=404)
+    except Exception as e:
+        logger.exception('删除订单时发生错误')
+        return Response({'code':500,'msg':f'服务器错误: {str(e)}','result':None}, status=500)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def order_detail(request, order_id):
     """获取订单详情"""
     try:

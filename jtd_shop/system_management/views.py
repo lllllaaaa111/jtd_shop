@@ -287,7 +287,7 @@ def get_wechat_certificate(request):
                 'body': body
             }
         })
-
+        
     except Exception as e:
         logger.exception("生成微信支付签名头时发生错误")
         try:
