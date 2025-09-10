@@ -109,3 +109,18 @@ class Mine(models.Model):
             else:
                 return f"{size_bytes / (1024 * 1024):.1f} MB"
         return "0 B"
+
+class WechatSession(models.Model):
+    """微信小程序登录会话（Cookie版，独立于 wechat_auth.WechatSession）"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='wx_sessions', verbose_name='用户')
+    openid = models.CharField(max_length=64, db_index=True, verbose_name='OpenID')
+    wx_session_key = models.CharField(max_length=128, verbose_name='微信session_key')
+    session_cookie = models.CharField(max_length=64, db_index=True, verbose_name='会话Cookie值')
+    cookie_expires_at = models.DateTimeField(verbose_name='Cookie过期时间')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+
+    class Meta:
+        verbose_name = '微信会话(Cookie)'
+        verbose_name_plural = '微信会话(Cookie)'
+        db_table = 'wechat_session_cookie'
+        indexes = [models.Index(fields=['openid', 'session_cookie'])]

@@ -18,6 +18,10 @@ urlpatterns = [
     path('logout/', views.user_logout, name='user_logout'),                 #用户登出
     path('info/', views.user_info, name='user_info'),                       #获取当前用户信息
     
+    # 微信小程序登录相关
+    path('wechat/getopenid/', views.wechat_getopenid, name='wechat_getopenid'),  # 通过code获取openid并建立会话
+    path('wechat/session/', views.wechat_session, name='wechat_session'),        # 会话检查/续期/退出
+    
     # 用户管理相关
     path('list/', views.user_list, name='user_list'),                               #用户列表
     path('detail/<int:user_id>/', views.user_detail, name='user_detail'),            #用户详情

@@ -27,6 +27,187 @@ except Exception:  # noqa: E722
 
 logger = logging.getLogger(__name__)
 
+# -------------------- 微信小程序登录相关 --------------------
+import secrets
+import requests
+from django.utils.dateparse import parse_datetime
+from django.db import transaction
+from .models import WechatSession
+from system_management.models import SystemConfig
+
+SESSION_COOKIE_NAME = 'wx_session_cookie'
+SESSION_TTL_SECONDS = 7 * 24 * 3600
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def wechat_getopenid(request):
+    """前端传入 js_code，后端请求微信服务获取 session_key 与 openid，并建立本地会话
+    请求体: { "js_code": "...", 可兼容 {"res_code"|"code"}, "msg": "login|renew" }
+    行为:
+      - 读取 SystemConfig 中的小程序 appid 与 app_secret
+      - 调用微信接口 https://api.weixin.qq.com/sns/jscode2session 获取 openid/session_key
+      - msg=login: 若已有用户与该 openid 对应（用户名策略: wx_{openid}），则登录该用户；否则自动注册并登录；生成新的 Cookie 会话记录
+      - msg=renew: 只更新现有会话记录的 wx_session_key（若存在同一 openid 的会话记录，则更新当前 Cookie 对应记录；否则创建一条新记录）
+      - 设置 httponly Cookie 作为会话标识（login 场景一定设置；renew 场景优先沿用现有 Cookie，若需新建则返回并设置）
+    返回: { code, msg, result: { openid, userinfo, session_key_cookie, cookie_expires_at, django_session:{sessionid,csrftoken,...}, action } }
+    """
+    try:
+        data = request.data if isinstance(request.data, dict) else {}
+        js_code = data.get('js_code') or data.get('res_code') or data.get('code')
+        msg = (data.get('msg') or 'login').lower()
+        if not js_code:
+            return Response({'code':400,'msg':'缺少js_code','result':None}, status=400)
+
+        # 从系统配置读取微信小程序的 appid 与 app_secret
+        appid = SystemConfig.get_config_value('appid')
+        secret = SystemConfig.get_config_value('app_secret')
+        if not appid or not secret:
+            return Response({'code':500,'msg':'服务未配置微信AppID/AppSecret','result':None}, status=500)
+
+        # 调用微信服务器
+        url = f"https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={js_code}&grant_type=authorization_code"
+        wx_resp = requests.get(url, timeout=10)
+        wx_data = wx_resp.json() if wx_resp.ok else {}
+
+        # 处理微信返回错误
+        if 'errcode' in wx_data and wx_data.get('errcode') not in (0, None):
+            return Response({'code':400,'msg':wx_data.get('errmsg') or '微信接口错误','result':wx_data}, status=400)
+
+        if 'session_key' not in wx_data or 'openid' not in wx_data:
+            return Response({'code':400,'msg':'获取openid失败','result':wx_data}, status=400)
+
+        openid = wx_data['openid']
+        session_key = wx_data['session_key']
+
+        # 找或建用户
+        with transaction.atomic():
+            user, _created = User.objects.get_or_create(
+                username=f"wx_{openid}",
+                defaults={'is_active': True}
+            )
+
+        # 计算过期时间
+        expires_at = timezone.now() + timezone.timedelta(seconds=SESSION_TTL_SECONDS)
+
+        # 处理会话记录
+        cookie_from_req = request.COOKIES.get(SESSION_COOKIE_NAME)
+        session_record = None
+        if msg == 'renew':
+            # 优先用当前cookie定位会话
+            qs = WechatSession.objects.filter(openid=openid)
+            if cookie_from_req:
+                session_record = qs.filter(session_cookie=cookie_from_req).order_by('-created_at').first()
+            if session_record is None:
+                session_record = qs.order_by('-created_at').first()
+            if session_record is not None:
+                # 只更新 session_key 和过期时间，保留原有 cookie 值
+                session_record.wx_session_key = session_key
+                session_record.cookie_expires_at = expires_at
+                session_record.save(update_fields=['wx_session_key','cookie_expires_at'])
+                cookie_val = session_record.session_cookie
+            else:
+                # 没有记录则补建一条
+                cookie_val = secrets.token_urlsafe(24)
+                session_record = WechatSession.objects.create(
+                    user=user,
+                    openid=openid,
+                    wx_session_key=session_key,
+                    session_cookie=cookie_val,
+                    cookie_expires_at=expires_at
+                )
+        else:
+            # login 流程：新建一条会话记录
+            cookie_val = secrets.token_urlsafe(24)
+            WechatSession.objects.create(
+                user=user,
+                openid=openid,
+                wx_session_key=session_key,
+                session_cookie=cookie_val,
+                cookie_expires_at=expires_at
+            )
+
+        # 开启Django登录会话
+        try:
+            login(request, user)
+        except Exception:
+            logger.warning('Django会话登录失败，但将继续返回Cookie会话')
+
+        # 准备Django会话与CSRF令牌
+        try:
+            if not request.session.session_key:
+                request.session.save()
+            django_session_key = request.session.session_key
+            csrf_token = get_token(request)
+        except Exception:
+            django_session_key = None
+            csrf_token = None
+
+        result = {
+            'openid': openid,
+            'userinfo': {
+                'user_id': user.id,
+                'username': user.username,
+            },
+            'session_key_cookie': cookie_val,
+            'cookie_expires_at': expires_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'django_session': {
+                'sessionid': django_session_key,
+                'csrftoken': csrf_token,
+                'session_cookie_name': getattr(settings, 'SESSION_COOKIE_NAME', 'sessionid'),
+                'csrf_cookie_name': getattr(settings, 'CSRF_COOKIE_NAME', 'csrftoken')
+            },
+            'action': 'renew' if msg == 'renew' else 'login'
+        }
+        resp = Response({'code':200,'msg':'success','result':result})
+        # 设置小程序会话Cookie（renew 优先沿用原cookie；若补建则设置新cookie）
+        resp.set_cookie(SESSION_COOKIE_NAME, cookie_val, expires=expires_at, httponly=True, samesite='Lax')
+        # 设置Django会话与CSRF Cookie
+        if django_session_key:
+            resp.set_cookie(getattr(settings, 'SESSION_COOKIE_NAME', 'sessionid'), django_session_key, httponly=True, samesite='Lax')
+        if csrf_token:
+            resp.set_cookie(getattr(settings, 'CSRF_COOKIE_NAME', 'csrftoken'), csrf_token, httponly=False, samesite='Lax')
+        return resp
+    except Exception as e:
+        logger.exception('获取openid失败')
+        return Response({'code':500,'msg':f'服务器错误: {str(e)}','result':None}, status=500)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def wechat_session(request):
+    """会话检查/续期/退出
+    请求体: { "openid": "...", "msg": "check|renew|logout" }
+    check: 返回会话是否有效；renew: 删除旧会话并重新建立需配合重新调用getopenid；logout: 删除现有会话
+    """
+    try:
+        data = request.data if isinstance(request.data, dict) else {}
+        openid = data.get('openid')
+        msg = (data.get('msg') or 'check').lower()
+        cookie_val = request.COOKIES.get(SESSION_COOKIE_NAME) or data.get('session_key_cookie')
+        if not openid:
+            return Response({'code':400,'msg':'缺少openid','result':None}, status=400)
+        now = timezone.now()
+        qs = WechatSession.objects.filter(openid=openid)
+        if msg == 'logout':
+            if cookie_val:
+                qs.filter(session_cookie=cookie_val).delete()
+            else:
+                qs.delete()
+            return Response({'code':200,'msg':'logged_out','result':{'openid': openid}})
+        # 清理过期
+        qs.filter(cookie_expires_at__lt=now).delete()
+        current = qs.filter(session_cookie=cookie_val).order_by('-created_at').first() if cookie_val else None
+        if msg == 'renew':
+            if current:
+                current.delete()
+            return Response({'code':200,'msg':'renew_ok','result':{'openid': openid}})
+        # check
+        if current:
+            return Response({'code':200,'msg':'valid','result':{'openid': openid, 'expired': False}})
+        return Response({'code':200,'msg':'expired','result':{'openid': openid, 'expired': True}})
+    except Exception as e:
+        logger.exception('会话处理失败')
+        return Response({'code':500,'msg':f'服务器错误: {str(e)}','result':None}, status=500)
+
 # CSRF认证相关接口
 @api_view(['GET'])
 @permission_classes([AllowAny])
