@@ -166,23 +166,34 @@ def get_wechat_certificate(request):
     try:
         method = request.data.get('method', 'POST')
         url_path = request.data.get('url_path', '/v3/pay/transactions/jsapi')
-        query_string = request.data.get('query_string', '')
         body = request.data.get('body', '')
+        query_string = request.data.get('query_string', '')
         # serial_no 固定从数据库读取
         req_nonce = request.data.get('nonce_str')
         req_timestamp = request.data.get('timestamp')
 
         # 如果未提供字符串body，尝试用结构化字段拼装（严格无空格，保证稳定序列化）
         if (not body) or not isinstance(body, str):
-            appid = request.data.get('appid')
-            mchid = request.data.get('mchid')
+            # 从数据库获取微信配置
+            wechat_config = SystemConfig.objects.filter(is_active=True).first()
+            if not wechat_config:
+                return Response({'code': 400, 'msg': '未找到微信支付配置，请先配置', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+            
+            appid = wechat_config.appid
+            mchid = wechat_config.mchid
+            # appid = 'wxd678efh567hg6787'
+            # mchid = '1900007291'
+            
+            if not appid or not mchid:
+                return Response({'code': 400, 'msg': '微信支付配置不完整：缺少appid或mchid', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+            
             description = request.data.get('description')
             out_trade_no = request.data.get('out_trade_no')
             notify_url = request.data.get('notify_url')
             amount = request.data.get('amount')
             payer = request.data.get('payer')
             try:
-                if all([appid, mchid, description, out_trade_no, notify_url, amount, payer]):
+                if all([out_trade_no, notify_url, amount, payer]):
                     body_obj = {
                         "appid": appid,
                         "mchid": mchid,
@@ -211,7 +222,8 @@ def get_wechat_certificate(request):
         if not wechat_config:
             return Response({'code': 400, 'msg': '未找到微信支付配置，请先配置', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
         
-        mchid = (request.data.get('mchid') or '').strip()
+        # 从数据库获取mchid，不再从请求参数获取
+        mchid = (wechat_config.mchid or '').strip()
         serial_no = (wechat_config.serial_no or '').strip()
         private_key_pem = (wechat_config.key_file or '').strip().replace('\r\n', '\n').replace('\r', '\n')
         
@@ -223,6 +235,9 @@ def get_wechat_certificate(request):
         # 时间戳/随机串
         timestamp = int(req_timestamp) if str(req_timestamp).isdigit() else int(time.time())
         nonce_str = str(req_nonce) if req_nonce else str(uuid.uuid4()).replace('-', '')[:32]
+        # 计算过期时间：当前时间 + 15分钟，输出为示例格式 2025-89-03T16:18:56+08:00
+        expire_timestamp = timestamp + (15 * 60)
+        time_expire = time.strftime('%Y-%m-%dT%H:%M:%S+08:00', time.localtime(expire_timestamp))
         
         # 构建canonical URL
         canonical_url = url_path or '/'
@@ -265,7 +280,6 @@ def get_wechat_certificate(request):
             f'mchid="{mchid}",' \
             f'nonce_str="{nonce_str}",' \
             f'timestamp="{timestamp}",' \
-            f'serial_no="{serial_no}",' \
             f'signature="{signature_b64}"'
         )
         authorization_full = 'WECHATPAY2-SHA256-RSA2048 ' + signature_params
@@ -274,17 +288,21 @@ def get_wechat_certificate(request):
             'code': 200,
             'msg': 'success',
             'result': {
-                'signature_params': signature_params,
-                'authorization': authorization_full,
+                'signature': signature_b64,
                 'timestamp': timestamp,
                 'nonce_str': nonce_str,
-                'serial_no': serial_no,
+                'time_expire': time_expire,
+                'url_path': url_path,
+                "description": description,
+                "out_trade_no": out_trade_no,
+                "notify_url": notify_url,
+                "amount": amount,
+                "payer": payer,
+                'body': body,
+                'appid': appid,
                 'mchid': mchid,
-                'signature': signature_b64,
-                'signature_string': message,
-                'message': message,
-                'canonical_url': canonical_url,
-                'body': body
+                'serial_no': serial_no,
+                'signature_params': signature_params,
             }
         })
         
@@ -370,7 +388,8 @@ def generate_signature(message, secret):
 @permission_classes([AllowAny])
 def generate_signature_string(request):
     """生成五行签名串（每行以\n结束，包括最后一行）。
-    支持传入 body 字符串，或用结构化字段：appid, mchid, description, out_trade_no, notify_url, amount, payer。
+    支持传入 body 字符串，或用结构化字段：description, out_trade_no, notify_url, amount, payer。
+    appid 和 mchid 自动从 SystemConfig 数据库获取。
     """
     try:
         method = request.data.get('method', 'POST')
@@ -380,16 +399,25 @@ def generate_signature_string(request):
         req_timestamp = request.data.get('timestamp')
         req_nonce = request.data.get('nonce_str')
 
+        # 从数据库获取微信配置
+        wechat_config = SystemConfig.objects.filter(is_active=True).first()
+        if not wechat_config:
+            return Response({'code': 400, 'msg': '未找到微信支付配置，请先配置', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+        
+        appid = wechat_config.appid
+        mchid = wechat_config.mchid
+        
+        if not appid or not mchid:
+            return Response({'code': 400, 'msg': '微信支付配置不完整：缺少appid或mchid', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+
         if (not body) or not isinstance(body, str):
-            appid = request.data.get('appid')
-            mchid = request.data.get('mchid')
             description = request.data.get('description')
             out_trade_no = request.data.get('out_trade_no')
             notify_url = request.data.get('notify_url')
             amount = request.data.get('amount')
             payer = request.data.get('payer')
             try:
-                if all([appid, mchid, description, out_trade_no, notify_url, amount, payer]):
+                if all([description, out_trade_no, notify_url, amount, payer]):
                     body_obj = {
                         "appid": appid,
                         "mchid": mchid,
@@ -414,6 +442,10 @@ def generate_signature_string(request):
         timestamp = int(req_timestamp) if str(req_timestamp).isdigit() else int(time.time())
         nonce_str = str(req_nonce) if req_nonce else str(uuid.uuid4()).replace('-', '')[:32]
 
+        # 计算过期时间：当前时间 + 15分钟
+        expire_timestamp = timestamp + (15 * 60)  # 15分钟 = 900秒
+        expire_time = time.strftime('%Y-%m-%dT%H:%M:%S+08:00', time.localtime(expire_timestamp))
+
         canonical_url = url_path or '/'
         if query_string:
             canonical_url += '?' + query_string
@@ -431,9 +463,192 @@ def generate_signature_string(request):
                 'timestamp': timestamp,
                 'nonce_str': nonce_str,
                 'body': body,
-                'canonical_url': canonical_url
+                'canonical_url': canonical_url,
+                'appid': appid,
+                'mchid': mchid,
+                'time_expire': expire_time
             }
         })
     except Exception as e:
         logger.exception('生成签名串失败')
+        return Response({'code': 500, 'msg': f'服务器错误: {str(e)}', 'result': None}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def wechat_pay_notify(request):
+    """接收微信支付回传信息（支付结果通知）
+    微信支付完成后会向此接口发送POST请求，包含支付结果信息
+    请求头包含：Wechatpay-Signature, Wechatpay-Timestamp, Wechatpay-Nonce, Wechatpay-Serial
+    请求体为JSON格式的支付结果数据
+    """
+    try:
+        # 获取微信签名头信息
+        signature = request.META.get('HTTP_WECHATPAY_SIGNATURE', '')
+        timestamp = request.META.get('HTTP_WECHATPAY_TIMESTAMP', '')
+        nonce = request.META.get('HTTP_WECHATPAY_NONCE', '')
+        serial = request.META.get('HTTP_WECHATPAY_SERIAL', '')
+        
+        logger.info(f"收到微信支付通知: signature={signature[:20]}..., timestamp={timestamp}, nonce={nonce}, serial={serial}")
+        
+        # 获取请求体
+        try:
+            body = request.body.decode('utf-8')
+            notify_data = json.loads(body) if body else {}
+        except Exception as e:
+            logger.error(f"解析微信支付通知请求体失败: {e}")
+            return Response({'code': 'FAIL', 'message': '请求体解析失败'}, status=400)
+        
+        logger.info(f"微信支付通知数据: {notify_data}")
+        
+        # 验证签名（可选，生产环境建议验证）
+        # 这里可以根据需要实现签名验证逻辑
+        
+        # 处理支付结果
+        event_type = notify_data.get('event_type', '')
+        resource = notify_data.get('resource', {})
+        
+        if event_type == 'TRANSACTION.SUCCESS':
+            # 支付成功
+            ciphertext = resource.get('ciphertext', '')
+            nonce_str = resource.get('nonce', '')
+            associated_data = resource.get('associated_data', '')
+            
+            # 解密支付结果（需要实现AES-GCM解密）
+            try:
+                # 这里需要实现AES-GCM解密逻辑
+                # 解密后得到支付结果详情
+                payment_result = {
+                    'out_trade_no': notify_data.get('out_trade_no', ''),
+                    'transaction_id': notify_data.get('transaction_id', ''),
+                    'trade_state': notify_data.get('trade_state', ''),
+                    'trade_state_desc': notify_data.get('trade_state_desc', ''),
+                    'success_time': notify_data.get('success_time', ''),
+                    'amount': notify_data.get('amount', {}),
+                    'payer': notify_data.get('payer', {}),
+                }
+                
+                logger.info(f"支付成功: {payment_result}")
+                
+                # 这里可以添加业务逻辑，如：
+                # 1. 更新订单状态
+                # 2. 发送支付成功通知
+                # 3. 记录支付日志
+                
+                # 记录操作日志
+                OperationLog.objects.create(
+                    user=None,  # 系统操作
+                    action='WECHAT_PAY_NOTIFY',
+                    resource='PAYMENT',
+                    resource_id=payment_result.get('out_trade_no', ''),
+                    description=f"微信支付成功通知: {payment_result.get('transaction_id', '')}",
+                    ip_address=request.META.get('REMOTE_ADDR', ''),
+                    user_agent=request.META.get('HTTP_USER_AGENT', '')
+                )
+                
+            except Exception as e:
+                logger.error(f"解密微信支付通知失败: {e}")
+                return Response({'code': 'FAIL', 'message': '解密失败'}, status=400)
+        
+        elif event_type == 'TRANSACTION.CLOSED':
+            # 支付关闭
+            logger.info(f"支付关闭: {notify_data}")
+            
+        else:
+            # 其他事件类型
+            logger.info(f"收到其他微信支付事件: {event_type}, 数据: {notify_data}")
+        
+        # 返回成功响应给微信
+        return Response({'code': 'SUCCESS', 'message': 'OK'})
+        
+    except Exception as e:
+        logger.exception('处理微信支付通知时发生错误')
+        return Response({'code': 'FAIL', 'message': f'服务器错误: {str(e)}'}, status=500)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def wechat_pay_sign(request):
+    """构造调起支付的签名（JSAPI/小程序调起支付）。
+    入参：
+      - prepay_id: 必填，统一下单返回的预支付交易会话标识
+      - timestamp(可选): 前端也可传，未传则后端生成当前时间戳
+      - nonce_str(可选): 随机串，未传则后端生成
+    读取：SystemConfig.appid, SystemConfig.key_file（商户私钥）
+    待签名串为四行，并且每一行以\n结尾（包括最后一行）：
+        appId\n
+        时间戳\n
+        随机字符串\n
+        prepay_id=...\n
+    使用商户私钥做 SHA256withRSA 签名，Base64 编码返回。
+    返回：{ appId, timeStamp, nonceStr, package, signType: 'RSA', paySign }
+    """
+    try:
+        prepay_id = (request.data.get('prepay_id') or '').strip()
+        if not prepay_id:
+            return Response({'code': 400, 'msg': '缺少必填参数 prepay_id', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+
+        cfg = SystemConfig.objects.filter(is_active=True).first()
+        if not cfg:
+            return Response({'code': 400, 'msg': '未找到微信支付配置，请先配置', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+
+        appid = (cfg.appid or '').strip()
+        private_key_pem = (cfg.key_file or '').strip().replace('\r\n', '\n').replace('\r', '\n')
+        if not appid or not private_key_pem:
+            return Response({'code': 400, 'msg': '配置不完整：需包含appid/key_file', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+        if 'BEGIN' not in private_key_pem or 'PRIVATE KEY' not in private_key_pem:
+            return Response({'code': 400, 'msg': 'key_file不是PEM私钥（缺少BEGIN/END PRIVATE KEY）', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+
+        # 生成时间戳/随机串
+        req_timestamp = request.data.get('timestamp')
+        req_nonce = request.data.get('nonce_str')
+        timestamp = int(req_timestamp) if (isinstance(req_timestamp, (int, str)) and str(req_timestamp).isdigit()) else int(time.time())
+        nonce_str = str(req_nonce) if req_nonce else str(uuid.uuid4()).replace('-', '')[:32]
+
+        package = f"prepay_id={prepay_id}"
+        # 四行签名串，末尾也要换行
+        message = f"{appid}\n{timestamp}\n{nonce_str}\n{package}\n"
+
+        # 签名：SHA256withRSA(Base64)
+        try:
+            from cryptography.hazmat.primitives import hashes, serialization
+            from cryptography.hazmat.primitives.asymmetric import padding
+            from cryptography.hazmat.backends import default_backend
+
+            private_key = serialization.load_pem_private_key(
+                private_key_pem.encode('utf-8'),
+                password=None,
+                backend=default_backend()
+            )
+            signature_bytes = private_key.sign(
+                message.encode('utf-8'),
+                padding.PKCS1v15(),
+                hashes.SHA256()
+            )
+            pay_sign = base64.b64encode(signature_bytes).decode('utf-8')
+        except ImportError:
+            try:
+                import rsa
+                pk = rsa.PrivateKey.load_pkcs1(private_key_pem.encode('utf-8'))
+                signature_bytes = rsa.sign(message.encode('utf-8'), pk, 'SHA-256')
+                pay_sign = base64.b64encode(signature_bytes).decode('utf-8')
+            except ImportError:
+                return Response({'code': 400, 'msg': '缺少签名依赖，请安装 cryptography 或 rsa', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            logger.exception('支付签名失败')
+            return Response({'code': 400, 'msg': f'支付签名失败: {str(e)}', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({
+            'code': 200,
+            'msg': 'success',
+            'result': {
+                'appId': appid,
+                'timeStamp': str(timestamp),
+                'nonceStr': nonce_str,
+                'package': package,
+                'signType': 'RSA',
+                'paySign': pay_sign
+            }
+        })
+    except Exception as e:
+        logger.exception('构造调起支付签名头时发生错误')
         return Response({'code': 500, 'msg': f'服务器错误: {str(e)}', 'result': None}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

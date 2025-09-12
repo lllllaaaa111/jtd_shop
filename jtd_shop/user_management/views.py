@@ -42,19 +42,17 @@ SESSION_TTL_SECONDS = 7 * 24 * 3600
 @permission_classes([AllowAny])
 def wechat_getopenid(request):
     """前端传入 js_code，后端请求微信服务获取 session_key 与 openid，并建立本地会话
-    请求体: { "js_code": "...", 可兼容 {"res_code"|"code"}, "msg": "login|renew" }
+    请求体: { "js_code": "...", 可兼容 {"res_code"|"code"} }
     行为:
       - 读取 SystemConfig 中的小程序 appid 与 app_secret
       - 调用微信接口 https://api.weixin.qq.com/sns/jscode2session 获取 openid/session_key
-      - msg=login: 若已有用户与该 openid 对应（用户名策略: wx_{openid}），则登录该用户；否则自动注册并登录；生成新的 Cookie 会话记录
-      - msg=renew: 只更新现有会话记录的 wx_session_key（若存在同一 openid 的会话记录，则更新当前 Cookie 对应记录；否则创建一条新记录）
-      - 设置 httponly Cookie 作为会话标识（login 场景一定设置；renew 场景优先沿用现有 Cookie，若需新建则返回并设置）
-    返回: { code, msg, result: { openid, userinfo, session_key_cookie, cookie_expires_at, django_session:{sessionid,csrftoken,...}, action } }
+      - 若已有用户与该 openid 对应（用户名策略: wx_{openid}），则登录该用户；否则自动注册并登录
+      - 生成一条 WechatSession 记录，并设置 httponly Cookie 作为会话标识
+    返回: { code, msg, result: { openid, userinfo:{user_id,username}, session_key_cookie, cookie_expires_at } }
     """
     try:
         data = request.data if isinstance(request.data, dict) else {}
         js_code = data.get('js_code') or data.get('res_code') or data.get('code')
-        msg = (data.get('msg') or 'login').lower()
         if not js_code:
             return Response({'code':400,'msg':'缺少js_code','result':None}, status=400)
 
@@ -70,7 +68,8 @@ def wechat_getopenid(request):
         wx_data = wx_resp.json() if wx_resp.ok else {}
 
         # 处理微信返回错误
-        if 'errcode' in wx_data and wx_data.get('errcode') not in (0, None):
+        if 'errcode' in wx_data and wx_data.get('errcode') != 0:
+            # 直接透传错误信息，便于排查，如 invalid appid 等
             return Response({'code':400,'msg':wx_data.get('errmsg') or '微信接口错误','result':wx_data}, status=400)
 
         if 'session_key' not in wx_data or 'openid' not in wx_data:
@@ -79,45 +78,15 @@ def wechat_getopenid(request):
         openid = wx_data['openid']
         session_key = wx_data['session_key']
 
-        # 找或建用户
+        # 找或建用户，并登录
         with transaction.atomic():
-            user, _created = User.objects.get_or_create(
+            user, created = User.objects.get_or_create(
                 username=f"wx_{openid}",
                 defaults={'is_active': True}
             )
-
-        # 计算过期时间
-        expires_at = timezone.now() + timezone.timedelta(seconds=SESSION_TTL_SECONDS)
-
-        # 处理会话记录
-        cookie_from_req = request.COOKIES.get(SESSION_COOKIE_NAME)
-        session_record = None
-        if msg == 'renew':
-            # 优先用当前cookie定位会话
-            qs = WechatSession.objects.filter(openid=openid)
-            if cookie_from_req:
-                session_record = qs.filter(session_cookie=cookie_from_req).order_by('-created_at').first()
-            if session_record is None:
-                session_record = qs.order_by('-created_at').first()
-            if session_record is not None:
-                # 只更新 session_key 和过期时间，保留原有 cookie 值
-                session_record.wx_session_key = session_key
-                session_record.cookie_expires_at = expires_at
-                session_record.save(update_fields=['wx_session_key','cookie_expires_at'])
-                cookie_val = session_record.session_cookie
-            else:
-                # 没有记录则补建一条
-                cookie_val = secrets.token_urlsafe(24)
-                session_record = WechatSession.objects.create(
-                    user=user,
-                    openid=openid,
-                    wx_session_key=session_key,
-                    session_cookie=cookie_val,
-                    cookie_expires_at=expires_at
-                )
-        else:
-            # login 流程：新建一条会话记录
+            # 建本地会话Cookie记录
             cookie_val = secrets.token_urlsafe(24)
+            expires_at = timezone.now() + timezone.timedelta(seconds=SESSION_TTL_SECONDS)
             WechatSession.objects.create(
                 user=user,
                 openid=openid,
@@ -134,6 +103,7 @@ def wechat_getopenid(request):
 
         # 准备Django会话与CSRF令牌
         try:
+            # 确保存在session_key
             if not request.session.session_key:
                 request.session.save()
             django_session_key = request.session.session_key
@@ -144,6 +114,7 @@ def wechat_getopenid(request):
 
         result = {
             'openid': openid,
+            # 'wx_session_key': session_key,
             'userinfo': {
                 'user_id': user.id,
                 'username': user.username,
@@ -155,13 +126,12 @@ def wechat_getopenid(request):
                 'csrftoken': csrf_token,
                 'session_cookie_name': getattr(settings, 'SESSION_COOKIE_NAME', 'sessionid'),
                 'csrf_cookie_name': getattr(settings, 'CSRF_COOKIE_NAME', 'csrftoken')
-            },
-            'action': 'renew' if msg == 'renew' else 'login'
+            }
         }
         resp = Response({'code':200,'msg':'success','result':result})
-        # 设置小程序会话Cookie（renew 优先沿用原cookie；若补建则设置新cookie）
+        # 设置小程序会话Cookie
         resp.set_cookie(SESSION_COOKIE_NAME, cookie_val, expires=expires_at, httponly=True, samesite='Lax')
-        # 设置Django会话与CSRF Cookie
+        # 显式设置Django会话与CSRF Cookie，便于前端直接获取
         if django_session_key:
             resp.set_cookie(getattr(settings, 'SESSION_COOKIE_NAME', 'sessionid'), django_session_key, httponly=True, samesite='Lax')
         if csrf_token:
@@ -891,7 +861,11 @@ def aes_phone(request):
     """
     AES-CBC(PKCS7) 解密用户手机号
     支持AES-128(16字节key)和AES-192(24字节key)
-    请求JSON参数: { "key": base64字符串, "encryptedDatastr": base64字符串, "iv": base64字符串 }
+    新增支持通过 openid 获取微信会话的 wx_session_key 作为解密 key。
+    请求JSON参数（两种方式择一）:
+      1) 直接提供密钥: { "key": base64字符串, "encryptedDatastr"|"encryptedData": base64字符串, "iv": base64字符串 }
+      2) 通过 openid 获取密钥: { "openid": "xxx", "encryptedDatastr"|"encryptedData": base64字符串, "iv": base64字符串 }
+         - 后端将根据 openid（以及请求携带的 wx_session_cookie）从 WechatSession 中取 wx_session_key 作为 key
     返回: { code, msg, result: { phone_number } }
     注: 需要客户端携带CSRF（POST）
     """
@@ -904,14 +878,40 @@ def aes_phone(request):
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         data = request.data if isinstance(request.data, dict) else {}
-        key_b64 = data.get('key')
-        enc_b64 = data.get('encryptedDatastr')
+        # 支持 encryptedDatastr 与 encryptedData 两种字段名
+        enc_b64 = data.get('encryptedDatastr') or data.get('encryptedData')
         iv_b64 = data.get('iv')
+        key_b64 = data.get('key')
+        openid = data.get('openid')
         
+        # 如果未显式提供 key，但提供了 openid，则尝试从微信会话表获取 wx_session_key
+        if (not key_b64) and openid:
+            try:
+                now = timezone.now()
+                cookie_val = request.COOKIES.get(SESSION_COOKIE_NAME) or data.get('session_key_cookie')
+                qs = WechatSession.objects.filter(openid=openid, cookie_expires_at__gte=now)
+                if cookie_val:
+                    qs = qs.filter(session_cookie=cookie_val)
+                wx_sess = qs.order_by('-created_at').first()
+                if wx_sess:
+                    key_b64 = wx_sess.wx_session_key
+                else:
+                    return Response({
+                        'code': 404,
+                        'msg': '未找到有效的微信会话，请重新登录获取session_key',
+                        'result': None
+                    }, status=status.HTTP_404_NOT_FOUND)
+            except Exception:
+                return Response({
+                    'code': 500,
+                    'msg': '查询微信会话失败',
+                    'result': None
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
         if not key_b64 or not enc_b64 or not iv_b64:
             return Response({
                 'code': 400,
-                'msg': '缺少必填参数: key / encryptedDatastr / iv',
+                'msg': '缺少必填参数: key/openid 或 encryptedData/iv',
                 'result': None
             }, status=status.HTTP_400_BAD_REQUEST)
 

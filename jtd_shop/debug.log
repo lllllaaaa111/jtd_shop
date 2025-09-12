@@ -7258,3 +7258,1365 @@ Not Found: /user/getopenid
 Forbidden: /users/wechat/getopenid/
 Starting new HTTPS connection (1): api.weixin.qq.com:443
 https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0b1QSZZv33VAB53vt90w3soQ063QSZZ6&grant_type=authorization_code HTTP/1.1" 200 82
+Not Found: /users/wechat/django-session-check/
+Not Found: /user/getopenid/
+Not Found: /user/getopenid
+Method Not Allowed: /users/wechat/getopenid/
+Internal Server Error: /users/wechat/getopenid
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/middleware/common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/middleware/common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to jtd.wxdnet.cn:8080/users/wechat/getopenid/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+Not Found: /user/getopenid
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d1DDKkl2Aa6hg4O1wnl25AxpS2DDKkT&grant_type=authorization_code HTTP/1.1" 200 82
+Internal Server Error: /users/wechat/getopenid
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/utils/deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/middleware/common.py", line 108, in process_response
+    return self.response_redirect_class(self.get_full_path_with_slash(request))
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/middleware/common.py", line 87, in get_full_path_with_slash
+    raise RuntimeError(
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to jtd.wxdnet.cn:8080/users/wechat/getopenid/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c37D40w3iswB53PJd3w3d6OvC27D401&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c3w5N100rNRXU1csZ300gBXvH3w5N1t&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0f3CIpml28ruig4qVbml22cACw4CIpm6&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3I9N100ISRXU11HZ100gTXOh4I9N1f&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3DH2ll2Cjygg4RWhll2pow2g0DH2lR&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3wiH000mMKWU110u000UASjQ0wiH0A&grant_type=authorization_code HTTP/1.1" 200 82
+Forbidden: /products/category/list/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3Xtm0w3fWeB53PBD0w37TuGA3Xtm0n&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3UB9000IueWU14tC000mAPsR0UB90K&grant_type=authorization_code HTTP/1.1" 200 82
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3iYY000NzvWU1d5n000O2zNQ1iYY0k&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3rZH000orMWU1LNh300dgU7c4rZH0q&grant_type=authorization_code HTTP/1.1" 200 82
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+Forbidden: /products/category/list/
+Not Found: /sdk
+Not Found: /nmaplowercheck1757516610
+Not Found: /HNAP1
+Not Found: /evox/about
+Not Found: /
+Not Found: /
+Forbidden: /products/list/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3Hjb000GpgWU1Ca62001oOK04Hjb0o&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c38qF0w3Rc8C53zBh2w38GfUj18qF0B&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0b3ECh100p0nXU1m0R300WNG063ECh1M&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0b3B45ll2gmCgg4Y0nol2xK91q2B45lo&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3xqb000gOgWU1mAv300n9hTv0xqb0C&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0b3D7mll2mvrhg43HHol2lqgyT2D7mlv&grant_type=authorization_code HTTP/1.1" 200 82
+Forbidden: /products/by-category/\u96f6\u98df/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0f3xE70w3ZjyB53CMT1w3B2ta73xE70S&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3xRs000PVXVU1zWg100JfQQo2xRs0g&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0f3efFll2SYbhg4c9lml2oQ5yT2efFla&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0b3s7Qkl2lYUgg4WXjml2KA6T94s7Qkq&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a34Kr0w3IhnB53bsy1w361qUK34Kr08&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c3wOe000W0lWU1B29300OfKO72wOe0F&grant_type=authorization_code HTTP/1.1" 200 82
+Not Found: /user/getopenid
+Forbidden: /users/wechat/getopenid/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c11Vg1w3syKC53qO44w3bgvRo21Vg1S&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0f39Ma0w3miEB536s12w3vld0A49Ma0Y&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0b3XFGll2fAahg4JZQol2rPdjn1XFGlQ&grant_type=authorization_code HTTP/1.1" 200 82
+Bad Request: /users/aes/phone/
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /v2/vectordb/collections/describe
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /user/getopenid
+Forbidden: /users/wechat/getopenid/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0f1NaUkl2iYphg49R4ll2klDYx2NaUkN&grant_type=authorization_code HTTP/1.1" 200 82
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /login.asp
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /user/getopenid
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=%7B0b19xEll2AwVgg4BRxnl2hdbm039xElU%7D&grant_type=authorization_code HTTP/1.1" 200 74
+Bad Request: /users/wechat/getopenid/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=%7B0b19xEll2AwVgg4BRxnl2hdbm039xElU%7D&grant_type=authorization_code HTTP/1.1" 200 74
+Bad Request: /users/wechat/getopenid/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=%7B0b19xEll2AwVgg4BRxnl2hdbm039xElU%7D&grant_type=authorization_code HTTP/1.1" 200 74
+Bad Request: /users/wechat/getopenid/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=%7B0b19xEll2AwVgg4BRxnl2hdbm039xElU%7D&grant_type=authorization_code HTTP/1.1" 200 74
+Bad Request: /users/wechat/getopenid/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=%7B0b19xEll2AwVgg4BRxnl2hdbm039xElU%7D&grant_type=authorization_code HTTP/1.1" 200 74
+Bad Request: /users/wechat/getopenid/
+Not Found: /user/getopenid
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e1nUp0w3NwaC53Uqn2w3PUPtH3nUp0E&grant_type=authorization_code HTTP/1.1" 200 82
+Not Found: /
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c36H80w3z7PB53qTA1w3r5NLd06H80r&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3Funll20kAgg4NBAnl2WFXpS2FunlW&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3AQt0005SMWU1o23200TTtMB3AQt01&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3DTK000YIXVU1plq100SdQcq0DTK0w&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3BQt0004SMWU1AQI200YevaG0BQt05&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c38Q80w3kgPB53bUm3w3pigHK08Q80s&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3fXG0w3u9hB53kbt1w3m5AES0fXG0b&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630323239392c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757602299,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757602299, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3uXp0w3X96C53xDm1w3d4DEj3uXp0e&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630323431342c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757602414,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757602414, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3v0S100fr4XU131a100UtLFy1v0S1B&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3VNY0w3SKyB53rZX1w3MF9PV2VNY06&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630333130362c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757603106,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757603106, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3uWu000HbOWU1tVR000pZO9w3uWu0I&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630333231362c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757603216,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757603216, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3PZq0w3bu7C53eZR1w3KXlsv4PZq0L&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630333337332c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757603373,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757603373, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3i6e000CbxWU1LQL300VxRDP1i6e0h&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3s9v000tdOWU1Plg0007EzBw4s9v0E&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3zlk100T7DXU1mZs2006Z6xO1zlk1-&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3abr0w3Il7C53tOx2w39SA2g0abr0r&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630333535322c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757603552,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757603552, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3nxx1w3bmeD53J121w3IUAIg4nxx10&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630333731332c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757603713,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757603713, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e38rI0w3R0jB534et2w3J38b738rI0l&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630333735372c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757603757,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757603757, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0f32LB100gYUXU12Mh2009A5hE12LB1H&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3mwe000WIxWU1jyY200biHSl3mwe02&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3sNB1003dUXU1z3X000vScRq4sNB1x&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630333836342c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757603864,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757603864, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3Wqpll2qFBgg4HLvnl2T2fCr3Wqpl9&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630343034382c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757604048,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757604048, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3COv000kcOWU1KM010059i5p0COv03&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630343037362c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757604076,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757604076, 'appid': 'wx2f7c9bff0a509c73'}}
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3sQv0007kOWU1IXI200Df1mX3sQv07&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c3TKr0w3AD7C53mtt2w3QJ08a2TKr0E&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373630343133372c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757604137,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757604137, 'appid': 'wx2f7c9bff0a509c73'}}
+Not Found: /
+Not Found: /
+Not Found: /sitemap.xml
+Not Found: /
+Not Found: /manage/account/login
+Not Found: /index.html
+Not Found: /+CSCOE+/logon.html
+Not Found: /cgi-bin/login.cgi
+Not Found: /login.htm
+Not Found: /login.html
+Not Found: /login.jsp
+Not Found: /login
+Not Found: /doc/index.html
+Not Found: /remote/login
+Not Found: //admin/login.asp
+Not Found: /web/
+Not Found: //webpages/login.html
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /login
+Not Found: /
+Not Found: /ab2g
+Not Found: /ab2h
+Not Found: /
+Not Found: /
+Not Found: /
+Not Found: /favicon.ico
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0b3GMb000tULWU1kXb000CyBe10GMb0B&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0f3XL0nl2NTAjg4Y0iml2n9gqw1XL0nC&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3FMb000vULWU1ZQQ300V4nL04FMb0e&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c3jPW0w3V3gB53kDD3w31kruA0jPW0q&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3MV0100nLWVU1LWW000CA0VU0MV01Q&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c3l9p0w3ZhOB53I0W3w3V75nm4l9p0L&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3tlv1w37uUC53OuZ2w3fy9fF3tlv1H&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3Kcc000u2MWU1n2E300ukYCZ3Kcc0e&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c3OiK000qWdWU1KYx2002WgBy1OiK0Q&grant_type=authorization_code HTTP/1.1" 200 82
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3Soi100CeSXU1gXC200Y1H063Soi1T&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3Rqi1003bSXU1oS6000tMpUo2Rqi1b&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c3guM1w3YWDC53EL60w3OrYKx4guM1T&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a3IcVll2yrvig4jHhml2aFKWA1IcVlr&grant_type=authorization_code HTTP/1.1" 200 82
+Base64解码成功 - Key长度: 16, IV长度: 16, 密文长度: 160
+AES-CBC解密成功，解密后数据长度: 160
+解密后数据末尾字节: [125, 125, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+检测到填充长度: 14
+填充内容: [14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14]
+标准PKCS7去填充成功，填充长度: 14
+最终明文长度: 146
+明文数据(hex): 7b2270686f6e654e756d626572223a223135393538313635333437222c227075726550686f6e654e756d626572223a223135393538313635333437222c22636f756e747279436f6465223a223836222c2277617465726d61726b223a7b2274696d657374616d70223a313735373635323131372c226170706964223a22777832663763396266663061353039633733227d7d
+UTF-8解码成功: '{"phoneNumber":"15958165347","purePhoneNumber":"15958165347","countryCode":"86","watermark":{"timestamp":1757652117,"appid":"wx2f7c9bff0a509c73"}}'
+JSON解析成功: {'phoneNumber': '15958165347', 'purePhoneNumber': '15958165347', 'countryCode': '86', 'watermark': {'timestamp': 1757652117, 'appid': 'wx2f7c9bff0a509c73'}}
+Forbidden: /products/detail/5/
+Not Found: /
+Not Found: /favicon.ico
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0e3bPN000zKiWU1VCA200JquTj1bPN0A&grant_type=authorization_code HTTP/1.1" 200 82
+Forbidden: /users/address/
+Forbidden: /users/address/
+Forbidden: /users/address/
+Not Found: //system/generate-signature-string/
+Not Found: /user/getopenid
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a1mGWGa1oNkiK0RuRFa1O2Tch0mGWGn&grant_type=authorization_code HTTP/1.1" 200 82
+Not Found: //system/generate-signature-string/
+Not Found: /system/generate-signature-string/
+Not Found: /system/wechat/certificate//
+Not Found: /system_management/wechat/certificate//
+Bad Request: /system/wechat/certificate/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c3jLi1w3WmfD53R3J3w3NYBdD1jLi17&grant_type=authorization_code HTTP/1.1" 200 82
+Forbidden: /products/detail/5/
+Forbidden: /products/detail/5/
+Forbidden: /products/detail/5/
+Forbidden: /products/detail/5/
+Forbidden: /products/detail/5/
+Forbidden: /products/detail/5/
+Forbidden: /products/detail/5/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0f3yju0w31NHB532j02w3XdBYi4yju02&grant_type=authorization_code HTTP/1.1" 200 82
+Not Found: /
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c3O1Ukl293ihg4cJRol2pmtYs1O1Ukm&grant_type=authorization_code HTTP/1.1" 200 82
+Forbidden: /products/detail/5/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0f38GA1w3bNOC53RxG0w3d21w138GA11&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c30OR1w3iMwC53Cv02w3hMwhW30OR1e&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d36Qn100BxLXU1Sqj000txovl26Qn18&grant_type=authorization_code HTTP/1.1" 200 82
+Forbidden: /products/detail/5/
+Forbidden: /products/detail/5/
+Forbidden: /products/detail/5/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0b3bRy000zqoWU1N3I2008aNiE1bRy0C&grant_type=authorization_code HTTP/1.1" 200 82
+Not Found: /
+Not Found: /users/adress/create/
+Not Found: /users/adress/create/
+Not Found: /users/adress/create/
+Not Found: /favicon.ico
+Method Not Allowed: /users/address/create/
+Not Found: /users/adress/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Not Found: /system/wechat/pay-sigin/
+Method Not Allowed: /users/address/create/
+Forbidden: /users/address/create/
+Not Found: /user/getopenid
+Forbidden: /users/wechat/getopenid/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0a197h0w3Us3C53ukg0w3K8UQI197h07&grant_type=authorization_code HTTP/1.1" 200 82
+Not Found: /system/wechat/pay-sigin/
+Not Found: /system/wechat/pay-sigin/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Not Found: /system/wechat/pay-sigin/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Not Found: /system/wechat/pay-sigin/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Forbidden: /users/address/create/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0f32gQ0w3FAnB53M6D3w3vuUKC02gQ0W&grant_type=authorization_code HTTP/1.1" 200 82
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3Jjm000DuCWU1lh6100UBceZ2Jjm0G&grant_type=authorization_code HTTP/1.1" 200 82
+Bad Request: /users/address/create/
+Bad Request: /users/address/create/
+Not Found: /
+Forbidden: /orders/create-direct/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0d3Lrr1w3Or4D53Y424w3yfozz3Lrr1D&grant_type=authorization_code HTTP/1.1" 200 82
+Bad Request: /users/aes/phone/
+Not Found: /users/detail/
+Forbidden: /orders/create-direct/
+Not Found: /users/detail/
+Forbidden: /orders/create-direct/
+Not Found: /users/detail/
+Forbidden: /orders/create-direct/
+Forbidden: /orders/create-direct/
+Forbidden: /orders/create-direct/
+Forbidden: /orders/create-direct/
+Forbidden: /orders/create-direct/
+Forbidden: /orders/create-direct/
+Forbidden: /orders/create-direct/
+Forbidden: /orders/create-direct/
+Bad Request: /orders/create-direct/
+Bad Request: /orders/create-direct/
+Bad Request: /orders/create-direct/
+Bad Request: /orders/create-direct/
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0b31Au000oPvWU1Y3x100Q6aGt01Au0h&grant_type=authorization_code HTTP/1.1" 200 82
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120949080004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120949080004) already exists.
+
+Internal Server Error: /orders/create-direct/
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120950010004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120950010004) already exists.
+
+Internal Server Error: /orders/create-direct/
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120951060004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120951060004) already exists.
+
+Internal Server Error: /orders/create-direct/
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120951220004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120951220004) already exists.
+
+Internal Server Error: /orders/create-direct/
+Bad Request: /system/wechat/pay-sign/
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120952290004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120952290004) already exists.
+
+Internal Server Error: /orders/create-direct/
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120952410004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120952410004) already exists.
+
+Internal Server Error: /orders/create-direct/
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120956220004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120956220004) already exists.
+
+Internal Server Error: /orders/create-direct/
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120958270004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509120958270004) already exists.
+
+Internal Server Error: /orders/create-direct/
+Bad Request: /orders/create-direct/
+Bad Request: /orders/create-direct/
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509121000050004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509121000050004) already exists.
+
+Internal Server Error: /orders/create-direct/
+Not Found: /
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509121002370004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509121002370004) already exists.
+
+Internal Server Error: /orders/create-direct/
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509121003200004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509121003200004) already exists.
+
+Internal Server Error: /orders/create-direct/
+直接创建订单时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509121003530004) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/order_management/views.py", line 474, in create_order_direct
+    order = Order.objects.create(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/data/jtd_backend/jtd_shop/order_management/models.py", line 80, in save
+    super().save(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/data/jtd_backend/jtd_shop/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "order_order_number_key"
+DETAIL:  Key (order_number)=(ORD202509121003530004) already exists.
+
+Internal Server Error: /orders/create-direct/
+Bad Request: /system/wechat/pay-sign/
+Not Found: /
+Forbidden: /system/wechat/certificate/
+Not Found: /user/getopenid
+Starting new HTTPS connection (1): api.weixin.qq.com:443
+https://api.weixin.qq.com:443 "GET /sns/jscode2session?appid=wx2f7c9bff0a509c73&secret=fb662e714a8c7bdac00286c02ebb575f&js_code=0c1JWRml22QTjg4rGbll2ZRVXl3JWRmR&grant_type=authorization_code HTTP/1.1" 200 82
+Not Found: /
+生成微信支付签名头时发生错误
+Traceback (most recent call last):
+  File "/data/jtd_backend/jtd_shop/system_management/views.py", line 243, in get_wechat_certificate
+    if query_string:
+NameError: name 'query_string' is not defined
+Internal Server Error: /system/wechat/certificate/
+Not Found: /
+Bad Request: /orders/create-direct/
+Not Found: /
+Method Not Allowed: /system/wechat/pay-sign/
+Method Not Allowed: /system/wechat/pay-sign/
+Method Not Allowed: /system/wechat/pay-sign/
+Forbidden: /system/wechat/pay-sign/
+Bad Request: /system/wechat/pay-sign/
+Bad Request: /system/wechat/pay-sign/
+Bad Request: /system/wechat/pay-sign/
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify
+Not Found: /system/wechat/pay/notify

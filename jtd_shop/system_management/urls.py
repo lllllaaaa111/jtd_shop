@@ -24,4 +24,10 @@ urlpatterns = [
 
     # 微信支付：生成签名头
     path('wechat/certificate/', views.get_wechat_certificate, name='get_wechat_certificate'),
+
+    # 微信支付：调起支付
+    path('wechat/pay-sign/', views.wechat_pay_sign, name='wechat_pay_sign'),
+    
+    # 微信支付：接收回传信息
+    path('wechat/pay/notify/', views.wechat_pay_notify, name='wechat_pay_notify'),
 ]
