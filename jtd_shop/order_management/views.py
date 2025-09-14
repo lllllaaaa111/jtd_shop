@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from .models import Order, OrderItem, Cart, OrderStatusLog
+from .models import Order, OrderItem, Cart, OrderStatusLog, LogisticsInfo, LogisticsStatusLog
 from user_management.models import User
 import logging
 from django.utils import timezone
@@ -26,6 +26,8 @@ def order_list(request):
                 'status': order.status,
                 'status_display': order.get_status_display(),
                 'payment_method': order.payment_method,
+                'tracking_number': order.tracking_number,
+                'courier_company': order.courier_company,
                 'created_at': order.created_at.strftime("%Y-%m-%d %H:%M:%S"),
                 'paid_at': order.paid_at.strftime("%Y-%m-%d %H:%M:%S") if order.paid_at else None,
             })
@@ -116,6 +118,8 @@ def order_search(request):
                 'recipient_name': order.recipient_name,
                 'recipient_phone': order.recipient_phone,
                 'delivery_address': order.delivery_address,
+                'tracking_number': order.tracking_number,
+                'courier_company': order.courier_company,
                 'created_at': order.created_at.strftime("%Y-%m-%d %H:%M:%S"),
                 'paid_at': order.paid_at.strftime("%Y-%m-%d %H:%M:%S") if order.paid_at else None,
             })
@@ -151,10 +155,31 @@ def order_by_number(request, order_number):
                 'id': item.id,
                 'product_id': item.product.id,
                 'product_name': item.product.name,
+                 'main_image': item.product.images.filter(is_primary=True).first().image.url if item.product.images.filter(is_primary=True).first() else None,
                 'quantity': item.quantity,
                 'price': str(item.price),
-                'total_price': str(item.total_price)
+                'total_price': str(item.total_price),
             })
+        # 获取物流信息
+        logistics_info = None
+        if hasattr(order, 'logistics'):
+            logistics = order.logistics
+            logistics_info = {
+                'id': logistics.id,
+                'courier_company': logistics.courier_company,
+                'tracking_number': logistics.tracking_number,
+                'status': logistics.status,
+                'status_display': logistics.get_status_display(),
+                'sender_name': logistics.sender_name,
+                'sender_phone': logistics.sender_phone,
+                'sender_address': logistics.sender_address,
+                'estimated_delivery': logistics.estimated_delivery.strftime('%Y-%m-%d %H:%M:%S') if logistics.estimated_delivery else None,
+                'actual_delivery': logistics.actual_delivery.strftime('%Y-%m-%d %H:%M:%S') if logistics.actual_delivery else None,
+                'notes': logistics.notes,
+                'created_at': logistics.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                'updated_at': logistics.updated_at.strftime('%Y-%m-%d %H:%M:%S')
+            }
+        
         data = {
             'id': order.id,
             'order_number': order.order_number,
@@ -168,6 +193,9 @@ def order_by_number(request, order_number):
             'recipient_name': order.recipient_name,
             'recipient_phone': order.recipient_phone,
             'notes': order.notes,
+            'tracking_number': order.tracking_number,
+            'courier_company': order.courier_company,
+            'logistics': logistics_info,
             'items': item_list,
             'created_at': order.created_at.strftime("%Y-%m-%d %H:%M:%S"),
             'paid_at': order.paid_at.strftime("%Y-%m-%d %H:%M:%S") if order.paid_at else None,
@@ -254,8 +282,29 @@ def order_detail(request, order_id):
                 'product_name': item.product.name,
                 'quantity': item.quantity,
                 'price': str(item.price),
-                'total_price': str(item.total_price)
+                'total_price': str(item.total_price),
+                'main_image': item.product.images.filter(is_primary=True).first().image.url if item.product.images.filter(is_primary=True).first() else None
             })
+        
+        # 获取物流信息
+        logistics_info = None
+        if hasattr(order, 'logistics'):
+            logistics = order.logistics
+            logistics_info = {
+                'id': logistics.id,
+                'courier_company': logistics.courier_company,
+                'tracking_number': logistics.tracking_number,
+                'status': logistics.status,
+                'status_display': logistics.get_status_display(),
+                'sender_name': logistics.sender_name,
+                'sender_phone': logistics.sender_phone,
+                'sender_address': logistics.sender_address,
+                'estimated_delivery': logistics.estimated_delivery.strftime('%Y-%m-%d %H:%M:%S') if logistics.estimated_delivery else None,
+                'actual_delivery': logistics.actual_delivery.strftime('%Y-%m-%d %H:%M:%S') if logistics.actual_delivery else None,
+                'notes': logistics.notes,
+                'created_at': logistics.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                'updated_at': logistics.updated_at.strftime('%Y-%m-%d %H:%M:%S')
+            }
         
         data = {
             'id': order.id,
@@ -269,6 +318,9 @@ def order_detail(request, order_id):
             'recipient_name': order.recipient_name,
             'recipient_phone': order.recipient_phone,
             'notes': order.notes,
+            'tracking_number': order.tracking_number,
+            'courier_company': order.courier_company,
+            'logistics': logistics_info,
             'items': item_list,
             'created_at': order.created_at.strftime("%Y-%m-%d %H:%M:%S"),
             'paid_at': order.paid_at.strftime("%Y-%m-%d %H:%M:%S") if order.paid_at else None,
@@ -402,6 +454,8 @@ def create_order(request):
             'delivery_address': order.delivery_address,
             'recipient_name': order.recipient_name,
             'recipient_phone': order.recipient_phone,
+            'tracking_number': order.tracking_number,
+            'courier_company': order.courier_company,
             'created_at': order.created_at.strftime("%Y-%m-%d %H:%M:%S"),
             'items_count': len(order_items)
         }
@@ -513,6 +567,8 @@ def create_order_direct(request):
                 'delivery_address': order.delivery_address,
                 'recipient_name': order.recipient_name,
                 'recipient_phone': order.recipient_phone,
+                'tracking_number': order.tracking_number,
+                'courier_company': order.courier_company,
                 'created_at': order.created_at.strftime('%Y-%m-%d %H:%M:%S')
             }
         })
@@ -581,6 +637,8 @@ def update_order_status(request):
                 'order_number': order.order_number,
                 'status': order.status,
                 'payment_method': order.payment_method,
+                'tracking_number': order.tracking_number,
+                'courier_company': order.courier_company,
                 'paid_at': order.paid_at.strftime('%Y-%m-%d %H:%M:%S') if order.paid_at else None
             }
         })
@@ -592,6 +650,308 @@ def update_order_status(request):
         }, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
         logger.exception("更新订单状态时发生错误")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_logistics_info(request):
+    """创建物流信息
+    请求体:
+    {
+        "order_id": 123,
+        "courier_company": "顺丰速运",
+        "tracking_number": "SF1234567890",
+        "sender_name": "发件人姓名",
+        "sender_phone": "13800138000",
+        "sender_address": "发件地址",
+        "estimated_delivery": "2024-01-01T12:00:00Z",
+        "notes": "物流备注"
+    }
+    """
+    try:
+        data = request.data
+        order_id = data.get('order_id')
+        
+        if not order_id:
+            return Response({
+                'code': 400,
+                'msg': '缺少必填字段: order_id',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 验证订单是否存在且属于当前用户
+        order = get_object_or_404(Order, id=order_id, user=request.user)
+        
+        # 检查是否已有物流信息
+        if hasattr(order, 'logistics'):
+            return Response({
+                'code': 400,
+                'msg': '该订单已有物流信息',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 创建物流信息
+        logistics = LogisticsInfo.objects.create(
+            order=order,
+            courier_company=data.get('courier_company', ''),
+            tracking_number=data.get('tracking_number', ''),
+            sender_name=data.get('sender_name'),
+            sender_phone=data.get('sender_phone'),
+            sender_address=data.get('sender_address'),
+            estimated_delivery=data.get('estimated_delivery'),
+            notes=data.get('notes')
+        )
+        
+        # 记录物流状态日志
+        LogisticsStatusLog.objects.create(
+            logistics=logistics,
+            from_status='',
+            to_status='pending',
+            operator=request.user,
+            description='创建物流信息'
+        )
+        
+        return Response({
+            'code': 200,
+            'msg': '物流信息创建成功',
+            'result': {
+                'id': logistics.id,
+                'order_id': order.id,
+                'order_number': order.order_number,
+                'courier_company': logistics.courier_company,
+                'tracking_number': logistics.tracking_number,
+                'status': logistics.status,
+                'status_display': logistics.get_status_display(),
+                'created_at': logistics.created_at.strftime('%Y-%m-%d %H:%M:%S')
+            }
+        })
+        
+    except Order.DoesNotExist:
+        return Response({
+            'code': 404,
+            'msg': '订单不存在',
+            'result': None
+        }, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        logger.exception("创建物流信息时发生错误")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_logistics_info(request, order_id):
+    """获取订单物流信息"""
+    try:
+        order = get_object_or_404(Order, id=order_id, user=request.user)
+        
+        if not hasattr(order, 'logistics'):
+            return Response({
+                'code': 404,
+                'msg': '该订单暂无物流信息',
+                'result': None
+            }, status=status.HTTP_404_NOT_FOUND)
+        
+        logistics = order.logistics
+        status_logs = logistics.status_logs.all()[:10]  # 最近10条状态记录
+        
+        logs_data = []
+        for log in status_logs:
+            logs_data.append({
+                'from_status': log.from_status,
+                'to_status': log.to_status,
+                'location': log.location,
+                'description': log.description,
+                'operator': log.operator.username if log.operator else None,
+                'created_at': log.created_at.strftime('%Y-%m-%d %H:%M:%S')
+            })
+        
+        result = {
+            'id': logistics.id,
+            'order_id': order.id,
+            'order_number': order.order_number,
+            'courier_company': logistics.courier_company,
+            'tracking_number': logistics.tracking_number,
+            'status': logistics.status,
+            'status_display': logistics.get_status_display(),
+            'sender_name': logistics.sender_name,
+            'sender_phone': logistics.sender_phone,
+            'sender_address': logistics.sender_address,
+            'estimated_delivery': logistics.estimated_delivery.strftime('%Y-%m-%d %H:%M:%S') if logistics.estimated_delivery else None,
+            'actual_delivery': logistics.actual_delivery.strftime('%Y-%m-%d %H:%M:%S') if logistics.actual_delivery else None,
+            'notes': logistics.notes,
+            'created_at': logistics.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'updated_at': logistics.updated_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'status_logs': logs_data
+        }
+        
+        return Response({
+            'code': 200,
+            'msg': 'success',
+            'result': result
+        })
+        
+    except Order.DoesNotExist:
+        return Response({
+            'code': 404,
+            'msg': '订单不存在',
+            'result': None
+        }, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        logger.exception("获取物流信息时发生错误")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_logistics_status(request, logistics_id):
+    """更新物流状态
+    请求体:
+    {
+        "status": "shipped",
+        "location": "北京分拣中心",
+        "description": "快件已发出"
+    }
+    """
+    try:
+        logistics = get_object_or_404(LogisticsInfo, id=logistics_id, order__user=request.user)
+        
+        data = request.data
+        new_status = data.get('status')
+        location = data.get('location')
+        description = data.get('description')
+        
+        if not new_status:
+            return Response({
+                'code': 400,
+                'msg': '缺少必填字段: status',
+                'result': None
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 验证状态是否有效
+        allowed_status = [choice[0] for choice in LogisticsInfo.LOGISTICS_STATUS_CHOICES]
+        if new_status not in allowed_status:
+            return Response({
+                'code': 400,
+                'msg': f'无效的物流状态: {new_status}',
+                'result': {
+                    'allowed_status': allowed_status
+                }
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        old_status = logistics.status
+        logistics.status = new_status
+        
+        # 如果状态为已送达，设置实际送达时间
+        if new_status == 'delivered' and not logistics.actual_delivery:
+            logistics.actual_delivery = timezone.now()
+        
+        logistics.save()
+        
+        # 记录状态变更日志
+        LogisticsStatusLog.objects.create(
+            logistics=logistics,
+            from_status=old_status,
+            to_status=new_status,
+            location=location,
+            description=description,
+            operator=request.user
+        )
+        
+        return Response({
+            'code': 200,
+            'msg': '物流状态更新成功',
+            'result': {
+                'id': logistics.id,
+                'tracking_number': logistics.tracking_number,
+                'status': logistics.status,
+                'status_display': logistics.get_status_display(),
+                'location': location,
+                'description': description,
+                'updated_at': logistics.updated_at.strftime('%Y-%m-%d %H:%M:%S')
+            }
+        })
+        
+    except LogisticsInfo.DoesNotExist:
+        return Response({
+            'code': 404,
+            'msg': '物流信息不存在',
+            'result': None
+        }, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        logger.exception("更新物流状态时发生错误")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_logistics_by_tracking_number(request, tracking_number):
+    """根据物流单号查询物流信息"""
+    try:
+        logistics = get_object_or_404(LogisticsInfo, tracking_number=tracking_number, order__user=request.user)
+        order = logistics.order
+        
+        status_logs = logistics.status_logs.all()[:10]
+        logs_data = []
+        for log in status_logs:
+            logs_data.append({
+                'from_status': log.from_status,
+                'to_status': log.to_status,
+                'location': log.location,
+                'description': log.description,
+                'operator': log.operator.username if log.operator else None,
+                'created_at': log.created_at.strftime('%Y-%m-%d %H:%M:%S')
+            })
+        
+        result = {
+            'id': logistics.id,
+            'order_id': order.id,
+            'order_number': order.order_number,
+            'courier_company': logistics.courier_company,
+            'tracking_number': logistics.tracking_number,
+            'status': logistics.status,
+            'status_display': logistics.get_status_display(),
+            'sender_name': logistics.sender_name,
+            'sender_phone': logistics.sender_phone,
+            'sender_address': logistics.sender_address,
+            'estimated_delivery': logistics.estimated_delivery.strftime('%Y-%m-%d %H:%M:%S') if logistics.estimated_delivery else None,
+            'actual_delivery': logistics.actual_delivery.strftime('%Y-%m-%d %H:%M:%S') if logistics.actual_delivery else None,
+            'notes': logistics.notes,
+            'created_at': logistics.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'updated_at': logistics.updated_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'status_logs': logs_data
+        }
+        
+        return Response({
+            'code': 200,
+            'msg': 'success',
+            'result': result
+        })
+        
+    except LogisticsInfo.DoesNotExist:
+        return Response({
+            'code': 404,
+            'msg': '物流信息不存在',
+            'result': None
+        }, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        logger.exception("根据物流单号查询时发生错误")
         return Response({
             'code': 500,
             'msg': f'服务器错误: {str(e)}',

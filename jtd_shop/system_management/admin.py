@@ -32,32 +32,7 @@ class SystemConfigAdmin(admin.ModelAdmin):
         """不允许删除配置"""
         return False
 
-class OperationLogAdmin(admin.ModelAdmin):
-    list_display = ['user', 'action', 'resource', 'resource_id', 'ip_address', 'created_at']
-    list_filter = ['action', 'resource', 'created_at']
-    search_fields = ['user__username', 'action', 'resource', 'description']
-    readonly_fields = ['created_at']
-    ordering = ['-created_at']
-    date_hierarchy = 'created_at'
+# 操作日志、文件上传、数据备份管理不在主admin中显示
 
-class FileUploadAdmin(admin.ModelAdmin):
-    list_display = ['file_name', 'file_type', 'file_size_mb', 'user', 'upload_time', 'is_deleted']
-    list_filter = ['file_type', 'is_deleted', 'upload_time']
-    search_fields = ['file_name', 'user__username']
-    readonly_fields = ['upload_time', 'file_size']
-    ordering = ['-upload_time']
-    date_hierarchy = 'upload_time'
-
-class DataBackupAdmin(admin.ModelAdmin):
-    list_display = ['backup_name', 'backup_type', 'file_size', 'created_by', 'created_at', 'is_success']
-    list_filter = ['backup_type', 'is_success', 'created_at']
-    search_fields = ['backup_name', 'description', 'created_by__username']
-    readonly_fields = ['created_at', 'file_size']
-    ordering = ['-created_at']
-    date_hierarchy = 'created_at'
-
-# 注册所有模型到Admin
-admin.site.register(SystemConfig, SystemConfigAdmin)
-admin.site.register(OperationLog, OperationLogAdmin)
-admin.site.register(FileUpload, FileUploadAdmin)
-admin.site.register(DataBackup, DataBackupAdmin) 
+# 注册核心模型到Admin
+admin.site.register(SystemConfig, SystemConfigAdmin) 

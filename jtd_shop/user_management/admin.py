@@ -98,34 +98,7 @@ class UserAdmin(BaseUserAdmin):
 
 # 注意：移除了UserProfile的单独注册，现在只在User页面中作为内联编辑显示
 
-@admin.register(Address)
-class AddressAdmin(admin.ModelAdmin):
-    """地址管理"""
-    list_display = ('id', 'user', 'recipient', 'contact', 'is_default', 'address_preview')
-    list_filter = ('is_default', 'user__role')
-    search_fields = ('user__username', 'recipient', 'contact', 'address')
-    raw_id_fields = ('user',)
-    
-    def address_preview(self, obj):
-        """地址预览（截取前30个字符）"""
-        if len(obj.address) > 30:
-            return obj.address[:30] + '...'
-        return obj.address
-    address_preview.short_description = '地址预览'
-
-
-@admin.register(Mine)
-class MineAdmin(admin.ModelAdmin):
-    """用户头像图片管理"""
-    list_display = ('id', 'name', 'user', 'order', 'is_delete', 'file_size', 'created_at')
-    list_filter = ('is_delete', 'created_at', 'user__role')
-    search_fields = ('name', 'user__username')
-    raw_id_fields = ('user',)
-    readonly_fields = ('created_at', 'updated_at', 'file_size')
-    
-    def get_queryset(self, request):
-        """优化查询"""
-        return super().get_queryset(request).select_related('user')
+# 地址和头像管理不在主admin中显示，通过用户内联管理
 
 
 # 自定义管理页面标题

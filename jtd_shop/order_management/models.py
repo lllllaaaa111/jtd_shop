@@ -53,6 +53,8 @@ class Order(models.Model):
     recipient_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='收件人姓名')
     recipient_phone = models.CharField(max_length=20, blank=True, null=True, verbose_name='收件人电话')
     notes = models.TextField(blank=True, null=True, verbose_name='订单备注')
+    tracking_number = models.CharField(max_length=100, blank=True, null=True, verbose_name='物流单号')
+    courier_company = models.CharField(max_length=50, blank=True, null=True, verbose_name='快递公司')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
     paid_at = models.DateTimeField(null=True, blank=True, verbose_name='支付时间')
@@ -122,6 +124,66 @@ class Cart(models.Model):
     def total_price(self):
         """计算该购物车项的总价"""
         return self.quantity * self.product.price
+
+class LogisticsInfo(models.Model):
+    """物流信息模型"""
+    LOGISTICS_STATUS_CHOICES = [
+        ('pending', '待发货'),
+        ('shipped', '已发货'),
+        ('in_transit', '运输中'),
+        ('out_for_delivery', '派送中'),
+        ('delivered', '已送达'),
+        ('failed', '派送失败'),
+        ('returned', '已退回'),
+    ]
+    
+    order = models.OneToOneField(Order, on_delete=models.CASCADE, related_name='logistics', verbose_name='订单')
+    courier_company = models.CharField(max_length=50, verbose_name='快递公司')
+    tracking_number = models.CharField(max_length=100, unique=True, verbose_name='物流单号')
+    status = models.CharField(
+        max_length=20, 
+        choices=LOGISTICS_STATUS_CHOICES, 
+        default='pending',
+        verbose_name='物流状态'
+    )
+    sender_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='发件人姓名')
+    sender_phone = models.CharField(max_length=20, blank=True, null=True, verbose_name='发件人电话')
+    sender_address = models.TextField(blank=True, null=True, verbose_name='发件地址')
+    estimated_delivery = models.DateTimeField(blank=True, null=True, verbose_name='预计送达时间')
+    actual_delivery = models.DateTimeField(blank=True, null=True, verbose_name='实际送达时间')
+    notes = models.TextField(blank=True, null=True, verbose_name='物流备注')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+    
+    class Meta:
+        verbose_name = '物流信息'
+        verbose_name_plural = '物流信息'
+        db_table = 'logistics_info'
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"{self.order.order_number} - {self.courier_company} {self.tracking_number}"
+
+
+class LogisticsStatusLog(models.Model):
+    """物流状态变更日志"""
+    logistics = models.ForeignKey(LogisticsInfo, on_delete=models.CASCADE, related_name='status_logs', verbose_name='物流信息')
+    from_status = models.CharField(max_length=20, verbose_name='原状态')
+    to_status = models.CharField(max_length=20, verbose_name='新状态')
+    location = models.CharField(max_length=200, blank=True, null=True, verbose_name='当前位置')
+    description = models.TextField(blank=True, null=True, verbose_name='状态描述')
+    operator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='操作人')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    
+    class Meta:
+        verbose_name = '物流状态日志'
+        verbose_name_plural = '物流状态日志'
+        db_table = 'logistics_status_log'
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"{self.logistics.tracking_number} - {self.from_status} -> {self.to_status}"
+
 
 class OrderStatusLog(models.Model):
     """订单状态变更日志"""

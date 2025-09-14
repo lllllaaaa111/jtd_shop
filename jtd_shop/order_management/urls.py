@@ -20,4 +20,10 @@ urlpatterns = [
     
     # 购物车相关
     path('cart/list/', views.cart_list, name='cart_list'),
+    
+    # 物流信息相关
+    path('logistics/create/', views.create_logistics_info, name='create_logistics_info'),
+    path('logistics/order/<int:order_id>/', views.get_logistics_info, name='get_logistics_info'),
+    path('logistics/<int:logistics_id>/update-status/', views.update_logistics_status, name='update_logistics_status'),
+    path('logistics/tracking/<str:tracking_number>/', views.get_logistics_by_tracking_number, name='get_logistics_by_tracking_number'),
 ]

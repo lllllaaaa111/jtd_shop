@@ -42,17 +42,4 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
 
-@admin.register(ProductImage)
-class ProductImageAdmin(admin.ModelAdmin):
-    list_display = ('product', 'image', 'is_primary', 'order', 'created_at')
-    list_filter = ('is_primary', 'created_at')
-    search_fields = ('product__name',)
-    ordering = ('product', 'order')
-
-
-@admin.register(ProductDescription)
-class ProductDescriptionAdmin(admin.ModelAdmin):
-    list_display = ('product', 'description_image', 'order', 'created_at')
-    list_filter = ('created_at',)
-    search_fields = ('product__name',)
-    ordering = ('product', 'order') 
+# 商品图片和描述管理不在主admin中显示，通过商品内联管理 

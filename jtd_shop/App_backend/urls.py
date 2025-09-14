@@ -21,6 +21,12 @@ from django.views.static import serve
 from django.conf.urls.static import static
 from django.conf import settings
 
+# 导入自定义admin配置
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import admin_config
+
 urlpatterns = [
     # Django管理后台
        path('admin/', admin.site.urls),

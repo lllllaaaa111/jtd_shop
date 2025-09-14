@@ -1,0 +1,106 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+/* 物流信息内联编辑样式 */
+.inline-group .fieldset {
+    margin-bottom: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.inline-group .fieldset h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #495057;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.inline-group .fieldset .form-row {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.inline-group .fieldset .form-row .field-box {
+    flex: 1;
+    min-width: 200px;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.inline-group .fieldset label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 6px;
+    display: block;
+    font-size: 14px;
+}
+
+.inline-group .fieldset input,
+.inline-group .fieldset select,
+.inline-group .fieldset textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.inline-group .fieldset input:focus,
+.inline-group .fieldset select:focus,
+.inline-group .fieldset textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+.inline-group .fieldset .help {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 4px;
+}
+
+/* 物流状态特殊样式 */
+.inline-group .fieldset .field-status select {
+    background-color: #fff;
+    border: 2px solid #e9ecef;
+}
+
+.inline-group .fieldset .field-status select:focus {
+    border-color: #007bff;
+}
+
+/* 只读字段样式 */
+.inline-group .fieldset .readonly {
+    background-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .inline-group .fieldset .form-row {
+        flex-direction: column;
+    }
+    
+    .inline-group .fieldset .form-row .field-box {
+        min-width: 100%;
+    }
+}
+</style>
+{% endblock %}
