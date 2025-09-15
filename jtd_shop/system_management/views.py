@@ -12,6 +12,7 @@ import base64
 import time
 import uuid
 import json
+from typing import Optional
 
 logger = logging.getLogger(__name__)
 
@@ -384,6 +385,92 @@ def generate_signature(message, secret):
     signature = hmac.new(secret_bytes, message_bytes, hashlib.sha256).digest()
     return base64.b64encode(signature).decode('utf-8')
 
+def verify_wechatpay_signature(platform_cert_pem: str, serial_header: str, timestamp_header: str, nonce_header: str, body: str, signature_header: str) -> bool:
+    """使用微信支付平台证书验签回调通知。
+    要求：
+      - platform_cert_pem: 数据库中的平台证书（PEM）
+      - serial_header: Wechatpay-Serial
+      - timestamp_header: Wechatpay-Timestamp
+      - nonce_header: Wechatpay-Nonce
+      - body: 原始请求体字符串
+      - signature_header: Wechatpay-Signature（Base64）
+    验签串格式（按官方文档）：timestamp + "\n" + nonce + "\n" + body + "\n"
+    算法：RSA SHA256，PKCS1v15
+    """
+    platform_cert_pem = (platform_cert_pem or '').strip().replace('\r\n', '\n').replace('\r', '\n')
+    if not platform_cert_pem or 'BEGIN CERTIFICATE' not in platform_cert_pem:
+        raise ValueError('平台证书未配置或格式不正确')
+
+    # 序列号检查（证书的序列号与请求头应一致）
+    try:
+        from cryptography import x509
+        from cryptography.hazmat.backends import default_backend
+        from cryptography.hazmat.primitives.asymmetric import padding
+        from cryptography.hazmat.primitives import hashes
+        import base64 as _b64
+    except ImportError:
+        # 抛给上层由其处理依赖缺失
+        raise
+
+    # 某些情况下cert_file可能包含多个证书，尝试逐个解析匹配序列号
+    certs: list[x509.Certificate] = []
+    pem_blocks = []
+    start = '-----BEGIN CERTIFICATE-----'
+    end = '-----END CERTIFICATE-----'
+    text = platform_cert_pem
+    while True:
+        s = text.find(start)
+        if s == -1:
+            break
+        e = text.find(end, s)
+        if e == -1:
+            break
+        pem_blocks.append(text[s:e+len(end)] + '\n')
+        text = text[e+len(end):]
+    if not pem_blocks:
+        pem_blocks = [platform_cert_pem]
+
+    target_cert: Optional[x509.Certificate] = None
+    for blk in pem_blocks:
+        try:
+            cert = x509.load_pem_x509_certificate(blk.encode('utf-8'), default_backend())
+            cert_serial_hex = format(cert.serial_number, 'x').upper()
+            header_serial = (serial_header or '').strip().upper()
+            if header_serial == cert_serial_hex:
+                target_cert = cert
+                break
+            certs.append(cert)
+        except Exception:
+            continue
+
+    # 找不到与头部一致的证书时，放宽为使用第一张证书尝试验签（有些环境序列号格式不同），但记录警告
+    if target_cert is None and certs:
+        target_cert = certs[0]
+        logger.warning('未匹配到相同序列号证书，使用列表首证书尝试验签')
+
+    if target_cert is None:
+        logger.error('无法解析平台证书')
+        return False
+
+    message = f"{timestamp_header}\n{nonce_header}\n{body}\n".encode('utf-8')
+    try:
+        signature_bytes = _b64.b64decode(signature_header)
+    except Exception:
+        return False
+
+    public_key = target_cert.public_key()
+    try:
+        public_key.verify(
+            signature_bytes,
+            message,
+            padding.PKCS1v15(),
+            hashes.SHA256()
+        )
+        return True
+    except Exception as e:
+        logger.warning(f'平台回调验签失败: {e}')
+        return False
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def generate_signature_string(request):
@@ -483,84 +570,141 @@ def wechat_pay_notify(request):
     请求体为JSON格式的支付结果数据
     """
     try:
-        # 获取微信签名头信息
+        # 获取微信签名头信息（可用于验签）
         signature = request.META.get('HTTP_WECHATPAY_SIGNATURE', '')
-        timestamp = request.META.get('HTTP_WECHATPAY_TIMESTAMP', '')
-        nonce = request.META.get('HTTP_WECHATPAY_NONCE', '')
+        ts_header = request.META.get('HTTP_WECHATPAY_TIMESTAMP', '')
+        nonce_header = request.META.get('HTTP_WECHATPAY_NONCE', '')
         serial = request.META.get('HTTP_WECHATPAY_SERIAL', '')
-        
-        logger.info(f"收到微信支付通知: signature={signature[:20]}..., timestamp={timestamp}, nonce={nonce}, serial={serial}")
-        
-        # 获取请求体
+
+        logger.info(f"收到微信支付通知: signature={signature[:20]}..., timestamp={ts_header}, nonce={nonce_header}, serial={serial}")
+
+        # 解析请求体（顶层为通知元信息与resource密文块）
         try:
-            body = request.body.decode('utf-8')
-            notify_data = json.loads(body) if body else {}
+            raw_body = request.body.decode('utf-8')
+            notify_data = json.loads(raw_body) if raw_body else {}
         except Exception as e:
             logger.error(f"解析微信支付通知请求体失败: {e}")
             return Response({'code': 'FAIL', 'message': '请求体解析失败'}, status=400)
-        
-        logger.info(f"微信支付通知数据: {notify_data}")
-        
-        # 验证签名（可选，生产环境建议验证）
-        # 这里可以根据需要实现签名验证逻辑
-        
-        # 处理支付结果
+
+        logger.info(f"微信支付通知数据(顶层): id={notify_data.get('id')}, event_type={notify_data.get('event_type')}, resource_type={notify_data.get('resource_type')}, summary={notify_data.get('summary')}")
+
+        # 读取解密与验签所需的配置
+        cfg = SystemConfig.objects.filter(is_active=True).first()
+        if not cfg:
+            logger.error('未找到系统配置，无法处理通知')
+            return Response({'code': 'FAIL', 'message': '服务器未配置'}, status=500)
+
+        # 先进行微信平台回调验签（强烈建议生产必须开启）
+        try:
+            verified = verify_wechatpay_signature(
+                platform_cert_pem=(cfg.cert_file or ''),
+                serial_header=serial,
+                timestamp_header=ts_header,
+                nonce_header=nonce_header,
+                body=raw_body,
+                signature_header=signature,
+            )
+        except ImportError:
+            logger.error('缺少验签依赖，请安装 cryptography 库')
+            return Response({'code': 'FAIL', 'message': '缺少验签依赖'}, status=500)
+        except Exception as e:
+            logger.error(f"验签过程异常: {e}")
+            return Response({'code': 'FAIL', 'message': '验签异常'}, status=500)
+
+        if not verified:
+            logger.warning('微信回调验签未通过')
+            return Response({'code': 'FAIL', 'message': '验签失败'}, status=401)
+
         event_type = notify_data.get('event_type', '')
-        resource = notify_data.get('resource', {})
-        
-        if event_type == 'TRANSACTION.SUCCESS':
-            # 支付成功
-            ciphertext = resource.get('ciphertext', '')
-            nonce_str = resource.get('nonce', '')
-            associated_data = resource.get('associated_data', '')
-            
-            # 解密支付结果（需要实现AES-GCM解密）
+        resource = notify_data.get('resource', {}) or {}
+        algorithm = resource.get('algorithm')
+        ciphertext_b64 = resource.get('ciphertext', '')
+        nonce_str = resource.get('nonce', '')
+        associated_data = resource.get('associated_data', '')
+
+        # 仅当有resource密文时尝试解密（按官方固定算法 AEAD_AES_256_GCM）
+        decrypted = {}
+        if algorithm == 'AEAD_AES_256_GCM' and ciphertext_b64 and nonce_str is not None:
             try:
-                # 这里需要实现AES-GCM解密逻辑
-                # 解密后得到支付结果详情
-                payment_result = {
-                    'out_trade_no': notify_data.get('out_trade_no', ''),
-                    'transaction_id': notify_data.get('transaction_id', ''),
-                    'trade_state': notify_data.get('trade_state', ''),
-                    'trade_state_desc': notify_data.get('trade_state_desc', ''),
-                    'success_time': notify_data.get('success_time', ''),
-                    'amount': notify_data.get('amount', {}),
-                    'payer': notify_data.get('payer', {}),
-                }
-                
-                logger.info(f"支付成功: {payment_result}")
-                
-                # 这里可以添加业务逻辑，如：
-                # 1. 更新订单状态
-                # 2. 发送支付成功通知
-                # 3. 记录支付日志
-                
-                # 记录操作日志
-                OperationLog.objects.create(
-                    user=None,  # 系统操作
-                    action='WECHAT_PAY_NOTIFY',
-                    resource='PAYMENT',
-                    resource_id=payment_result.get('out_trade_no', ''),
-                    description=f"微信支付成功通知: {payment_result.get('transaction_id', '')}",
-                    ip_address=request.META.get('REMOTE_ADDR', ''),
-                    user_agent=request.META.get('HTTP_USER_AGENT', '')
-                )
-                
+                # 优先使用 cryptography 的 AESGCM
+                try:
+                    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+                    import base64 as _b64
+
+                    if not cfg.api_v3_key:
+                        logger.error('缺少API v3密钥配置，无法解密通知资源')
+                        return Response({'code': 'FAIL', 'message': '服务器未配置'}, status=500)
+
+                    api_v3_key_bytes = (cfg.api_v3_key or '').encode('utf-8')
+                    nonce_bytes = nonce_str.encode('utf-8')
+                    aad_bytes = (associated_data or '').encode('utf-8')
+                    ciphertext_bytes = _b64.b64decode(ciphertext_b64)
+
+                    aesgcm = AESGCM(api_v3_key_bytes)
+                    plain_bytes = aesgcm.decrypt(nonce_bytes, ciphertext_bytes, aad_bytes)
+                    decrypted = json.loads(plain_bytes.decode('utf-8'))
+                except ImportError:
+                    # 备选使用 PyCryptodome
+                    try:
+                        from Crypto.Cipher import AES as _AES
+                        import base64 as _b64
+
+                        if not cfg.api_v3_key:
+                            logger.error('缺少API v3密钥配置，无法解密通知资源')
+                            return Response({'code': 'FAIL', 'message': '服务器未配置'}, status=500)
+
+                        api_v3_key_bytes = (cfg.api_v3_key or '').encode('utf-8')
+                        nonce_bytes = nonce_str.encode('utf-8')
+                        aad_bytes = (associated_data or '').encode('utf-8')
+                        data = _b64.b64decode(ciphertext_b64)
+
+                        cipher = _AES.new(api_v3_key_bytes, _AES.MODE_GCM, nonce=nonce_bytes)
+                        cipher.update(aad_bytes)
+                        # data = ciphertext || tag (WeChat v3 按标准拼接)
+                        ciphertext, tag = data[:-16], data[-16:]
+                        plain_bytes = cipher.decrypt_and_verify(ciphertext, tag)
+                        decrypted = json.loads(plain_bytes.decode('utf-8'))
+                    except ImportError:
+                        logger.error('缺少解密依赖，请安装 cryptography 或 pycryptodome')
+                        return Response({'code': 'FAIL', 'message': '缺少解密依赖'}, status=500)
             except Exception as e:
                 logger.error(f"解密微信支付通知失败: {e}")
                 return Response({'code': 'FAIL', 'message': '解密失败'}, status=400)
-        
-        elif event_type == 'TRANSACTION.CLOSED':
-            # 支付关闭
-            logger.info(f"支付关闭: {notify_data}")
-            
         else:
-            # 其他事件类型
-            logger.info(f"收到其他微信支付事件: {event_type}, 数据: {notify_data}")
-        
-        # 返回成功响应给微信
-        return Response({'code': 'SUCCESS', 'message': 'OK'})
-        
+            logger.warning('通知resource缺少密文或算法不匹配，跳过解密')
+
+        # 根据事件类型处理（这里主要演示交易成功）
+        if event_type == 'TRANSACTION.SUCCESS':
+            payment_result = {
+                'out_trade_no': (decrypted.get('out_trade_no') if decrypted else None) or '',
+                'transaction_id': (decrypted.get('transaction_id') if decrypted else None) or '',
+                'trade_state': (decrypted.get('trade_state') if decrypted else None) or '',
+                'trade_state_desc': (decrypted.get('trade_state_desc') if decrypted else None) or '',
+                'success_time': (decrypted.get('success_time') if decrypted else None) or '',
+                'amount': (decrypted.get('amount') if decrypted else None) or {},
+                'payer': (decrypted.get('payer') if decrypted else None) or {},
+            }
+
+            logger.info(f"支付成功: {payment_result}")
+
+            # 记录操作日志（业务侧可在此更新订单等）
+            OperationLog.objects.create(
+                user=None,
+                action='WECHAT_PAY_NOTIFY',
+                resource='PAYMENT',
+                resource_id=payment_result.get('out_trade_no', ''),
+                description=f"微信支付成功通知: {payment_result.get('transaction_id', '')}",
+                ip_address=request.META.get('REMOTE_ADDR', ''),
+                user_agent=request.META.get('HTTP_USER_AGENT', '')
+            )
+        elif event_type == 'TRANSACTION.CLOSED':
+            logger.info(f"支付关闭: id={notify_data.get('id')}, summary={notify_data.get('summary')}")
+        else:
+            logger.info(f"收到其他微信支付事件: {event_type}, id={notify_data.get('id')}")
+
+        # 返回成功响应给微信（无需返回体，200或204均可）
+        return Response(status=200)
+
     except Exception as e:
         logger.exception('处理微信支付通知时发生错误')
         return Response({'code': 'FAIL', 'message': f'服务器错误: {str(e)}'}, status=500)
