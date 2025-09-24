@@ -7,9 +7,9 @@ Wants=postgresql.service
 Type=exec
 User=www-data
 Group=www-data
-WorkingDirectory=/data/jtd_backend/jtd_shop
-Environment=PATH=/data/jtd_backend/jtd_shop/.venv/bin
-ExecStart=/data/jtd_backend/jtd_shop/.venv/bin/gunicorn -c gunicorn.conf.py App_backend.wsgi:application
+WorkingDirectory=/data/jtd_shop
+Environment=PATH=/data/jtd_shop/.venv/bin
+ExecStart=/data/jtd_shop/.venv/bin/gunicorn -c gunicorn.conf.py App_backend.wsgi:application
 ExecReload=/bin/kill -s HUP $MAINPID
 Restart=always
 RestartSec=3
@@ -19,7 +19,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/data/jtd_backend/jtd_shop
+ReadWritePaths=/data/jtd_shop
 
 # 日志设置
 StandardOutput=journal

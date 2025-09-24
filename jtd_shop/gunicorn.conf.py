@@ -17,11 +17,9 @@ worker_connections = 1000
 timeout = 120
 keepalive = 5
 
-# 日志配置
-accesslog = "/var/log/jtd_shop/gunicorn_access.log"
-errorlog = "/var/log/jtd_shop/gunicorn_error.log"
-# accesslog = "-"
-# errorlog = "-"
+# 日志配置（输出到 stdout/stderr，便于 systemd/journal 收集）
+accesslog = "-"
+errorlog = "-"
 loglevel = "info"
 umask = 0o022
 

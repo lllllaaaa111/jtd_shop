@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*%f+w3#5b%c2r+0xe%08_gbw80@vw0di6k7*7j2fk_1rnym@1e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
 
@@ -31,6 +31,12 @@ ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
 USE_X_FORWARDED_HOST = True
 USE_X_FORWARDED_PORT = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
 
 # Application definition
@@ -74,6 +80,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # CORS中间件，必须在CommonMiddleware之前
+    'App_backend.middleware.ProductsDebugMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -187,15 +194,17 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
         },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'debug.log',
-        },
     },
     'root': {
-        'handlers': ['console', 'file'],
+        'handlers': ['console'],
         'level': 'DEBUG',
+    },
+    'loggers': {
+        'request_debug': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
     },
 }
 
@@ -212,6 +221,13 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8080',
     'https://jtd.wxdnet.cn:8080',
     'https://servicewechat.com',
+    'http://jintiandeshop.cn',
+    'https://jintiandeshop.cn',
+    'http://www.jintiandeshop.cn',
+    'https://www.jintiandeshop.cn',
+    'http://backend.jintiandeshop.cn',
+    'https://backend.jintiandeshop.cn',
+    
 ]
 
 # 如果将来使用HTTPS，添加：

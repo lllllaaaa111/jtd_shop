@@ -1,0 +1,255 @@
+/* JTD商城管理系统 - 精简样式 */
+
+/* 基础表格样式 */
+.admin .results table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin .results th,
+.admin .results td {
+    padding: 10px 12px;
+    vertical-align: middle;
+    word-wrap: break-word;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.admin .results th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+
+/* 列宽度优化 */
+.admin .results th:nth-child(1),
+.admin .results td:nth-child(1) {
+    width: 20%;
+    min-width: 150px;
+}
+
+.admin .results th:nth-child(2),
+.admin .results td:nth-child(2) {
+    width: 15%;
+    min-width: 120px;
+}
+
+.admin .results th:nth-child(3),
+.admin .results td:nth-child(3) {
+    width: 12%;
+    min-width: 100px;
+}
+
+.admin .results th:nth-child(4),
+.admin .results td:nth-child(4) {
+    width: 10%;
+    min-width: 80px;
+}
+
+.admin .results th:nth-child(5),
+.admin .results td:nth-child(5) {
+    width: 15%;
+    min-width: 120px;
+}
+
+.admin .results th:nth-child(6),
+.admin .results td:nth-child(6) {
+    width: 15%;
+    min-width: 120px;
+}
+
+/* 内联表格样式 */
+.inline-group .tabular th {
+    padding: 8px;
+    font-weight: 600;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.inline-group .tabular td {
+    padding: 8px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* 物流信息内联样式 */
+.inline-group .fieldset {
+    margin-bottom: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 15px;
+    background-color: #f8f9fa;
+}
+
+.inline-group .fieldset h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #495057;
+    font-size: 16px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 8px;
+}
+
+.inline-group .fieldset .form-row {
+    margin-bottom: 12px;
+}
+
+.inline-group .fieldset .form-row .field-box {
+    margin-right: 15px;
+    margin-bottom: 8px;
+}
+
+.inline-group .fieldset label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.inline-group .fieldset input,
+.inline-group .fieldset select,
+.inline-group .fieldset textarea {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.inline-group .fieldset input:focus,
+.inline-group .fieldset select:focus,
+.inline-group .fieldset textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* 字段集样式 */
+.form-row {
+    margin-bottom: 15px;
+}
+
+.form-row .field-box {
+    margin-right: 20px;
+}
+
+/* 状态颜色 */
+.status-pending { color: #ffc107; font-weight: 600; }
+.status-shipped { color: #17a2b8; font-weight: 600; }
+.status-in_transit { color: #007bff; font-weight: 600; }
+.status-out_for_delivery { color: #6f42c1; font-weight: 600; }
+.status-delivered { color: #28a745; font-weight: 600; }
+.status-failed { color: #dc3545; font-weight: 600; }
+.status-returned { color: #6c757d; font-weight: 600; }
+
+/* 按钮样式 */
+.default {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.default:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* 分页样式 */
+.paginator {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.paginator a,
+.paginator .this-page {
+    padding: 8px 12px;
+    margin: 0 2px;
+    border: 1px solid #dee2e6;
+    text-decoration: none;
+    color: #007bff;
+    border-radius: 4px;
+}
+
+.paginator .this-page {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* 搜索框样式 */
+#searchbar {
+    width: 300px;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* 过滤器样式 */
+#changelist-filter {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 15px;
+    margin-right: 20px;
+}
+
+#changelist-filter h2 {
+    margin-top: 0;
+    color: #495057;
+    font-size: 16px;
+}
+
+#changelist-filter h3 {
+    color: #6c757d;
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+#changelist-filter ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 15px;
+}
+
+#changelist-filter li {
+    margin-bottom: 5px;
+}
+
+#changelist-filter a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+#changelist-filter a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+#changelist-filter .selected {
+    font-weight: 600;
+    color: #495057;
+}
+
+/* 只读字段样式 */
+.readonly {
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .admin .results th,
+    .admin .results td {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+    
+    #searchbar {
+        width: 200px;
+    }
+}
