@@ -434,6 +434,7 @@ def products_by_category_exact(request, category_name):
     try:
         # 获取可选的数量参数
         limit = request.GET.get('limit')
+        offset_param = request.GET.get('offset')
         
         # 查询精确匹配的分类
         try:
@@ -455,6 +456,18 @@ def products_by_category_exact(request, category_name):
             category=category,
             is_active=True
         ).order_by('-created_at')
+        
+        # 应用偏移参数（offset）
+        applied_offset = None
+        if offset_param is not None:
+            try:
+                off = int(offset_param)
+                if off < 0:
+                    return Response({'code': 400, 'msg': 'offset 必须是大于等于0的整数', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+            except ValueError:
+                return Response({'code': 400, 'msg': 'offset 必须是有效的整数', 'result': None}, status=status.HTTP_400_BAD_REQUEST)
+            applied_offset = off
+            products = products[off:]
         
         # 如果指定了数量参数，则限制返回数量
         if limit:
@@ -507,7 +520,8 @@ def products_by_category_exact(request, category_name):
                 },
                 'products': data,
                 'total_count': len(data),
-                'limit': limit if limit else None
+                'limit': limit if limit else None,
+                'offset': applied_offset
             }
         })
         
