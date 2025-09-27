@@ -6,9 +6,9 @@ After=network.target
 Type=notify
 User=www-data
 Group=www-data
-WorkingDirectory=/data/jtd_backend/jtd_shop
-Environment="PATH=/data/jtd_backend/jtd_shop/.venv/bin"
-ExecStart=/data/jtd_backend/jtd_shop/.venv/bin/gunicorn --config gunicorn.conf.py App_backend.wsgi:application
+WorkingDirectory=/data/jtd_shop
+Environment="PATH=/data/jtd_shop/.venv/bin"
+ExecStart=/data/jtd_shop/.venv/bin/gunicorn --config gunicorn.conf.py App_backend.wsgi:application
 ExecReload=/bin/kill -s HUP $MAINPID
 KillMode=mixed
 TimeoutStopSec=5

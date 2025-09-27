@@ -45,4 +45,7 @@ urlpatterns = [
 
     #  aes解密得到
     path('aes/phone/', views.aes_phone, name='aes_phone'),                       #电话号码解密
+    
+    # 联系方式管理
+    path('contact/update/', views.update_contact, name='update_contact'),        #修改用户联系方式
 ]

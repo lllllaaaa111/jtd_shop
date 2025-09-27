@@ -1244,3 +1244,71 @@ def address_delete(request, address_id):
             'msg': f'服务器错误: {str(e)}',
             'result': None
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['PUT', 'PATCH'])
+@permission_classes([IsAuthenticated])
+def update_contact(request):
+    """修改用户联系方式（手机号、邮箱等）"""
+    try:
+        user = request.user
+        data = request.data.copy()
+        
+        # 验证手机号格式
+        phone = data.get('phone')
+        if phone:
+            import re
+            phone_pattern = r'^1[3-9]\d{9}$'
+            if not re.match(phone_pattern, phone):
+                return Response({
+                    'code': 400,
+                    'msg': '手机号格式不正确',
+                    'result': None
+                }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 验证邮箱格式
+        email = data.get('email')
+        if email:
+            import re
+            email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+            if not re.match(email_pattern, email):
+                return Response({
+                    'code': 400,
+                    'msg': '邮箱格式不正确',
+                    'result': None
+                }, status=status.HTTP_400_BAD_REQUEST)
+            
+            # 检查邮箱是否已被其他用户使用
+            if User.objects.filter(email=email).exclude(id=user.id).exists():
+                return Response({
+                    'code': 400,
+                    'msg': '该邮箱已被其他用户使用',
+                    'result': None
+                }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # 更新用户信息
+        if phone is not None:
+            user.phone = phone
+        if email is not None:
+            user.email = email
+        if 'first_name' in data:
+            user.first_name = data.get('first_name', '')
+        if 'last_name' in data:
+            user.last_name = data.get('last_name', '')
+        
+        user.save()
+        
+        # 返回更新后的用户信息
+        serializer = UserSerializer(user)
+        return Response({
+            'code': 200,
+            'msg': '联系方式更新成功',
+            'result': serializer.data
+        })
+        
+    except Exception as e:
+        logger.exception("更新联系方式失败")
+        return Response({
+            'code': 500,
+            'msg': f'服务器错误: {str(e)}',
+            'result': None
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
